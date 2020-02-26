@@ -92,3 +92,5 @@ def pygameMenuStart():
 
         pg.display.update()
 pygameMenuStart()
+
+#HEJ MED DIG
