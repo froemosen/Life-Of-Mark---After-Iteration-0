@@ -53,7 +53,7 @@ def pygameMenuStart():
     point = 1
     while run:
         keys = pg.key.get_pressed()
-        clock.tick(10)
+        clock.tick(40)
         for event in pg.event.get():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 run = False
@@ -92,5 +92,3 @@ def pygameMenuStart():
 
         pg.display.update()
 pygameMenuStart()
-
-#HEJ MED DIG

@@ -19,6 +19,7 @@ markGåVenstre = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.p
 markGåHøjre = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
 markGåNed = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
+table1 = pg.image.load("Table.png")
 
 def start():
     import Menu
@@ -74,6 +75,7 @@ def start():
 
     def drawWorld():
         win.blit(bg, (0,0))
+        win.blit(table1, (56,250))
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
