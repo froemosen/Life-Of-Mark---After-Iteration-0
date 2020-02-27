@@ -4,6 +4,8 @@ from playsound import playsound
 import pygame.mixer
 x = 1920
 y = 1080
+fps = 60
+#Er der for settings
 pg.init()
 pg.font.init()
 bg = pg.image.load("Classroom(1.0).png")
@@ -20,6 +22,7 @@ markGåHøjre = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"
 markGåNed = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
 table1 = pg.image.load("Table.png")
+#Alle backgorund og sprites skal sorteres
 
 def start():
     import Menu
@@ -72,6 +75,7 @@ def start():
             self.y = y
         def tekst(self, win):
             win.blit(textBox, (self.x, self.y))
+#Alle classes inde i en seperat fill...
 
     def drawWorld():
         win.blit(bg, (0,0))
@@ -85,7 +89,7 @@ def start():
     allPlayerText = allPlayerText(100, 920)
     while run:
         keys = pg.key.get_pressed()
-        clock.tick(27)
+        clock.tick(fps)
 
         for event in pg.event.get():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
