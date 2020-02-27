@@ -8,6 +8,26 @@ tick = pg.time.get_ticks()
 bg = pg.image.load("Baggrund.png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 
+class buttons(object):
+    startButton = pg.image.load("")
+    settingButton = pg.image.load("")
+    quitButton = pg.image.load("")
+    def __init__(self, x, y, height, width):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.hitbox = (self.x + 10, self.y, 28, 60)
+    
+    def drawStart(self):
+        pass
+
+    def drawSetting(self):
+        pass
+    
+    def drawQuit(self):
+        pass
+
 def startSettings():
     run = True
     while run:
@@ -47,7 +67,6 @@ def startSettings():
 
 def pygameMenuStart():
     import Game
-    pg.mouse.set_visible(False)
     pg.init()
     run = True
     point = 1

@@ -63,7 +63,7 @@ def start():
                 elif self.walkUp:
                     win.blit(markStandUp, (self.x, self.y))
                 elif self.walkRight:
-                    win.blit(markStand, (self.x, self.y))
+                    win.blit(markStandRight, (self.x, self.y))
                 elif self.walkLeft:
                     win.blit(markStandLeft, (self.x, self.y))
                 else:
