@@ -7,63 +7,44 @@ clock = pg.time.Clock()
 tick = pg.time.get_ticks()
 bg = pg.image.load("Baggrund.png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
+startButton = pg.image.load("startButton.png")
+settingButton = pg.image.load("settingButton.png")
+quitButton = pg.image.load("quitButton.png")
 
 class buttons(object):
-    startButton = pg.image.load("")
-    settingButton = pg.image.load("")
-    quitButton = pg.image.load("")
-    def __init__(self, x, y, height, width):
-        self.x = x
-        self.y = y
+    def __init__(self, startX, startY, settingX, settingY, quitX, quitY, height, width):
+        self.startX = startX
+        self.startY = startY
+        self.settingX = settingX
+        self.settingY = settingY
+        self.quitX = quitX
+        self.quitY = quitY
         self.height = height
         self.width = width
-        self.hitbox = (self.x + 10, self.y, 28, 60)
     
     def drawStart(self):
-        pass
+        win.blit(startButton, (self.startX, self.startY))
 
     def drawSetting(self):
-        pass
+        win.blit(settingButton, (self.settingX, self.settingY))
     
     def drawQuit(self):
-        pass
+        win.blit(quitButton, (self.quitX, self.quitY))
+
+def drawWorld():
+        win.blit(bg, (0,0))
+        buttons.drawStart()
+        buttons.drawSetting()
+        buttons.drawQuit()
 
 def startSettings():
     run = True
     while run:
-        points = Tekst.resTal
-        tick = pg.time.get_ticks()
-        win.blit(bg, (0,0))
         keys = pg.key.get_pressed()
         clock.tick(60)
         for event in pg.event.get():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 run = False
-        
-        if keys[pg.K_d] and Tekst.resTal >= 1:
-            Tekst.resTal -= 1
-
-        elif keys[pg.K_a] and Tekst.resTal <= 5:
-            Tekst.resTal += 1
-
-        if points == 1:
-            Tekst.changeRes()
-
-        elif points == 2:
-            Tekst.changeRes1()
-
-        elif points == 3:
-            Tekst.changeRes2()
-            
-        elif points == 4:
-            Tekst.changeRes3()
-
-        elif points == 5:
-            Tekst.changeRes4()
-
-        elif keys[pg.K_ESCAPE]:
-            pygameMenuStart()
-        pg.display.update()
 
 def pygameMenuStart():
     import Game
@@ -71,43 +52,25 @@ def pygameMenuStart():
     run = True
     point = 1
     while run:
-        keys = pg.key.get_pressed()
+        mx, my = pg.mouse.get_pos()
         clock.tick(40)
         for event in pg.event.get():
-            if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
+            if event.type == pg.QUIT:
                 run = False
-        win.blit(bg, (0,0))
-        Tekst.menuTekst1()
-        Tekst.menuTekst2()
-        Tekst.menuTekst3()
-
-        if keys[pg.K_w] and point >= 1:
-            point -= 1
-
-        if keys[pg.K_s] and point <= 3:
-
-            point += 1
-
-        if point == 1:
-            Tekst.white1 = (255, 127, 80)
-            Tekst.white2 = (255, 255, 255)
-            Tekst.white3 = (255, 255, 255)
-        elif point == 2:
-            Tekst.white1 = (255, 255, 255)
-            Tekst.white2 = (255, 127, 80)
-            Tekst.white3 = (255, 255, 255)
-        elif point == 3:
-            Tekst.white1 = (255, 255, 255)
-            Tekst.white2 = (255, 255, 255)
-            Tekst.white3 = (255, 127, 80)
-
-        if keys[pg.K_SPACE] and point == 1:
-            Game.start()
-        elif keys[pg.K_SPACE] and point == 2:
-            startSettings()
-        elif keys[pg.K_SPACE] and point == 3:
-            run = False
-            pg.quit()
-
+        if event.type == pg.MOUSEBUTTONDOWN:
+            if mx > 850 and mx < 1070 and my > 520 and my < 560:
+                Game.start()
+            if mx > 785 and mx < 1150 and my > 720 and my < 765:
+                startSettings()
+            if mx > 880 and mx < 1035 and my > 930 and my < 965:
+                pg.quit()
+        if mx > 850 and mx < 1070 and my > 520 and my < 560:
+            pass #Animations der indikerer at bruger er over feltet
+        if mx > 785 and mx < 1150 and my > 720 and my < 765:
+            pass #Animations der indikerer at bruger er over feltet
+        if mx > 880 and mx < 1035 and my > 930 and my < 965:
+            pass #Animations der indikerer at bruger er over feltet
+        drawWorld()
         pg.display.update()
+buttons = buttons(720, 440, 710, 640, 700, 840, 900, 900)
 pygameMenuStart()
