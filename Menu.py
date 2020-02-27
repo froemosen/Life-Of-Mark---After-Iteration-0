@@ -57,13 +57,13 @@ def pygameMenuStart():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
-        if event.type == pg.MOUSEBUTTONDOWN:
-            if mx > 850 and mx < 1070 and my > 520 and my < 560:
-                Game.start()
-            if mx > 785 and mx < 1150 and my > 720 and my < 765:
-                startSettings()
-            if mx > 880 and mx < 1035 and my > 930 and my < 965:
-                pg.quit()
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if mx > 850 and mx < 1070 and my > 520 and my < 560:
+                    Game.start()
+                if mx > 785 and mx < 1150 and my > 720 and my < 765:
+                    startSettings()
+                if mx > 880 and mx < 1035 and my > 930 and my < 965:
+                    pg.quit()
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             pass #Animations der indikerer at bruger er over feltet
         if mx > 785 and mx < 1150 and my > 720 and my < 765:

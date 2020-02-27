@@ -126,6 +126,8 @@ def start():
         else:
             smark.stand = True
             smark.walkCount = 0
+        if keys[pg.K_ESCAPE]:
+            Menu.pygameMenuStart()
         drawWorld()
     pg.quit()
 start()
