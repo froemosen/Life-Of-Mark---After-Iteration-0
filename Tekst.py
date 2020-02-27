@@ -70,4 +70,3 @@ def changeRes4():
     textRect = textSetting.get_rect()
     textRect.center = (960, 540)
     win.blit(textSetting, textRect)
-

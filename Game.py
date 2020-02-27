@@ -11,15 +11,15 @@ pg.font.init()
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
-markStåV = pg.image.load("gåVenstre1.png")
-markStåH = pg.image.load("gåHøjre1.png")
-markStåO = pg.image.load("gåOp3.png")
-markStåN = pg.image.load("gåNed1.png")
-markStå = pg.image.load("gåNed1.png")
-markGåOp = [pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png")]
-markGåVenstre = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png")]
-markGåHøjre = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
-markGåNed = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
+markStandLeft = pg.image.load("gåVenstre1.png")
+markStandRight = pg.image.load("gåHøjre1.png")
+markStandUp = pg.image.load("gåOp3.png")
+markStandDown = pg.image.load("gåNed1.png")
+markStand = pg.image.load("gåNed1.png")
+markWalkUp = [pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png")]
+markWalkLeft = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png")]
+markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
+markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
 table1 = pg.image.load("Table.png")
 #Alle backgorund og sprites skal sorteres
@@ -33,41 +33,41 @@ def start():
             self.height = height
             self.width = width
             self.vel = 10
-            self.gåtal = 1
-            self.stå = True
-            self.gåNed = False
-            self.gåOp = False
-            self.gåHøjre = False
-            self.gåVenstre = False
+            self.walkCount = 1
+            self.stand = True
+            self.walkDown = False
+            self.walkUp = False
+            self.walkRight = False
+            self.walkLeft = False
 
         def draw(self, win):
-            if self.gåtal + 1 >= 27:
-                self.gåtal = 0
+            if self.walkCount + 1 >= 27:
+                self.walkCount = 0
 
-            if not(self.stå):
-                if self.gåNed:
-                    win.blit(markGåNed[self.gåtal // 3], (self.x, self.y))
-                    self.gåtal += 1
-                elif self.gåOp:
-                    win.blit(markGåOp[self.gåtal // 3], (self.x, self.y))
-                    self.gåtal += 1
-                elif self.gåHøjre:
-                    win.blit(markGåHøjre[self.gåtal // 3], (self.x, self.y))
-                    self.gåtal += 1
-                elif self.gåVenstre:
-                    win.blit(markGåVenstre[self.gåtal // 3], (self.x, self.y))
-                    self.gåtal += 1
+            if not(self.stand):
+                if self.walkDown:
+                    win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
+                    self.walkCount += 1
+                elif self.walkUp:
+                    win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
+                    self.walkCount += 1
+                elif self.walkRight:
+                    win.blit(markWalkRight[self.walkCount // 3], (self.x, self.y))
+                    self.walkCount += 1
+                elif self.walkLeft:
+                    win.blit(markWalkLeft[self.walkCount // 3], (self.x, self.y))
+                    self.walkCount += 1
             else:
-                if self.gåNed:
-                    win.blit(markStåN, (self.x, self.y))
-                elif self.gåOp:
-                    win.blit(markStåO, (self.x, self.y))
-                elif self.gåHøjre:
-                    win.blit(markStåH, (self.x, self.y))
-                elif self.gåVenstre:
-                    win.blit(markStåV, (self.x, self.y))
+                if self.walkDown:
+                    win.blit(markStandDown, (self.x, self.y))
+                elif self.walkUp:
+                    win.blit(markStandUp, (self.x, self.y))
+                elif self.walkRight:
+                    win.blit(markStand, (self.x, self.y))
+                elif self.walkLeft:
+                    win.blit(markStandLeft, (self.x, self.y))
                 else:
-                    win.blit(markStåN, (self.x, self.y)) 
+                    win.blit(markStand, (self.x, self.y)) 
 
     class allPlayerText(object):
         def __init__(self, x, y):
@@ -97,35 +97,35 @@ def start():
         
         if keys[pg.K_a]:
             smark.x -= smark.vel
-            smark.gåNed = False
-            smark.gåOp = False
-            smark.gåHøjre = False
-            smark.gåVenstre = True
-            smark.stå = False
+            smark.walkDown = False
+            smark.walkUp = False
+            smark.walkRight = False
+            smark.walkLeft = True
+            smark.stand = False
         elif keys[pg.K_d]:
             smark.x += smark.vel
-            smark.gåNed = False
-            smark.gåOp = False
-            smark.gåHøjre = True
-            smark.gåVenstre = False
-            smark.stå = False
+            smark.walkDown = False
+            smark.walkUp = False
+            smark.walkRight = True
+            smark.walkLeft = False
+            smark.stand = False
         elif keys[pg.K_s]:
             smark.y += smark.vel
-            smark.gåNed = True
-            smark.gåOp = False
-            smark.gåHøjre = False
-            smark.gåVenstre = False
-            smark.stå = False
+            smark.walkDown = True
+            smark.walkUp = False
+            smark.walkRight = False
+            smark.walkLeft = False
+            smark.stand = False
         elif keys[pg.K_w]:
             smark.y -= smark.vel
-            smark.gåNed = False
-            smark.gåOp = True
-            smark.gåHøjre = False
-            smark.gåVenstre = False
-            smark.stå = False
+            smark.walkDown = False
+            smark.walkUp = True
+            smark.walkRight = False
+            smark.walkLeft = False
+            smark.stand = False
         else:
-            smark.stå = True
-            smark.gåtal = 0
+            smark.stand = True
+            smark.walkCount = 0
         drawWorld()
     pg.quit()
 start()
