@@ -63,6 +63,7 @@ def pygameMenuStart():
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()
                 if mx > 880 and mx < 1035 and my > 930 and my < 965:
+                    run = False
                     pg.quit()
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             pass #Animations der indikerer at bruger er over feltet
