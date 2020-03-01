@@ -1,2 +1,5 @@
 
 ~$Tidsplan.xlsx
+*.pyc
+__pycache__/Menu.cpython-36.pyc
+__pycache__/Menu.cpython-36.pyc
