@@ -8,6 +8,8 @@ fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
+
+gåLyd = pg.mixer.Sound("FOOT1.mp3")
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
@@ -40,6 +42,8 @@ def start():
             self.walkRight = False
             self.walkLeft = False
 
+            self.afspilGåLyd = pg.mixer.Sound.play(gåLyd)
+
         def draw(self, win):
             if self.walkCount + 1 >= 27:
                 self.walkCount = 0
@@ -47,6 +51,7 @@ def start():
             if not(self.stand):
                 if self.walkDown:
                     win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
+                    self.afspilGåLyd
                     self.walkCount += 1
                 elif self.walkUp:
                     win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
@@ -68,6 +73,9 @@ def start():
                     win.blit(markStandLeft, (self.x, self.y))
                 else:
                     win.blit(markStand, (self.x, self.y)) 
+            
+                
+
 
     class allPlayerText(object):
         def __init__(self, x, y):

@@ -110,6 +110,9 @@ def startSettings():
 def pygameMenuStart():
     import Game
     pg.init()
+    pg.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
+    pg.mixer.music.load("MainMenuMusic.mp3")
+    pg.mixer.music.play(1, 0)
     run = True
     point = 1
     while run:
@@ -120,6 +123,7 @@ def pygameMenuStart():
                 run = False
             if event.type == pg.MOUSEBUTTONDOWN:
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
+                    pg.mixer.music.fadeout(3000)
                     Game.start()
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()
