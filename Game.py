@@ -9,7 +9,7 @@ fps = 60
 pg.init()
 pg.font.init()
 
-gåLyd = pg.mixer.Sound("FOOT1.mp3")
+
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
@@ -41,8 +41,7 @@ def start():
             self.walkUp = False
             self.walkRight = False
             self.walkLeft = False
-
-            self.afspilGåLyd = pg.mixer.Sound.play(gåLyd)
+            self.walkSound = pg.mixer.Sound("walksound.wav")
 
         def draw(self, win):
             if self.walkCount + 1 >= 27:
@@ -51,7 +50,7 @@ def start():
             if not(self.stand):
                 if self.walkDown:
                     win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
-                    self.afspilGåLyd
+                    #self.walkSound.play()
                     self.walkCount += 1
                 elif self.walkUp:
                     win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
