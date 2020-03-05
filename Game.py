@@ -44,6 +44,8 @@ def start():
             self.walkUp = False
             self.walkRight = False
             self.walkLeft = False
+        
+
 
         def draw(self, win):
             if self.walkCount + 1 >= 27:
@@ -65,25 +67,18 @@ def start():
             else:
                 if self.walkDown:
                     win.blit(markStandDown, (self.x, self.y))
-                    self.playsound = 0
+
                 elif self.walkUp:
                     win.blit(markStandUp, (self.x, self.y))
-                    self.playsound = 0
+
                 elif self.walkRight:
                     win.blit(markStandRight, (self.x, self.y))
-                    self.playsound = 0
+
                 elif self.walkLeft:
                     win.blit(markStandLeft, (self.x, self.y))
-                    self.playsound = 0
+
                 else:
                     win.blit(markStand, (self.x, self.y))
-                    self.playsound = 0
-
-            if self.playsound == 6:
-                walkSound.play()
-                self.playsound = 0
-                    
-                
 
 
     class allPlayerText(object):
@@ -102,6 +97,7 @@ def start():
         pg.display.update()
 
     run = True
+    walking = False
     smark = smark(50, 780, 50, 50)
     allPlayerText = allPlayerText(100, 920)
     while run:
@@ -112,6 +108,13 @@ def start():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 Menu.pygameMenuStart()
         
+
+        if walking == True:
+                if pg.mixer.Channel(5).get_busy() == False:
+                    pg.mixer.Channel(5).play(walkSound)
+                else:
+                    pass
+
         if keys[pg.K_a]:
             smark.x -= smark.vel
             smark.walkDown = False
@@ -119,7 +122,7 @@ def start():
             smark.walkRight = False
             smark.walkLeft = True
             smark.stand = False
-            smark.playsound += 1
+            walking = True
 
         elif keys[pg.K_d]:
             smark.x += smark.vel
@@ -128,7 +131,7 @@ def start():
             smark.walkRight = True
             smark.walkLeft = False
             smark.stand = False
-            smark.playsound += 1
+            walking = True
 
         elif keys[pg.K_s]:
             smark.y += smark.vel
@@ -137,7 +140,7 @@ def start():
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = False
-            smark.playsound += 1
+            walking = True
 
         elif keys[pg.K_w]:
             smark.y -= smark.vel
@@ -146,12 +149,16 @@ def start():
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = False
-            smark.playsound += 1
+            walking = True
 
         else:
             smark.stand = True
             smark.walkCount = 0
-            smark.playsound = 0
+            walking = False
+
+        
+
+
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
         drawWorld()
