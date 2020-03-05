@@ -112,7 +112,7 @@ def pygameMenuStart():
     pg.init()
     pg.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
     pg.mixer.music.load("MainMenuMusic.mp3")
-    pg.mixer.music.play(1, 0)
+    pg.mixer.music.play(-1)
     run = True
     point = 1
     while run:

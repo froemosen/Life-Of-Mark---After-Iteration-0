@@ -2,13 +2,13 @@ import Tekst
 import pygame as pg
 from playsound import playsound
 import pygame.mixer
+import time
 x = 1920
 y = 1080
 fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-
 
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -24,6 +24,7 @@ markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"
 markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
 table1 = pg.image.load("Table.png")
+#walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
 
 def start():
@@ -41,7 +42,6 @@ def start():
             self.walkUp = False
             self.walkRight = False
             self.walkLeft = False
-            self.walkSound = pg.mixer.Sound("walksound.wav")
 
         def draw(self, win):
             if self.walkCount + 1 >= 27:
@@ -50,7 +50,6 @@ def start():
             if not(self.stand):
                 if self.walkDown:
                     win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
-                    #self.walkSound.play()
                     self.walkCount += 1
                 elif self.walkUp:
                     win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
@@ -72,7 +71,7 @@ def start():
                     win.blit(markStandLeft, (self.x, self.y))
                 else:
                     win.blit(markStand, (self.x, self.y)) 
-            
+                    
                 
 
 
@@ -109,6 +108,7 @@ def start():
             smark.walkRight = False
             smark.walkLeft = True
             smark.stand = False
+
         elif keys[pg.K_d]:
             smark.x += smark.vel
             smark.walkDown = False
