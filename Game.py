@@ -6,6 +6,7 @@ import time
 x = 1920
 y = 1080
 fps = 60
+
 #Er der for settings
 pg.init()
 pg.font.init()
@@ -24,7 +25,7 @@ markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"
 markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
 table1 = pg.image.load("Table.png")
-#walkSound = pg.mixer.Sound("walksound.wav")
+walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
 
 def start():
@@ -37,6 +38,7 @@ def start():
             self.width = width
             self.vel = 10
             self.walkCount = 1
+            self.playsound = 0
             self.stand = True
             self.walkDown = False
             self.walkUp = False
@@ -63,14 +65,23 @@ def start():
             else:
                 if self.walkDown:
                     win.blit(markStandDown, (self.x, self.y))
+                    self.playsound = 0
                 elif self.walkUp:
                     win.blit(markStandUp, (self.x, self.y))
+                    self.playsound = 0
                 elif self.walkRight:
                     win.blit(markStandRight, (self.x, self.y))
+                    self.playsound = 0
                 elif self.walkLeft:
                     win.blit(markStandLeft, (self.x, self.y))
+                    self.playsound = 0
                 else:
-                    win.blit(markStand, (self.x, self.y)) 
+                    win.blit(markStand, (self.x, self.y))
+                    self.playsound = 0
+
+            if self.playsound == 6:
+                walkSound.play()
+                self.playsound = 0
                     
                 
 
@@ -108,6 +119,7 @@ def start():
             smark.walkRight = False
             smark.walkLeft = True
             smark.stand = False
+            smark.playsound += 1
 
         elif keys[pg.K_d]:
             smark.x += smark.vel
@@ -116,6 +128,8 @@ def start():
             smark.walkRight = True
             smark.walkLeft = False
             smark.stand = False
+            smark.playsound += 1
+
         elif keys[pg.K_s]:
             smark.y += smark.vel
             smark.walkDown = True
@@ -123,6 +137,8 @@ def start():
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = False
+            smark.playsound += 1
+
         elif keys[pg.K_w]:
             smark.y -= smark.vel
             smark.walkDown = False
@@ -130,9 +146,12 @@ def start():
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = False
+            smark.playsound += 1
+
         else:
             smark.stand = True
             smark.walkCount = 0
+            smark.playsound = 0
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
         drawWorld()

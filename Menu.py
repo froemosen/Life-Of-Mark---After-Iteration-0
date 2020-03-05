@@ -4,6 +4,7 @@ import time
 import random as r
 x = 1920
 y = 1080
+pg.mixer.init(frequency=44100, size=-16, channels=6, buffer=4096)
 clock = pg.time.Clock()
 tick = pg.time.get_ticks()
 bg = pg.image.load("Baggrund.png")
@@ -30,12 +31,12 @@ class closedScroll(object):
         self.closedscrollY6 = closedscrollY6
 
     def closedScroll(self):
-        win.blit(closedScroll, (closedscrollX1, closedscrollY1))
-        win.blit(closedScroll, (closedscrollX2, closedscrollY2))
-        win.blit(closedScroll, (closedscrollX3, closedscrollY3))
-        win.blit(closedScroll, (closedscrollX4, closedscrollY4))
-        win.blit(closedScroll, (closedscrollX5, closedscrollY5))
-        win.blit(closedScroll, (closedscrollX6, closedscrollY6))
+        win.blit(self.closedScroll, (self.closedscrollX1, self.closedscrollY1))
+        win.blit(self.closedScroll, (self.closedscrollX2, self.closedscrollY2))
+        win.blit(self.closedScroll, (self.closedscrollX3, self.closedscrollY3))
+        win.blit(self.closedScroll, (self.closedscrollX4, self.closedscrollY4))
+        win.blit(self.closedScroll, (self.closedscrollX5, self.closedscrollY5))
+        win.blit(self.closedScroll, (self.closedscrollX6, self.closedscrollY6))
         #Dur ikke... Skal fixes
 
 class scrolls(object):
@@ -110,11 +111,9 @@ def startSettings():
 def pygameMenuStart():
     import Game
     pg.init()
-    pg.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
     pg.mixer.music.load("MainMenuMusic.mp3")
     pg.mixer.music.play(-1)
     run = True
-    point = 1
     while run:
         mx, my = pg.mouse.get_pos()
         clock.tick(40)
