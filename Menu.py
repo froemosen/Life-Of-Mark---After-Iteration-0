@@ -14,8 +14,11 @@ pg.display.set_caption("Life of Mark episode 1 - The List")
 icon = pg.image.load("icon.png")
 pg.display.set_icon(icon)
 startButton = pg.image.load("startButton.png")
+startButton1 = pg.image.load("startButton1.png")
 settingButton = pg.image.load("settingButton.png")
+settingButton1 = pg.image.load("settingButton1.png")
 quitButton = pg.image.load("quitButton.png")
+quitButton1 = pg.image.load("quitButton1.png")
 closedScroll = pg.image.load("closedScroll.png")
 openScrolls = [pg.image.load("openScrollCpp.png"), pg.image.load("openScrollCsharp.png"), pg.image.load("openScrollCss.png"), pg.image.load("openScrollHTML.png"), pg.image.load("openScrollJs.png"), pg.image.load("openScrollPython.png")]
 
@@ -99,12 +102,16 @@ def drawWorld():
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             scrolls.drawMouseOverStart()
             win.blit(icon, (783, 480))
+            win.blit(startButton1, (720, 440))
+            
 
         if mx > 785 and mx < 1150 and my > 720 and my < 765:
             scrolls.drawMouseOverSetting()
+            win.blit(settingButton1, (710, 640))
 
         if mx > 880 and mx < 1035 and my > 930 and my < 965:
             scrolls.drawMouseOverQuit()
+            win.blit(quitButton1, (700, 840))
 
 
 def startSettings():
