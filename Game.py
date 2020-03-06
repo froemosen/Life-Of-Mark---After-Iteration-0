@@ -10,7 +10,9 @@ fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-
+pg.mixer.music.set_volume(0.03)
+pg.mixer.music.load("Violin_Background.mp3")
+pg.mixer.music.play()
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
@@ -24,7 +26,7 @@ markWalkLeft = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png
 markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
 markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
 textBox = pg.image.load("textFrame.png")
-table1 = pg.image.load("Table.png")
+table1 = pg.image.load("table1.png")
 walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
 
@@ -91,7 +93,10 @@ def start():
 
     def drawWorld():
         win.blit(bg, (0,0))
+        #Bord er 231 pixels langt
         win.blit(table1, (56,250))
+        win.blit(table1, (287,250))
+        win.blit(table1, (518,250))
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
