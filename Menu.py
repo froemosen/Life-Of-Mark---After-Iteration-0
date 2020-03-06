@@ -20,7 +20,7 @@ settingButton = pg.image.load("settingButton.png")
 settingButton1 = pg.image.load("settingButton1.png")
 quitButton = pg.image.load("quitButton.png")
 quitButton1 = pg.image.load("quitButton1.png")
-closedScroll = pg.image.load("closedScroll.png")
+picOfClosedScroll = pg.image.load("closedScroll.png")
 openScrolls = [pg.image.load("openScrollCpp.png"), pg.image.load("openScrollCsharp.png"), pg.image.load("openScrollCss.png"), pg.image.load("openScrollHTML.png"), pg.image.load("openScrollJs.png"), pg.image.load("openScrollPython.png")]
 
 class closedScroll(object):
@@ -38,14 +38,18 @@ class closedScroll(object):
         self.closedscrollX6 = closedscrollX6
         self.closedscrollY6 = closedscrollY6
 
-    def closedScroll(self):
-        win.blit(self.closedScroll, (self.closedscrollX1, self.closedscrollY1))
-        win.blit(self.closedScroll, (self.closedscrollX2, self.closedscrollY2))
-        win.blit(self.closedScroll, (self.closedscrollX3, self.closedscrollY3))
-        win.blit(self.closedScroll, (self.closedscrollX4, self.closedscrollY4))
-        win.blit(self.closedScroll, (self.closedscrollX5, self.closedscrollY5))
-        win.blit(self.closedScroll, (self.closedscrollX6, self.closedscrollY6))
-        #Dur ikke... Skal fixes
+    def drawClosedScroll1(self):
+        win.blit(picOfClosedScroll, (self.closedscrollX1, self.closedscrollY1))
+        win.blit(picOfClosedScroll, (self.closedscrollX2, self.closedscrollY2))
+
+    def drawClosedScroll2(self):
+        win.blit(picOfClosedScroll, (self.closedscrollX3, self.closedscrollY3))
+        win.blit(picOfClosedScroll, (self.closedscrollX4, self.closedscrollY4))
+
+    def drawClosedScroll3(self):
+        win.blit(picOfClosedScroll, (self.closedscrollX5, self.closedscrollY5))
+        win.blit(picOfClosedScroll, (self.closedscrollX6, self.closedscrollY6))
+
 
 class scrolls(object):
     def __init__(self, scrollX1, scrollY1, scrollX2, scrollY2, scrollX3, scrollY3, scrollX4, scrollY4, scrollX5, scrollY5, scrollX6, scrollY6):
@@ -95,18 +99,44 @@ class buttons(object):
         win.blit(quitButton, (self.quitX, self.quitY))
 
 def drawWorld():
+        mx, my = pg.mouse.get_pos()
         win.blit(bg, (0,0))
         buttons.drawStart()
         buttons.drawSetting()
         buttons.drawQuit()
-        mx, my = pg.mouse.get_pos()
+        closedScroll.drawClosedScroll1()
+        closedScroll.drawClosedScroll2()
+        closedScroll.drawClosedScroll3()
+        if mx > 850 and mx < 1070 and my > 520 and my < 560:
+            win.blit(bg, (0,0))
+            closedScroll.drawClosedScroll2()
+            closedScroll.drawClosedScroll3()
+            buttons.drawStart()
+            buttons.drawSetting()
+            buttons.drawQuit()
+
+        if mx > 785 and mx < 1150 and my > 720 and my < 765:
+            win.blit(bg, (0,0))
+            closedScroll.drawClosedScroll1()
+            closedScroll.drawClosedScroll3()
+            buttons.drawStart()
+            buttons.drawSetting()
+            buttons.drawQuit()
+
+        if mx > 880 and mx < 1035 and my > 930 and my < 965:
+            win.blit(bg, (0,0))
+            closedScroll.drawClosedScroll1()
+            closedScroll.drawClosedScroll2()
+            buttons.drawStart()
+            buttons.drawSetting()
+            buttons.drawQuit()
+
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             scrolls.drawMouseOverStart()
             win.blit(icon, (783, 480))
             win.blit(startButton1, (720, 440))
             if pg.mixer.Channel(1).get_busy() == False:
                 pg.mixer.Channel(1).play(select)
-            
 
         if mx > 785 and mx < 1150 and my > 720 and my < 765:
             scrolls.drawMouseOverSetting()
@@ -157,6 +187,6 @@ def pygameMenuStart():
         drawWorld()
         pg.display.update()
 scrolls = scrolls(750, 490, 1075, 490, 690, 690, 1140, 690, 785, 890, 1035, 890)
-closedScroll = closedScroll(750, 490, 1075, 490, 690, 690, 1140, 690, 785, 890, 1035, 890)
+closedScroll = closedScroll(750, 490, 1080, 490, 685, 690, 1150, 690, 770, 890, 1045, 890)
 buttons = buttons(720, 440, 710, 640, 700, 840, 900, 900)
 pygameMenuStart()
