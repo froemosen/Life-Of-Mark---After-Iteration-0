@@ -8,7 +8,11 @@ pg.mixer.init(frequency=44100, size=-16, channels=6, buffer=4096)
 clock = pg.time.Clock()
 tick = pg.time.get_ticks()
 bg = pg.image.load("Baggrund.png")
+bg1 = pg.image.load("baggrund1.png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
+pg.display.set_caption("Life of Mark episode 1 - The List")
+icon = pg.image.load("icon.png")
+pg.display.set_icon(icon)
 startButton = pg.image.load("startButton.png")
 settingButton = pg.image.load("settingButton.png")
 quitButton = pg.image.load("quitButton.png")
@@ -94,10 +98,14 @@ def drawWorld():
         mx, my = pg.mouse.get_pos()
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             scrolls.drawMouseOverStart()
+            win.blit(icon, (783, 480))
+
         if mx > 785 and mx < 1150 and my > 720 and my < 765:
             scrolls.drawMouseOverSetting()
+
         if mx > 880 and mx < 1035 and my > 930 and my < 965:
             scrolls.drawMouseOverQuit()
+
 
 def startSettings():
     run = True
@@ -112,6 +120,7 @@ def pygameMenuStart():
     import Game
     pg.init()
     pg.mixer.music.load("MainMenuMusic.mp3")
+    pg.mixer.music.set_volume(0.3)
     pg.mixer.music.play(-1)
     run = True
     while run:
@@ -122,7 +131,7 @@ def pygameMenuStart():
                 run = False
             if event.type == pg.MOUSEBUTTONDOWN:
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
-                    pg.mixer.music.fadeout(3000)
+                    pg.mixer.music.fadeout(1500)
                     Game.start()
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()
