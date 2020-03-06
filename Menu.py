@@ -98,9 +98,14 @@ class buttons(object):
     def drawQuit(self):
         win.blit(quitButton, (self.quitX, self.quitY))
 
-def drawWorld():
+
+def drawWorld(baggrundValg):
         mx, my = pg.mouse.get_pos()
-        win.blit(bg, (0,0))
+        if  baggrundValg >= 1 and baggrundValg <= 20:
+            win.blit(bg1, (0,0))
+        elif baggrundValg >= 31 and baggrundValg <= 60:
+            win.blit(bg, (0,0))
+
         buttons.drawStart()
         buttons.drawSetting()
         buttons.drawQuit()
@@ -168,10 +173,16 @@ def pygameMenuStart():
     pg.mixer.music.load("MainMenuMusic.mp3")
     pg.mixer.music.set_volume(0.3)
     pg.mixer.music.play(-1)
+    baggrundValg = 21
     run = True
     while run:
         mx, my = pg.mouse.get_pos()
         clock.tick(40)
+        baggrundValg = baggrundValg + 1
+
+        if baggrundValg > 61:
+            baggrundValg = r.randint(1, 40)
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 run = False
@@ -184,7 +195,7 @@ def pygameMenuStart():
                 if mx > 880 and mx < 1035 and my > 930 and my < 965:
                     run = False
                     pg.quit()
-        drawWorld()
+        drawWorld(baggrundValg)
         pg.display.update()
 scrolls = scrolls(750, 490, 1075, 490, 690, 690, 1140, 690, 785, 890, 1035, 890)
 closedScroll = closedScroll(750, 490, 1080, 490, 685, 690, 1150, 690, 770, 890, 1045, 890)
