@@ -13,6 +13,7 @@ win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 pg.display.set_caption("Life of Mark episode 1 - The List")
 icon = pg.image.load("icon.png")
 pg.display.set_icon(icon)
+select = pg.mixer.Sound("selectMenu.wav")
 startButton = pg.image.load("startButton.png")
 startButton1 = pg.image.load("startButton1.png")
 settingButton = pg.image.load("settingButton.png")
@@ -103,15 +104,23 @@ def drawWorld():
             scrolls.drawMouseOverStart()
             win.blit(icon, (783, 480))
             win.blit(startButton1, (720, 440))
+            if pg.mixer.Channel(1).get_busy() == False:
+                pg.mixer.Channel(1).play(select)
             
 
         if mx > 785 and mx < 1150 and my > 720 and my < 765:
             scrolls.drawMouseOverSetting()
             win.blit(settingButton1, (710, 640))
-
+            if pg.mixer.Channel(2).get_busy() == False:
+                pg.mixer.Channel(2).play(select)
+                
         if mx > 880 and mx < 1035 and my > 930 and my < 965:
             scrolls.drawMouseOverQuit()
             win.blit(quitButton1, (700, 840))
+            if pg.mixer.Channel(3).get_busy() == False:
+                pg.mixer.Channel(3).play(select)
+
+
 
 
 def startSettings():
