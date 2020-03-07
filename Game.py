@@ -3,6 +3,7 @@ import pygame as pg
 from playsound import playsound
 import pygame.mixer
 import time
+import random as r
 x = 1920
 y = 1080
 fps = 60
@@ -11,8 +12,7 @@ fps = 60
 pg.init()
 pg.font.init()
 pg.mixer.music.set_volume(0.03)
-pg.mixer.music.load("Violin_Background.mp3")
-pg.mixer.music.play()
+sange = ["Violin_Background.mp3", "MainMenuMusic.mp3"]
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
@@ -103,6 +103,8 @@ def start():
 
     run = True
     walking = False
+
+    musicCooldown = r.randint(1, 800)
     smark = smark(50, 780, 50, 50)
     allPlayerText = allPlayerText(100, 920)
     while run:
@@ -161,11 +163,23 @@ def start():
             smark.walkCount = 0
             walking = False
 
-        
-
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
+
+        if pg.mixer.music.get_busy() == True:
+            pass
+        else:
+            if musicCooldown == 1000:
+                sangValg = (r.choice(sange))
+                pg.mixer.music.load(sangValg)
+                pg.mixer.music.play(0)
+                musicCooldown = r.randint(1, 700)
+            else:
+                musicCooldown = musicCooldown +1
+
+
+
         drawWorld()
     pg.quit()
 start()

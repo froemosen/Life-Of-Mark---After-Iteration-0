@@ -177,7 +177,7 @@ def pygameMenuStart():
     run = True
     while run:
         mx, my = pg.mouse.get_pos()
-        clock.tick(40)
+        clock.tick(60)
         baggrundValg = baggrundValg + 1
 
         if baggrundValg > 61:
