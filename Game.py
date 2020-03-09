@@ -12,7 +12,7 @@ fps = 60
 pg.init()
 pg.font.init()
 pg.mixer.music.set_volume(0.03)
-sange = ["Violin_Background.mp3", "MainMenuMusic.mp3"]
+sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
