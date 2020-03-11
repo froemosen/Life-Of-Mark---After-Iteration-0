@@ -44,11 +44,11 @@ class borde(object):
 def start():
     import Menu
     class smark(object):
-        def  __init__(self, x, y, height, width):
+        def  __init__(self, x, y):
             self.x = x
             self.y = y
-            self.height = height
-            self.width = width
+            self.height = 50   
+            self.width = 100
             self.vel = 10
             self.walkCount = 1
             self.playsound = 0
@@ -57,7 +57,7 @@ def start():
             self.walkUp = False
             self.walkRight = False
             self.walkLeft = False
-            self.hitbox = (self.x, self.y, self.height, self.width)
+            self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
         
 
 
@@ -69,31 +69,35 @@ def start():
                 if self.walkDown:
                     win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
                     self.walkCount += 1
+                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkUp:
                     win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
                     self.walkCount += 1
+                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkRight:
                     win.blit(markWalkRight[self.walkCount // 3], (self.x, self.y))
                     self.walkCount += 1
+                    self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkLeft:
                     win.blit(markWalkLeft[self.walkCount // 3], (self.x, self.y))
                     self.walkCount += 1
+                    self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
             else:
                 if self.walkDown:
                     win.blit(markStandDown, (self.x, self.y))
-
+                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkUp:
                     win.blit(markStandUp, (self.x, self.y))
-
+                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkRight:
                     win.blit(markStandRight, (self.x, self.y))
-
+                    self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
                 elif self.walkLeft:
                     win.blit(markStandLeft, (self.x, self.y))
-
+                    self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
                 else:
                     win.blit(markStand, (self.x, self.y))
-                pg.draw.rect(win, (0,255,0), self.hitbox, 2)
+            pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
 
     class allPlayerText(object):
@@ -120,7 +124,7 @@ def start():
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    smark = smark(100, 600, 50, 50)
+    smark = smark(100, 600)
     allPlayerText = allPlayerText(100, 920)
     borde1 = borde(152, 255, 1156, 115)
     while run:
