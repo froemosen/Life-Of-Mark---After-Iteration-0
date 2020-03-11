@@ -30,6 +30,17 @@ table1 = pg.image.load("table1.png")
 walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
 
+class borde(object):
+    def __init__(self, x, y, height, width):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.hitbox = (self.x, self.y, self.height, self.width)
+
+    def drawBorde(self):
+        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
+
 def start():
     import Menu
     class smark(object):
@@ -46,6 +57,7 @@ def start():
             self.walkUp = False
             self.walkRight = False
             self.walkLeft = False
+            self.hitbox = (self.x, self.y, self.height, self.width)
         
 
 
@@ -81,6 +93,7 @@ def start():
 
                 else:
                     win.blit(markStand, (self.x, self.y))
+                pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
 
     class allPlayerText(object):
@@ -97,17 +110,21 @@ def start():
         win.blit(table1, (56,250))
         win.blit(table1, (287,250))
         win.blit(table1, (518,250))
+        win.blit(table1, (749,250))
+        win.blit(table1, (980,250))
+        borde1.drawBorde()
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
 
     run = True
     walking = False
-
     musicCooldown = r.randint(1, 800)
-    smark = smark(50, 780, 50, 50)
+    smark = smark(100, 600, 50, 50)
     allPlayerText = allPlayerText(100, 920)
+    borde1 = borde(152, 255, 1156, 115)
     while run:
+        mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
         clock.tick(fps)
 
@@ -121,8 +138,8 @@ def start():
                     pg.mixer.Channel(5).play(walkSound)
                 else:
                     pass
-
-        if keys[pg.K_a]:
+        #if smark.y > 350 and smark.y < 250 and smark.x < 1210:
+        if keys[pg.K_a] and smark.x > 40:
             smark.x -= smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -131,7 +148,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_d]:
+        elif keys[pg.K_d] and smark.x < 1570:
             smark.x += smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -140,7 +157,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_s]:
+        elif keys[pg.K_s] and smark.y < 700:
             smark.y += smark.vel
             smark.walkDown = True
             smark.walkUp = False
@@ -149,7 +166,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w]:
+        elif keys[pg.K_w] and smark.y > -25:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
@@ -177,8 +194,8 @@ def start():
                 musicCooldown = r.randint(1, 700)
             else:
                 musicCooldown = musicCooldown +1
-
-
+        print(mx)
+        print(my)
 
         drawWorld()
     pg.quit()
