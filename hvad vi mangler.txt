@@ -6,3 +6,6 @@ Scene-system som er overskueligt...
 
 Cutscene til scene 1
 
+
+Settings-menu
+
