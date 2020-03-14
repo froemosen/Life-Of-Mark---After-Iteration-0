@@ -1,6 +1,4 @@
 import pygame as pg
-import Tekst
-import Menu
 import random as r
 x = 1920
 y = 1080
