@@ -9,7 +9,7 @@ fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-smark = Classes.smark(100, 600)
+smark = Classes.smark(695, 650)
 allPlayerText = Classes.allPlayerText(100, 920)
 pg.mixer.music.set_volume(0.03)
 sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
