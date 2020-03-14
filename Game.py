@@ -122,6 +122,12 @@ def start():
                 musicCooldown = r.randint(1, 700)
             else:
                 musicCooldown = musicCooldown +1
+
+        """ Virker ikke
+                if smark.x > 1508 and smark.x < 1707 and smark.y > -25 and smark.y < 20:
+                    import Hallway2
+                    Hallway2.start()
+        """
         print(mx)
         print(my)
 
