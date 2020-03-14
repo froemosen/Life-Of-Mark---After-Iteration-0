@@ -1,31 +1,22 @@
 import Tekst
 import pygame as pg
-from playsound import playsound
 import pygame.mixer
 import time
 import random as r
+import Classes
 x = 1920
 y = 1080
 fps = 60
-
 #Er der for settings
 pg.init()
 pg.font.init()
+smark = Classes.smark(100, 600)
+allPlayerText = Classes.allPlayerText(100, 920)
 pg.mixer.music.set_volume(0.03)
 sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
-markStandLeft = pg.image.load("gåVenstre1.png")
-markStandRight = pg.image.load("gåHøjre1.png")
-markStandUp = pg.image.load("gåOp3.png")
-markStandDown = pg.image.load("gåNed1.png")
-markStand = pg.image.load("gåNed1.png")
-markWalkUp = [pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png")]
-markWalkLeft = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png")]
-markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
-markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
-textBox = pg.image.load("textFrame.png")
 table1 = pg.image.load("table1.png")
 walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
@@ -43,71 +34,6 @@ class borde(object):
 
 def start():
     import Menu
-    class smark(object):
-        def  __init__(self, x, y):
-            self.x = x
-            self.y = y
-            self.height = 50   
-            self.width = 100
-            self.vel = 10
-            self.walkCount = 1
-            self.playsound = 0
-            self.stand = True
-            self.walkDown = False
-            self.walkUp = False
-            self.walkRight = False
-            self.walkLeft = False
-            self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
-        
-
-
-        def draw(self, win):
-            if self.walkCount + 1 >= 27:
-                self.walkCount = 0
-
-            if not(self.stand):
-                if self.walkDown:
-                    win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
-                    self.walkCount += 1
-                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkUp:
-                    win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
-                    self.walkCount += 1
-                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkRight:
-                    win.blit(markWalkRight[self.walkCount // 3], (self.x, self.y))
-                    self.walkCount += 1
-                    self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkLeft:
-                    win.blit(markWalkLeft[self.walkCount // 3], (self.x, self.y))
-                    self.walkCount += 1
-                    self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
-            else:
-                if self.walkDown:
-                    win.blit(markStandDown, (self.x, self.y))
-                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkUp:
-                    win.blit(markStandUp, (self.x, self.y))
-                    self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkRight:
-                    win.blit(markStandRight, (self.x, self.y))
-                    self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
-                elif self.walkLeft:
-                    win.blit(markStandLeft, (self.x, self.y))
-                    self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
-                else:
-                    win.blit(markStand, (self.x, self.y))
-            pg.draw.rect(win, (0,255,0), self.hitbox, 2)
-
-
-    class allPlayerText(object):
-        def __init__(self, x, y):
-            self.x = x
-            self.y = y
-        def tekst(self, win):
-            win.blit(textBox, (self.x, self.y))
-#Alle classes inde i en seperat fill...
-
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
@@ -124,8 +50,6 @@ def start():
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    smark = smark(100, 600)
-    allPlayerText = allPlayerText(100, 920)
     borde1 = borde(152, 255, 1156, 115)
     while run:
         mx, my = pg.mouse.get_pos()
