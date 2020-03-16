@@ -166,3 +166,6 @@ class buttons(object):
     
     def drawQuit(self):
         win.blit(quitButton, (self.quitX, self.quitY))
+
+class sangeListe():
+    sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]

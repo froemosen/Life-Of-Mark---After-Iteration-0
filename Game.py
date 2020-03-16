@@ -4,6 +4,7 @@ import pygame.mixer
 import time
 import random as r
 import Classes
+import Hallway2
 x = 1920
 y = 1080
 fps = 60
@@ -12,8 +13,6 @@ pg.init()
 pg.font.init()
 smark = Classes.smark(100, 600)
 allPlayerText = Classes.allPlayerText(100, 920)
-pg.mixer.music.set_volume(0.03)
-sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
 bg = pg.image.load("Classroom(1.0).png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
@@ -34,6 +33,7 @@ class borde(object):
 
 def start():
     import Menu
+    pg.mixer.music.set_volume(0.03)
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
@@ -116,20 +116,22 @@ def start():
             pass
         else:
             if musicCooldown == 1000:
-                sangValg = (r.choice(sange))
+                sangValg = (r.choice(Classes.sangeListe.sange))
                 pg.mixer.music.load(sangValg)
                 pg.mixer.music.play(0)
                 musicCooldown = r.randint(1, 700)
             else:
                 musicCooldown = musicCooldown +1
 
-        """ Virker ikke
-                if smark.x > 1508 and smark.x < 1707 and smark.y > -25 and smark.y < 20:
-                    import Hallway2
-                    Hallway2.start()
-        """
-        print(mx)
-        print(my)
+        #Sceneskift
+        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y < -29:
+            Hallway2.start()
+
+        print("mx", mx)
+        print("my", my)
+
+        print("SmarkX", smark.x)
+        print("SmarkY", smark.y)
 
         drawWorld()
     pg.quit()
