@@ -4,24 +4,31 @@ import time
 import random as r
 import Classes
 import Game
+
 x = 1920
 y = 1080
-pg.mixer.init(frequency=44100, size=-16, channels=6, buffer=4096)
+#For settings
+
+pg.mixer.init(frequency=44100, size=-16, channels=6, buffer=4096) #nobet lyd
+
 clock = pg.time.Clock()
 tick = pg.time.get_ticks()
-bg = pg.image.load("Baggrund.png")
-bg1 = pg.image.load("baggrund1.png")
+
+bg = pg.image.load("assets/menu/Baggrund.png") #loader grafik til baggrund
+bg1 = pg.image.load("assets/menu/baggrund1.png") #loader grafik til anden baggrund
+
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
-pg.display.set_caption("Life of Mark episode 1 - The List")
-icon = pg.image.load("icon.png")
-pg.display.set_icon(icon)
-select = pg.mixer.Sound("selectMenu.wav")
-scrolls = Classes.scrolls(750, 490, 1075, 490, 690, 690, 1140, 690, 785, 890, 1035, 890)
-closedScroll = Classes.closedScroll(750, 490, 1080, 490, 685, 690, 1150, 690, 770, 890, 1045, 890)
-buttons = Classes.buttons(720, 440, 710, 640, 700, 840, 900, 900)
-startButton1 = Classes.startButton1
-settingButton1 = Classes.settingButton1
-quitButton1 = Classes.quitButton1
+pg.display.set_caption("Life of Mark episode 1 - The List") #window title
+
+icon = pg.image.load("assets/icon.png") #Loader window billede
+pg.display.set_icon(icon) #ligger window bilede oppe i hjørnet
+select = pg.mixer.Sound("assets/lyd/selectMenu.wav") #loader lyd
+scrolls = Classes.scrolls(750, 490, 1075, 490, 690, 690, 1140, 690, 785, 890, 1035, 890) #Alle opne scrolls x og y pos
+closedScroll = Classes.closedScroll(750, 490, 1080, 490, 685, 690, 1150, 690, 770, 890, 1045, 890) #Alle lukket scrolls x og y pos
+buttons = Classes.buttons(720, 440, 710, 640, 700, 840, 900, 900) #Alle knappers x og y pos
+startButton1 = Classes.startButton1 #"import" af startButton1
+settingButton1 = Classes.settingButton1 #"import" af settingsButton1
+quitButton1 = Classes.quitButton1 #"import" af quitButton1
 
 def drawWorld(baggrundValg):
         mx, my = pg.mouse.get_pos()
@@ -29,13 +36,13 @@ def drawWorld(baggrundValg):
             win.blit(bg1, (0,0))
         elif baggrundValg >= 31 and baggrundValg <= 60:
             win.blit(bg, (0,0))
-
         buttons.drawStart()
         buttons.drawSetting()
         buttons.drawQuit()
         closedScroll.drawClosedScroll1()
         closedScroll.drawClosedScroll2()
         closedScroll.drawClosedScroll3()
+
         if mx > 850 and mx < 1070 and my > 520 and my < 560:
             win.blit(bg, (0,0))
             closedScroll.drawClosedScroll2()
@@ -93,10 +100,10 @@ def startSettings():
 
 def pygameMenuStart():
     pg.init()
-    pg.mixer.music.load("MainMenuMusic.mp3")
-    pg.mixer.music.set_volume(0.3)
-    pg.mixer.music.play(-1)
-    baggrundValg = 21
+    pg.mixer.music.load("assets/lyd/MainMenuMusic.mp3") #loader mainMenuMusic
+    pg.mixer.music.set_volume(0.3) #lydstyrken
+    pg.mixer.music.play(-1) #hvor mange gange musikken skal spille (-1 = bliver ved)
+    baggrundValg = 21 #IDK
     run = True
     while run:
         mx, my = pg.mouse.get_pos()
@@ -118,5 +125,5 @@ def pygameMenuStart():
                 if mx > 880 and mx < 1035 and my > 930 and my < 965:
                     run = False
                     pg.quit()
-        drawWorld(baggrundValg)
+        drawWorld(baggrundValg) #Tegner verden
         pg.display.update()

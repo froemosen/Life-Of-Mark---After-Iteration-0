@@ -8,15 +8,19 @@ x = 1920
 y = 1080
 fps = 60
 #Er der for settings
+
 pg.init()
 pg.font.init()
-smark = Classes.smark(695, 650)
-allPlayerText = Classes.allPlayerText(100, 920)
-pg.mixer.music.set_volume(0.03)
-bgScene = pg.image.load("Hallway2.png")
+
+smark = Classes.smark(695, 650) #Mark x og y pos
+allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
+pg.mixer.music.set_volume(0.03) #lydstyrke
+bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
+
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
-walkSound = pg.mixer.Sound("walksound.wav")
+
+walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
 
 """
@@ -124,11 +128,11 @@ def start():
             import Hallway3
             Hallway3.start()
 
-        print(mx)
-        print(my)
+        print(mx) #mouse x pos
+        print(my) #mouse y pos
 
-        print("SmarkX", smark.x)
-        print("SmarkY", smark.y)
+        print("SmarkX", smark.x) #main sprite x pos
+        print("SmarkY", smark.y)#main sprite y pos
 
-        drawWorld()
+        drawWorld() #"Tegner" verden
     pg.quit()

@@ -1,23 +1,24 @@
-import Tekst
 import pygame as pg
 import pygame.mixer
 import time
 import random as r
-import Classes
+import Classes #Alle classes er inde i den fil
 
 x = 1920
 y = 1080
 fps = 60
 #Er der for settings
+
 pg.init()
 pg.font.init()
-smark = Classes.smark(100, 600)
-allPlayerText = Classes.allPlayerText(100, 920)
-bg = pg.image.load("Classroom(1.0).png")
+
+smark = Classes.smark(100, 600) #Marks placering se i classes under smarks klassen
+allPlayerText = Classes.allPlayerText(100, 920) #Grafikken kommer det placering for "textbox"
+bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
-clock = pg.time.Clock()
-table1 = pg.image.load("table1.png")
-walkSound = pg.mixer.Sound("walksound.wav")
+clock = pg.time.Clock() 
+table1 = pg.image.load("assets/maps/table1.png") #loader grafikken til bordene
+walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #Loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
 
 class borde(object):
@@ -45,7 +46,6 @@ def start():
         win.blit(table1, (980,250))
         borde1.drawBorde()
         smark.draw(win)
-        allPlayerText.tekst(win)
         pg.display.update()
 
     run = True
@@ -129,11 +129,11 @@ def start():
             import Hallway2
             Hallway2.start()
 
-        print("mx", mx)
-        print("my", my)
+        print("mx", mx) #mouse x pos
+        print("my", my) #mouse y pos
 
-        print("SmarkX", smark.x)
-        print("SmarkY", smark.y)
+        print("SmarkX", smark.x) #main sprite x pos
+        print("SmarkY", smark.y) #main sprite y pos
 
-        drawWorld()
+        drawWorld() #"tegner" hele spillet
     pg.quit()

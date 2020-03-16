@@ -5,15 +5,15 @@ y = 1080
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 
 #MARK ANIME
-markStandLeft = pg.image.load("gåVenstre1.png")
-markStandRight = pg.image.load("gåHøjre1.png")
-markStandUp = pg.image.load("gåOp3.png")
-markStandDown = pg.image.load("gåNed1.png")
-markStand = pg.image.load("gåNed1.png")
-markWalkUp = [pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp2.png"), pg.image.load("gåOp3.png"), pg.image.load("gåOp4.png")]
-markWalkLeft = [pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png"), pg.image.load("gåVenstre1.png"), pg.image.load("gåVenstre2.png"), pg.image.load("gåVenstre3.png"), pg.image.load("gåVenstre4.png")]
-markWalkRight = [pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png"), pg.image.load("gåHøjre1.png"), pg.image.load("gåHøjre2.png"), pg.image.load("gåHøjre3.png"), pg.image.load("gåHøjre4.png")]
-markWalkDown = [pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png"), pg.image.load("gåNed1.png"), pg.image.load("gåNed2.png"), pg.image.load("gåNed3.png"), pg.image.load("gåNed4.png")]
+markStandLeft = pg.image.load("assets/sprites/gåVenstre1.png")
+markStandRight = pg.image.load("assets/sprites/gåHøjre1.png")
+markStandUp = pg.image.load("assets/sprites/gåOp3.png")
+markStandDown = pg.image.load("assets/sprites/gåNed1.png")
+markStand = pg.image.load("assets/sprites/gåNed1.png")
+markWalkUp = [pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png")]
+markWalkLeft = [pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png"), pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png"), pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png")]
+markWalkRight = [pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png"), pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png"), pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png")]
+markWalkDown = [pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png"), pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png"), pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png")]
 
 #Player
 class smark(object):
@@ -77,18 +77,17 @@ class allPlayerText(object):
         self.x = x
         self.y = y
     def tekst(self, win):
-        textBox = pg.image.load("textFrame.png")
-        win.blit(textBox, (self.x, self.y))
+        pass #Better text box is coming
 
 #MENU
-startButton = pg.image.load("startButton.png")
-startButton1 = pg.image.load("startButton1.png")
-settingButton = pg.image.load("settingButton.png")
-settingButton1 = pg.image.load("settingButton1.png")
-quitButton = pg.image.load("quitButton.png")
-quitButton1 = pg.image.load("quitButton1.png")
-picOfClosedScroll = pg.image.load("closedScroll.png")
-openScrolls = [pg.image.load("openScrollCpp.png"), pg.image.load("openScrollCsharp.png"), pg.image.load("openScrollCss.png"), pg.image.load("openScrollHTML.png"), pg.image.load("openScrollJs.png"), pg.image.load("openScrollPython.png")]
+startButton = pg.image.load("assets/menu/startButton.png")
+startButton1 = pg.image.load("assets/menu/startButton1.png")
+settingButton = pg.image.load("assets/menu/settingButton.png")
+settingButton1 = pg.image.load("assets/menu/settingButton1.png")
+quitButton = pg.image.load("assets/menu/quitButton.png")
+quitButton1 = pg.image.load("assets/menu/quitButton1.png")
+picOfClosedScroll = pg.image.load("assets/menu/closedScroll.png")
+openScrolls = [pg.image.load("assets/menu/openScrollCpp.png"), pg.image.load("assets/menu/openScrollCsharp.png"), pg.image.load("assets/menu/openScrollCss.png"), pg.image.load("assets/menu/openScrollHTML.png"), pg.image.load("assets/menu/openScrollJs.png"), pg.image.load("assets/menu/openScrollPython.png")]
 
 #Closed Scrolls
 class closedScroll(object):
