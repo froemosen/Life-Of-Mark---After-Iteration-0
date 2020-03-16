@@ -127,4 +127,3 @@ def start():
 
         drawWorld()
     pg.quit()
-start()

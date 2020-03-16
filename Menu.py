@@ -3,6 +3,7 @@ import pygame as pg
 import time
 import random as r
 import Classes
+import Game
 x = 1920
 y = 1080
 pg.mixer.init(frequency=44100, size=-16, channels=6, buffer=4096)
@@ -91,7 +92,6 @@ def startSettings():
                 run = False
 
 def pygameMenuStart():
-    import Game
     pg.init()
     pg.mixer.music.load("MainMenuMusic.mp3")
     pg.mixer.music.set_volume(0.3)
@@ -120,4 +120,3 @@ def pygameMenuStart():
                     pg.quit()
         drawWorld(baggrundValg)
         pg.display.update()
-pygameMenuStart()
