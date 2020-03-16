@@ -4,7 +4,7 @@ import pygame.mixer
 import time
 import random as r
 import Classes
-import Hallway2
+
 x = 1920
 y = 1080
 fps = 60
@@ -33,6 +33,7 @@ class borde(object):
 
 def start():
     import Menu
+
     pg.mixer.music.set_volume(0.03)
     def drawWorld():
         win.blit(bg, (0,0))
@@ -125,6 +126,7 @@ def start():
 
         #Sceneskift
         if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y < -29:
+            import Hallway2
             Hallway2.start()
 
         print("mx", mx)
