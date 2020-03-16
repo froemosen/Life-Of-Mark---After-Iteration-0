@@ -35,9 +35,9 @@ class borde(object):
 def start():
     import Menu
     import Game
+    
     def drawWorld():
         win.blit(bgScene, (0,0))
-        #Bord er 231 pixels langt
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
@@ -119,6 +119,10 @@ def start():
 
         if smark.x > 575 and smark.x < 775 and smark.y > 670 and smark.y < 700:
             Game.start()
+
+        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y < -29:
+            import Hallway3
+            Hallway3.start()
 
         print(mx)
         print(my)

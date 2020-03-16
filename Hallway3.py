@@ -1,23 +1,21 @@
-import Tekst
 import pygame as pg
 import pygame.mixer
 import time
 import random as r
 import Classes
+
 x = 1920
 y = 1080
 fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-smark = Classes.smark(100, 600)
+smark = Classes.smark(695, 650)
 allPlayerText = Classes.allPlayerText(100, 920)
 pg.mixer.music.set_volume(0.03)
-sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
-bg = pg.image.load("Classroom(1.0).png")
+bgScene3 = pg.image.load("Hallway_3.png")
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
-table1 = pg.image.load("table1.png")
 walkSound = pg.mixer.Sound("walksound.wav")
 #Alle backgorund og sprites skal sorteres
 
@@ -36,15 +34,9 @@ class borde(object):
 
 def start():
     import Menu
+    import Hallway2
     def drawWorld():
-        win.blit(bg, (0,0))
-        #Bord er 231 pixels langt
-        win.blit(table1, (56,250))
-        win.blit(table1, (287,250))
-        win.blit(table1, (518,250))
-        win.blit(table1, (749,250))
-        win.blit(table1, (980,250))
-        borde1.drawBorde()
+        win.blit(bgScene3, (0,-6000))
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
@@ -52,7 +44,6 @@ def start():
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    borde1 = borde(152, 255, 1156, 115)
     while run:
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
@@ -118,14 +109,21 @@ def start():
             pass
         else:
             if musicCooldown == 1000:
-                sangValg = (r.choice(sange))
+                sangValg = (r.choice(Classes.sangeListe.sange))
                 pg.mixer.music.load(sangValg)
                 pg.mixer.music.play(0)
                 musicCooldown = r.randint(1, 700)
             else:
                 musicCooldown = musicCooldown +1
+
+        if smark.x > 575 and smark.x < 775 and smark.y > 670 and smark.y < 700:
+            Game.start()
+
         print(mx)
         print(my)
+
+        print("SmarkX", smark.x)
+        print("SmarkY", smark.y)
 
         drawWorld()
     pg.quit()
