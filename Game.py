@@ -21,17 +21,6 @@ table1 = pg.image.load("assets/maps/table1.png") #loader grafikken til bordene
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #Loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
 
-class borde(object):
-    def __init__(self, x, y, height, width):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
-        self.hitbox = (self.x, self.y, self.height, self.width)
-
-    def drawBorde(self):
-        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
-
 def start():
     import Menu
 
@@ -44,14 +33,14 @@ def start():
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
-        borde1.drawBorde()
+        borde.drawBorde()
         smark.draw(win)
         pg.display.update()
 
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    borde1 = borde(152, 255, 1156, 115)
+    borde = Classes.borde(152, 255, 1156, 115)
     while run:
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
@@ -109,7 +98,6 @@ def start():
             smark.walkCount = 0
             walking = False
 
-
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
 
@@ -129,11 +117,28 @@ def start():
             import Hallway2
             Hallway2.start()
 
-        print("mx", mx) #mouse x pos
-        print("my", my) #mouse y pos
+        #print("mx", mx) #mouse x pos
+        #print("my", my) #mouse y pos
 
-        print("SmarkX", smark.x) #main sprite x pos
-        print("SmarkY", smark.y) #main sprite y pos
+        print(smark.x + 77) #main sprite x pos
+        print(smark.y + 65) #main sprite y pos
+
+        print("Table xpos: ", borde.x) #Table x pos
+        print("Table ypos: ", borde.y) #Table y pos
 
         drawWorld() #"tegner" hele spillet
     pg.quit()
+start()
+
+"""
+        if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
+                smark.vel = 10
+            else:
+                smark.vel = 0
+
+        if smark.y< borde.y or smark.y > borde.y + borde.width:
+            if smark.x + 77 < borde.x or smark.x > borde.x + borde.height:
+                smark.vel = 10
+        else:
+            smark.vel = 0
+"""
