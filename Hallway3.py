@@ -38,7 +38,7 @@ def start():
     import Menu
     import Hallway2
     def drawWorld():
-        win.blit(bgScene3, (0,-6000))
+        win.blit(bgScene3, (230,-3364))
         smark.draw(win)
         allPlayerText.tekst(win)
         pg.display.update()
