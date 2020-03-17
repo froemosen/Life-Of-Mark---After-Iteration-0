@@ -167,4 +167,4 @@ class buttons(object):
         win.blit(quitButton, (self.quitX, self.quitY))
 
 class sangeListe():
-    sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
+    sange = ["assets/lyd/Violin_Background.mp3", "assets/lyd/kindahipandoldsong.mp3", "assets/lyd/EmotionalJegGuess.mp3"]
