@@ -71,6 +71,17 @@ class smark(object):
                 win.blit(markStand, (self.x, self.y))
         pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
+class borde(object):
+    def __init__(self, x, y, height, width):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.hitbox = (self.x, self.y, self.height, self.width)
+
+    def drawBorde(self):
+        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
+
 #Player Text
 class allPlayerText(object):
     def __init__(self, x, y):
@@ -167,4 +178,4 @@ class buttons(object):
         win.blit(quitButton, (self.quitX, self.quitY))
 
 class sangeListe():
-    sange = ["Violin_Background.mp3", "kindahipandoldsong.mp3", "EmotionalJegGuess.mp3"]
+    sange = ["assets/lyd/Violin_Background.mp3", "assets/lyd/kindahipandoldsong.mp3", "assets/lyd/EmotionalJegGuess.mp3"]
