@@ -179,6 +179,3 @@ class buttons(object):
 
 class sangeListe():
     sange = ["assets/lyd/Violin_Background.mp3", "assets/lyd/kindahipandoldsong.mp3", "assets/lyd/EmotionalJegGuess.mp3"]
-
-
-
