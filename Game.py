@@ -11,10 +11,6 @@ fps = 60
 
 pg.init()
 pg.font.init()
-walkAllowed_A = True
-walkAllowed_S = True
-walkAllowed_D = True
-walkAllowed_W = True
 smark = Classes.smark(100, 600) #Marks placering se i classes under smarks klassen
 allPlayerText = Classes.allPlayerText(100, 920) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
@@ -45,9 +41,6 @@ def start():
         smark.draw(win)
         pg.display.update()
 
-
-
-
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
@@ -61,44 +54,46 @@ def start():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 Menu.pygameMenuStart()
         
-
-        if smark.x < 1225:
-            if smark.y > 15 and smark.y < 220:
-                walkAllowed_A = False
+        def walkAllowed():
+            #Kollision til borde - start
+            if smark.x < 1225:
+                if smark.y > 15 and smark.y < 220:
+                    walkAllowed_A = False
+                else:
+                    walkAllowed_A = True
             else:
                 walkAllowed_A = True
-        else: 
-            walkAllowed_A = True
+            
+
         
-
-
-        if smark.x < 1205:
-            if smark.y > 5 and smark.y < 220:
-                walkAllowed_S = False
-            else:
-                walkAllowed_S = True
-        else: 
-            walkAllowed_S = True
-        """
-        def walkAllowed_D():
-            if smark.x < 1230:
-                if smark.y > 30 and smark.y < 230:
-                    walkAllowed_D = False
+            if smark.x < 1205:
+                if smark.y > 5 and smark.y < 220:
+                    walkAllowed_S = False
                 else:
-                    walkAllowed_D = True
+                    walkAllowed_S = True
             else: 
-                walkAllowed_D = True
-        """
+                walkAllowed_S = True
+            """
+            def walkAllowed_D():
+                if smark.x < 1230:
+                    if smark.y > 30 and smark.y < 230:
+                        walkAllowed_D = False
+                    else:
+                        walkAllowed_D = True
+                else: 
+                    walkAllowed_D = True
+            """
 
-        if smark.x < 1215:
-            if smark.y > 15 and smark.y < 230:
-                walkAllowed_W = False
-            else:
+            if smark.x < 1215:
+                if smark.y > 15 and smark.y < 230:
+                    walkAllowed_W = False
+                else:
+                    walkAllowed_W = True
+            else: 
                 walkAllowed_W = True
-        else: 
-            walkAllowed_W = True
-
-
+            #Kollision til borde - slut
+        
+        walkAllowed()
 
         if walking == True:
                 if pg.mixer.Channel(5).get_busy() == False:
@@ -106,7 +101,7 @@ def start():
                 else:
                     pass
         #if smark.y > 350 and smark.y < 250 and smark.x < 1210:
-        if keys[pg.K_a] and smark.x > 40 and walkAllowed_A == True: #and smark.x + 77 > borde.x + borde.height and smark.y + 65 > borde.y:
+        if keys[pg.K_a] and smark.x > 40 and walkAllowed.walkAllowed_A == True: #and smark.x + 77 > borde.x + borde.height and smark.y + 65 > borde.y:
             smark.x -= smark.vel
             smark.walkDown = False
             smark.walkUp = False
