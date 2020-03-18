@@ -55,6 +55,10 @@ def start():
                 Menu.pygameMenuStart()
         
         def walkAllowed():
+            walkAllowed_A = True
+            walkAllowed_S = True
+            walkAllowed_D = True
+            walkAllowed_W = True
             #Kollision til borde - start
             if smark.x < 1225:
                 if smark.y > 15 and smark.y < 220:
@@ -110,7 +114,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_d] and smark.x < 1570 and walkAllowed_D == True:
+        elif keys[pg.K_d] and smark.x < 1570 and walkAllowed.walkAllowed_D == True:
             smark.x += smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -119,7 +123,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_s] and smark.y < 700 and walkAllowed_S == True:
+        elif keys[pg.K_s] and smark.y < 700 and walkAllowed.walkAllowed_S == True:
             smark.y += smark.vel
             smark.walkDown = True
             smark.walkUp = False
@@ -128,7 +132,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w] and smark.y > -25 and walkAllowed_W == True:
+        elif keys[pg.K_w] and smark.y > -25 and walkAllowed.walkAllowed_W == True:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
