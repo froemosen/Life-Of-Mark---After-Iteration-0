@@ -17,13 +17,15 @@ win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock() 
 table1 = pg.image.load("assets/maps/table1.png") #loader grafikken til bordene
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #Loader lyd til når mark går
-
 walkAllowed_A = True
 walkAllowed_S = True
 walkAllowed_D = True
 walkAllowed_W = True
+
 #Alle backgorund og sprites skal sorteres
 
+
+ 
 
 #hvis at mark er imellem y, og større end X - WalkAllowed = True
 
@@ -161,7 +163,8 @@ def start():
 
         drawWorld() #"tegner" hele spillet
     pg.quit()
-start()
+    
+#start() # "#" kan fjernes under tests
 
 """
         if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
