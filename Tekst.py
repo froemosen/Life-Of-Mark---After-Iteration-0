@@ -13,6 +13,8 @@ black4 = (0, 0, 0)
 white4 = (255, 255, 255)
 resTal = 1
 
+textColor = (238, 238, 238)
+
 def menuTekst1():
     font = pg.font.Font("freesansbold.ttf", 64)
     textMenu1 = font.render("Start", run, black1, white1)
@@ -69,4 +71,11 @@ def changeRes4():
     textSetting = font.render(textRes4, run, black4, white4)
     textRect = textSetting.get_rect()
     textRect.center = (960, 540)
+    win.blit(textSetting, textRect)
+
+def TextMark():
+    MarkText1 = "Hey Guys"
+    textSetting = font.render(MarkText1, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
     win.blit(textSetting, textRect)

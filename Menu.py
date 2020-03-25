@@ -99,6 +99,7 @@ def startSettings():
                 run = False
 
 def pygameMenuStart():
+    pg.mouse.set_visible(True)
     pg.init()
     pg.mixer.music.load("assets/lyd/MainMenuMusic.mp3") #loader mainMenuMusic
     pg.mixer.music.set_volume(0.3) #lydstyrken
