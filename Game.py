@@ -23,15 +23,8 @@ walkAllowed_D = True
 walkAllowed_W = True
 
 #Alle backgorund og sprites skal sorteres
-
-
  
 
-#hvis at mark er imellem y, og større end X - WalkAllowed = True
-
-#Hvis at mark er imellem y, og mindre end X - Walkallowed = False
-
-#Hvis mark ikke er imellem y - Walkallowed = True 
 def start():
     import Menu
     pg.mixer.music.set_volume(0.03)
