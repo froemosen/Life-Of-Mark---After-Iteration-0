@@ -1,8 +1,9 @@
+import Classes #Alle classes er inde i den fil
+from saveFile1 import *
 import pygame as pg
 import pygame.mixer
 import time
 import random as r
-import Classes #Alle classes er inde i den fil
 
 x = 1920
 y = 1080
@@ -10,7 +11,7 @@ fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-smark = Classes.smark(100, 600) #Marks placering se i classes under smarks klassen
+smark = Classes.smark(smark.x, smark.y) #Marks placering se i classes under smarks klassen
 allPlayerText = Classes.allPlayerText(100, 920) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -128,6 +129,20 @@ def start():
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
+
+        if keys[pg.K_l]:
+            f = open("saveFile1.py", "w")
+            f.write("import Classes" + "\n")
+            f.write("x = " + str(smark.x) + "\n")
+            f.write("y = " + str(smark.y) + "\n")
+            f.write("smark = Classes.smark(x, y)" + "\n")            
+            f.write("smark.walkDown = " + str(smark.walkDown) + "\n")
+            f.write("smark.walkUp = " + str(smark.walkUp) + "\n")
+            f.write("smark.walkRigth = " + str(smark.walkRight) + "\n")
+            f.write("smark.walkLeft = " + str(smark.walkLeft) + "\n")
+            f.write("smark.stand = " + str(smark.stand) + "\n")
+            f.write("walking = " + str(walking) + "\n")
+            f.close()
 
         if pg.mixer.music.get_busy() == True:
             pass

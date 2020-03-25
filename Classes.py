@@ -83,12 +83,14 @@ class borde(object):
         pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
 #Player Text
+#allPlayerTextBox
+allPlayerTextBox = pg.image.load("assets/Textbox.png")
 class allPlayerText(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
     def tekst(self, win):
-        pass #Better text box is coming
+        win.blit(allPlayerTextBox, (self.x, self.y))
 
 #MENU
 startButton = pg.image.load("assets/menu/startButton.png")

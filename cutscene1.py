@@ -3,6 +3,7 @@ import pygame.mixer
 import time
 import random as r
 import Classes #Alle classes er inde i den fil
+import Tekst
 
 x = 1920
 y = 1080
@@ -10,17 +11,13 @@ fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-smark = Classes.smark(1450, 15) #Marks placering se i classes under smarks klassen
-allPlayerText = Classes.allPlayerText(100, 920) #Grafikken kommer det placering for "textbox"
+smark = Classes.smark(1450, 6) #Marks placering se i classes under smarks klassen
+allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock() 
 table1 = pg.image.load("assets/maps/table1.png") #loader grafikken til bordene
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #Loader lyd til når mark går
-
-def script():
-    tick = pg.time.get_ticks() / 1000
-    print(tick)
 
 def start():
     import Menu
@@ -28,14 +25,17 @@ def start():
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
+        tick = pg.time.get_ticks() / 1000
         win.blit(table1, (56,250))
         win.blit(table1, (287,250))
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
         smark.draw(win)
+        if tick > 6 and tick < 1000:
+            allPlayerText.tekst(win)
+            Tekst.TextMark()
         pg.display.update()
-
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
@@ -50,21 +50,27 @@ def start():
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
-        script()
+            
+        tick = pg.time.get_ticks() / 1000
+        print(tick)
+
+        if tick > 0 and tick < 6:
+            smark.x -= smark.vel
+            smark.walkDown = False
+            smark.walkUp = False
+            smark.walkRight = False
+            smark.walkLeft = True
+            smark.stand = False
+            walking = True
+        if tick > 6 and tick < 1000:
+            smark.walkDown = False
+            smark.walkUp = False
+            smark.walkRight = False
+            smark.walkLeft = False
+            smark.stand = True
+            walking = True
+
         drawWorld() #"tegner" hele spillet
     pg.quit()
-
-"""
-        if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
-                smark.vel = 10
-            else:
-                smark.vel = 0
-
-        if smark.y< borde.y or smark.y > borde.y + borde.width:
-            if smark.x + 77 < borde.x or smark.x > borde.x + borde.height:
-                smark.vel = 10
-        else:
-            smark.vel = 0
-"""
-
+pygame.mouse.set_visible(False)
 start()
