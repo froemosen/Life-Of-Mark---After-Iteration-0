@@ -92,6 +92,59 @@ class allPlayerText(object):
     def tekst(self, win):
         win.blit(allPlayerTextBox, (self.x, self.y))
 
+#NPC
+madsWalkUp = [pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png")]
+madsWalkDown = [pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png")]
+madsWalkRight = [pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png")]
+madsWalkLeft = [pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png")]
+madsStandLeft = pg.image.load("assets/sprites/madsLeft1.png")
+madsStandRight = pg.image.load("assets/sprites/madsRight1.png")
+madsStandUp = pg.image.load("assets/sprites/madsUp1.png")
+madsStandDown = pg.image.load("assets/sprites/madsDown1.png")
+class Mads(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.left = False
+        self.right = False
+        self.up = False
+        self.down = False
+        self.walkCount = 1
+        self.vel = 10
+        self.stand = True
+
+    def movementMads(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+        
+        if not(self.stand):
+            if self.down:
+                win.blit(madsWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.up:
+                win.blit(madsWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(madsWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(madsWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(madsStandDown, (self.x, self.y))
+        else:
+            if self.down:
+                win.blit(madsStandDown, (self.x, self.y))
+            elif self.up:
+                win.blit(madsStandUp, (self.x, self.y))
+            elif self.right:
+                win.blit(madsStandRight, (self.x, self.y))
+            elif self.left:
+                win.blit(madsStandLeft, (self.x, self.y))
+            else:
+                win.blit(madsStandDown, (self.x, self.y))
+
+
 #MENU
 startButton = pg.image.load("assets/menu/startButton.png")
 startButton1 = pg.image.load("assets/menu/startButton1.png")
