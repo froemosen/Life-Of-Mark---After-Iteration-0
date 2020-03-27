@@ -14,6 +14,7 @@ pg.font.init()
 
 smark = Classes.smark(695, 650) #Mark x og y pos
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
+bb = Classes.broBygger(100, 350)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
 
@@ -43,7 +44,8 @@ def start():
     def drawWorld():
         win.blit(bgScene, (0,0))
         smark.draw(win)
-        allPlayerText.tekst(win)
+        bb.draw(win)
+        #allPlayerText.tekst(win)
         pg.display.update()
 
     run = True
@@ -133,6 +135,6 @@ def start():
 
         print("SmarkX", smark.x) #main sprite x pos
         print("SmarkY", smark.y)#main sprite y pos
-
+        bb.movement()
         drawWorld() #"Tegner" verden
     pg.quit()

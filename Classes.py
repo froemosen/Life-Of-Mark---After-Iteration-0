@@ -93,6 +93,7 @@ class allPlayerText(object):
         win.blit(allPlayerTextBox, (self.x, self.y))
 
 #NPC
+#Mads ANIME
 madsWalkUp = [pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png")]
 madsWalkDown = [pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png")]
 madsWalkRight = [pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png")]
@@ -143,6 +144,76 @@ class Mads(object):
                 win.blit(madsStandLeft, (self.x, self.y))
             else:
                 win.blit(madsStandDown, (self.x, self.y))
+
+#broBygger ANIME
+broByggerWalkUp = [pg.image.load("assets/sprites/bbUp1.png"), pg.image.load("assets/sprites/bbUp2.png"), pg.image.load("assets/sprites/bbUp3.png"), pg.image.load("assets/sprites/bbUp4.png"), pg.image.load("assets/sprites/bbUp1.png"), pg.image.load("assets/sprites/bbUp2.png"), pg.image.load("assets/sprites/bbUp3.png"), pg.image.load("assets/sprites/bbUp4.png"), pg.image.load("assets/sprites/bbUp1.png"), pg.image.load("assets/sprites/bbUp2.png"), pg.image.load("assets/sprites/bbUp3.png"), pg.image.load("assets/sprites/bbUp4.png")]
+broByggerWalkDown = [pg.image.load("assets/sprites/bbDown1.png"), pg.image.load("assets/sprites/bbDown2.png"), pg.image.load("assets/sprites/bbDown3.png"), pg.image.load("assets/sprites/bbDown4.png"), pg.image.load("assets/sprites/bbDown1.png"), pg.image.load("assets/sprites/bbDown2.png"), pg.image.load("assets/sprites/bbDown3.png"), pg.image.load("assets/sprites/bbDown4.png"), pg.image.load("assets/sprites/bbDown1.png"), pg.image.load("assets/sprites/bbDown2.png"), pg.image.load("assets/sprites/bbDown3.png"), pg.image.load("assets/sprites/bbDown4.png")]
+broByggerWalkLeft = [pg.image.load("assets/sprites/bbLeft1.png"), pg.image.load("assets/sprites/bbLeft2.png"), pg.image.load("assets/sprites/bbLeft3.png"), pg.image.load("assets/sprites/bbLeft4.png"), pg.image.load("assets/sprites/bbLeft1.png"), pg.image.load("assets/sprites/bbLeft2.png"), pg.image.load("assets/sprites/bbLeft3.png"), pg.image.load("assets/sprites/bbLeft4.png"), pg.image.load("assets/sprites/bbLeft1.png"), pg.image.load("assets/sprites/bbLeft2.png"), pg.image.load("assets/sprites/bbLeft3.png"), pg.image.load("assets/sprites/bbLeft4.png")]
+broByggerWalkRight = [pg.image.load("assets/sprites/bbRight1.png"), pg.image.load("assets/sprites/bbRight2.png"), pg.image.load("assets/sprites/bbRight3.png"), pg.image.load("assets/sprites/bbRight4.png"), pg.image.load("assets/sprites/bbRight1.png"), pg.image.load("assets/sprites/bbRight2.png"), pg.image.load("assets/sprites/bbRight3.png"), pg.image.load("assets/sprites/bbRight4.png"), pg.image.load("assets/sprites/bbRight1.png"), pg.image.load("assets/sprites/bbRight2.png"), pg.image.load("assets/sprites/bbRight3.png"), pg.image.load("assets/sprites/bbRight4.png")]
+broByggerStandUp = pg.image.load("assets/sprites/bbUp1.png")
+broByggerStandDown = pg.image.load("assets/sprites/bbDown1.png")
+broByggerStandLeft = pg.image.load("assets/sprites/bbLeft1.png")
+broByggerStandRight = pg.image.load("assets/sprites/bbRight1.png")
+
+class broBygger(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
+        self.walkCount = 1
+        self.stand = True
+
+    def draw(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+
+        if not(self.stand):
+            if self.up:
+                win.blit(broByggerWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(broByggerWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(broByggerWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(broByggerWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(broByggerStandDown, (self.x, self.y))
+        else:
+            if self.up:
+                win.blit(broByggerStandUp, (self.x, self.y))
+            elif self.down:
+                win.blit(broByggerStandDown, (self.x, self.y))
+            elif self.left:
+                win.blit(broByggerStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(broByggerStandRight, (self.x, self.y))
+            else:
+                win.blit(broByggerStandDown, (self.x, self.y))
+    
+    def movement(self):
+        if self.x >= 100 and self.x < 600:
+            self.x += self.vel
+            self.left = False
+            self.right = True
+            self.up = False
+            self.down = False
+            self.stand = False
+        elif self.x >= 600:
+            self.x -= self.vel
+            self.left = True
+            self.right = False
+            self.up = False
+            self.down = False
+            self.stand = False
+
 
 
 #MENU
