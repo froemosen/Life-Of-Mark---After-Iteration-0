@@ -1,17 +1,23 @@
 import Classes #Alle classes er inde i den fil
-from saveFile1 import *
 import pygame as pg
 import pygame.mixer
 import time
 import random as r
+import Hallway2
+from saveFile1 import *
 
+if scene == 2:
+    smark = Classes.smark(1400, -27)
+else:
+    smark = Classes.smark(smark.x, smark.y) #Marks placering se i classes under smarks klassen
+
+scene = 1 #var som bruges som en slags ID til forskellige scener i spillet
 x = 1920
 y = 1080
 fps = 60
 #Er der for settings
 pg.init()
 pg.font.init()
-smark = Classes.smark(smark.x, smark.y) #Marks placering se i classes under smarks klassen
 allPlayerText = Classes.allPlayerText(100, 920) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -25,7 +31,6 @@ walkAllowed_W = True
 
 #Alle backgorund og sprites skal sorteres
  
-
 def start():
     import Menu
     pg.mixer.music.set_volume(0.03)
@@ -113,7 +118,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w] and smark.y > -25 and walkAllowed_W == True:
+        elif keys[pg.K_w] and smark.y > -30 and walkAllowed_W == True:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
@@ -126,6 +131,10 @@ def start():
             smark.stand = True
             smark.walkCount = 0
             walking = False
+
+        #Sceneskift
+        if smark.x > 1350 and smark.x < 1560 and smark.y > -38 and smark.y <= -28:
+            Hallway2.start()
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
@@ -142,6 +151,7 @@ def start():
             f.write("smark.walkLeft = " + str(smark.walkLeft) + "\n")
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
+            f.write("scene = " + str(scene) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:
@@ -155,19 +165,14 @@ def start():
             else:
                 musicCooldown = musicCooldown +1
 
-        #Sceneskift
-        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y < -29:
-            import Hallway2
-            Hallway2.start()
-
         #print("mx", mx) #mouse x pos
         #print("my", my) #mouse y pos
 
         print("mark xpos", smark.x) #main sprite x pos
         print("mark ypos", smark.y) #main sprite y pos
 
-        print("Table xpos: ", borde.x) #Table x pos
-        print("Table ypos: ", borde.y) #Table y pos
+        #print("Table xpos: ", borde.x) #Table x pos
+        #print("Table ypos: ", borde.y) #Table y pos
 
         drawWorld() #"tegner" hele spillet
     pg.quit()

@@ -3,16 +3,25 @@ import pygame.mixer
 import time
 import random as r
 import Classes
+from saveFile1 import *
 
 x = 1920
 y = 1080
 fps = 60
 #Er der for settings
+if scene == 1:
+    smark = Classes.smark(675, 699)
+elif scene == 3:
+    smark = Classes.smark(1350, -28)
+else:
+    smark = Classes.smark(smark.x, smark.y) #Mark x og y pos
+
+scene = 2 #var som bruges som en slags ID til forskellige scener i spillet
+
 
 pg.init()
 pg.font.init()
 
-smark = Classes.smark(695, 650) #Mark x og y pos
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
 bb = Classes.broBygger(100, 350)
 pg.mixer.music.set_volume(0.03) #lydstyrke
@@ -108,6 +117,20 @@ def start():
             smark.walkCount = 0
             walking = False
 
+        if keys[pg.K_l]:
+            f = open("saveFile1.py", "w")
+            f.write("import Classes" + "\n")
+            f.write("x = " + str(smark.x) + "\n")
+            f.write("y = " + str(smark.y) + "\n")
+            f.write("smark = Classes.smark(x, y)" + "\n")            
+            f.write("smark.walkDown = " + str(smark.walkDown) + "\n")
+            f.write("smark.walkUp = " + str(smark.walkUp) + "\n")
+            f.write("smark.walkRigth = " + str(smark.walkRight) + "\n")
+            f.write("smark.walkLeft = " + str(smark.walkLeft) + "\n")
+            f.write("smark.stand = " + str(smark.stand) + "\n")
+            f.write("walking = " + str(walking) + "\n")
+            f.write("scene = " + str(scene) + "\n")
+            f.close()
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()

@@ -4,6 +4,8 @@ import time
 import random as r
 import Classes
 import Game
+from saveFile1 import *
+import Hallway2, Hallway3
 
 x = 1920
 y = 1080
@@ -87,8 +89,6 @@ def drawWorld(baggrundValg):
                 pg.mixer.Channel(3).play(select)
 
 
-
-
 def startSettings():
     run = True
     while run:
@@ -120,7 +120,12 @@ def pygameMenuStart():
             if event.type == pg.MOUSEBUTTONDOWN:
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
                     pg.mixer.music.fadeout(1500)
-                    Game.start()
+                    if scene == 1:
+                        Game.start()
+                    elif scene == 2:
+                        Hallway2.start()
+                    elif scene == 3:
+                        Hallway3.start()
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()
                 if mx > 880 and mx < 1035 and my > 930 and my < 965:
