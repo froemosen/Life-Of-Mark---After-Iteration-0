@@ -149,7 +149,7 @@ def start():
         if smark.x > 575 and smark.x < 775 and smark.y > 670 and smark.y < 700:
             Game.start()
 
-        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y < -29:
+        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y <= -28:
             import Hallway3
             Hallway3.start()
 

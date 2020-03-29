@@ -6,7 +6,7 @@ import random as r
 import Hallway2
 from saveFile1 import *
 
-if scene == 2:
+if scene >= 2:
     smark = Classes.smark(1400, -27)
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks placering se i classes under smarks klassen
@@ -126,6 +126,9 @@ def start():
             smark.walkLeft = False
             smark.stand = False
             walking = True
+        
+        elif keys[pg.K_SPACE]:
+            smark.attack(win) 
 
         else:
             smark.stand = True
