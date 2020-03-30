@@ -49,7 +49,11 @@ class borde(object):
 def start():
     import Menu
     import Game
-    
+    walkAllowed_A = True
+    walkAllowed_S = True
+    walkAllowed_D = True
+    walkAllowed_W = True
+
     def drawWorld():
         win.blit(bgScene, (0,0))
         smark.draw(win)
@@ -69,6 +73,50 @@ def start():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 Menu.pygameMenuStart()
         
+        #Kollision til mure - start
+        
+        if smark.x < 305:
+            if smark.y > 489:
+                walkAllowed_A = False
+            else:
+                walkAllowed_A = True    
+        elif smark.x < 1055 and smark.x > 500:
+            if smark.y < 195:
+                walkAllowed_A = False
+            else:
+                walkAllowed_A = True
+        else:
+            walkAllowed_A = True
+        
+        if smark.x < 295:
+            if smark.y > 480:
+                walkAllowed_S = False
+            else: 
+                walkAllowed_S = True  
+        else: 
+            walkAllowed_S = True
+
+        if smark.x < 1045 and smark.x > 345:
+            if smark.y < 200: 
+                walkAllowed_W = False
+            else:
+                walkAllowed_W = True
+        elif smark.x < 345:
+            if smark.y < 100:
+                walkAllowed_W = False
+            else:
+                walkAllowed_W = True
+        else: 
+            walkAllowed_W = True
+
+        if smark.x > 345 and smark.x < 900:
+            if smark.y < 180:
+                walkAllowed_D = False
+            else:
+                walkAllowed_D = True
+        else:
+            walkAllowed_D = True
+        #Kollision til mure - slut
 
         if walking == True:
                 if pg.mixer.Channel(5).get_busy() == False:
@@ -76,7 +124,7 @@ def start():
                 else:
                     pass
         #if smark.y > 350 and smark.y < 250 and smark.x < 1210:
-        if keys[pg.K_a] and smark.x > 40:
+        if keys[pg.K_a] and smark.x > 40 and walkAllowed_A:
             smark.x -= smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -85,7 +133,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_d] and smark.x < 1570:
+        elif keys[pg.K_d] and smark.x < 1570 and walkAllowed_D:
             smark.x += smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -94,7 +142,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_s] and smark.y < 700:
+        elif keys[pg.K_s] and smark.y < 670 and walkAllowed_S:
             smark.y += smark.vel
             smark.walkDown = True
             smark.walkUp = False
@@ -103,7 +151,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w] and smark.y > -25:
+        elif keys[pg.K_w] and smark.y > -25 and walkAllowed_W:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
