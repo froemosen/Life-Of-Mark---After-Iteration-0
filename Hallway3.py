@@ -31,20 +31,6 @@ walkAllowed_D = True
 walkAllowed_W = True
 #Alle backgorund og sprites skal sorteres
 
-
-"""
-class borde(object):
-    def __init__(self, x, y, height, width):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
-        self.hitbox = (self.x, self.y, self.height, self.width)
-
-    def drawBorde(self):
-        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
-    """
-
 def start():
     import Menu
     import Hallway2
@@ -67,7 +53,7 @@ def start():
             if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
                 Menu.pygameMenuStart()
         
-        #HVORDAN SKAL VI LAVE KOLLSION MED MURE I SIDEN????
+
          
         #Kollision til mure - start
         if smark.x < 825:
