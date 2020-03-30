@@ -30,7 +30,7 @@ walkAllowed_D = True
 walkAllowed_W = True
 
 #Alle backgorund og sprites skal sorteres
- 
+
 def start():
     import Menu
     pg.mixer.music.set_volume(0.03)
@@ -43,13 +43,17 @@ def start():
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
         borde.drawBorde()
-        smark.draw(win)
+        if smark.hitbool:
+            smark.attack(win)
+        else:
+            smark.draw(win)
         pg.display.update()
 
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
     borde = Classes.borde(152, 255, 1156, 115)
+    x1 = 0
     while run:
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
@@ -127,8 +131,9 @@ def start():
             smark.stand = False
             walking = True
         
-        elif keys[pg.K_SPACE]:
-            smark.attack(win) 
+        elif keys[pg.K_SPACE] and smark.allow:
+                smark.hitbool = True
+                smark.allow = False
 
         else:
             smark.stand = True
@@ -167,17 +172,18 @@ def start():
                 musicCooldown = r.randint(1, 700)
             else:
                 musicCooldown = musicCooldown +1
-
         #print("mx", mx) #mouse x pos
         #print("my", my) #mouse y pos
 
-        print("mark xpos", smark.x) #main sprite x pos
-        print("mark ypos", smark.y) #main sprite y pos
+        #print("mark xpos", smark.x) #main sprite x pos
+        #print("mark ypos", smark.y) #main sprite y pos
 
         #print("Table xpos: ", borde.x) #Table x pos
         #print("Table ypos: ", borde.y) #Table y pos
-
         drawWorld() #"tegner" hele spillet
+
+        smark.hitbool = False
+        smark.allow = True
     pg.quit()
     
 #start() # "#" kan fjernes under tests

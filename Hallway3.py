@@ -71,40 +71,25 @@ def start():
          
         #Kollision til mure - start
         if smark.x < 825:
-            if bgLocation > -3264 and bgLocation < -2134: #mur1
+            if bgLocation > -3264 and bgLocation < -2134:
                 walkAllowed_A = False
-            elif bgLocation > -1500 and bgLocation < -910: #mur2
-                walkAllowed_A = False
-            elif bgLocation > -665 and bgLocation < -35: #mur3
-                walkAllowed_A = False
-            elif smark.x < 754 and bgLocation > -35: #murSlut
-                walkAllowed_A = False
-            else: 
+            else:
                 walkAllowed_A = True
         else:
             walkAllowed_A = True
 
-        if smark.x < 815:
-            if bgLocation > -2255 and bgLocation < -2130: #mur1
+        if smark.x < 695:
+            if bgLocation > -2255 and bgLocation < -2130:
                 walkAllowed_S = False
-            elif bgLocation > -1000 and bgLocation < -905: #mur2
-                walkAllowed_S = False
-            elif bgLocation > -100 and bgLocation < -35: #mur3
-                walkAllowed_S = False
-            else: 
+            else:
                 walkAllowed_S = True
-        
         else: 
             walkAllowed_S = True
 
-        if smark.x < 815:
-            if bgLocation > -3265 and bgLocation < -3200: #mur1
+        if smark.x < 695:
+            if bgLocation > -3265 and bgLocation < -3200:
                 walkAllowed_W = False
-            elif bgLocation > -1500 and bgLocation < -1350: #mur2
-                walkAllowed_W = False
-            elif bgLocation > -665 and bgLocation < -500: #mur3
-                walkAllowed_W = False
-            else: 
+            else:
                 walkAllowed_W = True
         else: 
             walkAllowed_W = True
