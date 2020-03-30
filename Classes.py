@@ -92,7 +92,7 @@ class smark(object):
             win.blit(markAttackUp[self.hitCount // 3], (self.x, self.y))
             self.hitCount += 1
         elif self.walkDown and self.hitbool:
-            win.blit(markAttackDown[self.hitCount // 3], (self.x, self.x))
+            win.blit(markAttackDown[self.hitCount // 3], (self.x, self.y))
 
 class borde(object):
     def __init__(self, x, y, height, width):
