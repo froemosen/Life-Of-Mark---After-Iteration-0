@@ -1,10 +1,11 @@
 import Classes
-x = 720
-y = -10
+x = 1490
+y = 183
 smark = Classes.smark(x, y)
 smark.walkDown = False
-smark.walkUp = False
+smark.walkUp = True
 smark.walkRigth = False
-smark.walkLeft = True
+smark.walkLeft = False
 smark.stand = True
 walking = False
+scene = 1

@@ -5,15 +5,19 @@ y = 1080
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 
 #MARK ANIME
-markStandLeft = pg.image.load("assets/sprites/gåVenstre1.png")
-markStandRight = pg.image.load("assets/sprites/gåHøjre1.png")
-markStandUp = pg.image.load("assets/sprites/gåOp3.png")
-markStandDown = pg.image.load("assets/sprites/gåNed1.png")
-markStand = pg.image.load("assets/sprites/gåNed1.png")
-markWalkUp = [pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp2.png"), pg.image.load("assets/sprites/gåOp3.png"), pg.image.load("assets/sprites/gåOp4.png")]
-markWalkLeft = [pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png"), pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png"), pg.image.load("assets/sprites/gåVenstre1.png"), pg.image.load("assets/sprites/gåVenstre2.png"), pg.image.load("assets/sprites/gåVenstre3.png"), pg.image.load("assets/sprites/gåVenstre4.png")]
-markWalkRight = [pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png"), pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png"), pg.image.load("assets/sprites/gåHøjre1.png"), pg.image.load("assets/sprites/gåHøjre2.png"), pg.image.load("assets/sprites/gåHøjre3.png"), pg.image.load("assets/sprites/gåHøjre4.png")]
-markWalkDown = [pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png"), pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png"), pg.image.load("assets/sprites/gåNed1.png"), pg.image.load("assets/sprites/gåNed2.png"), pg.image.load("assets/sprites/gåNed3.png"), pg.image.load("assets/sprites/gåNed4.png")]
+markStandLeft = pg.image.load("assets/sprites/mark/gåVenstre1.png")
+markStandRight = pg.image.load("assets/sprites/mark/gåHøjre1.png")
+markStandUp = pg.image.load("assets/sprites/mark/gåOp3.png")
+markStandDown = pg.image.load("assets/sprites/mark/gåNed1.png")
+markStand = pg.image.load("assets/sprites/mark/gåNed1.png")
+markWalkUp = [pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp2.png"), pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp4.png"), pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp2.png"), pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp4.png"), pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp2.png"), pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("assets/sprites/mark/gåOp4.png")]
+markWalkLeft = [pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png"), pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png"), pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png")]
+markWalkRight = [pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png"), pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png"), pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png")]
+markWalkDown = [pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png"), pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png"), pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png")]
+markAttackUp = []
+markAttackDown = []
+markAttackLeft = [pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png")]
+markAttackRight = []
 
 #Player
 class smark(object):
@@ -71,6 +75,10 @@ class smark(object):
                 win.blit(markStand, (self.x, self.y))
         pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
+    def attack(self, win):
+        if self.walkRight:
+            win.blit(markAttackRight[self.walkCount // 1], (self.x, self.y))
+
 class borde(object):
     def __init__(self, x, y, height, width):
         self.x = x
@@ -93,14 +101,15 @@ class allPlayerText(object):
         win.blit(allPlayerTextBox, (self.x, self.y))
 
 #NPC
-madsWalkUp = [pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png"), pg.image.load("assets/sprites/madsUp1.png"), pg.image.load("assets/sprites/madsUp2.png"), pg.image.load("assets/sprites/madsUp3.png"), pg.image.load("assets/sprites/madsUp4.png")]
-madsWalkDown = [pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png"), pg.image.load("assets/sprites/madsDown1.png"), pg.image.load("assets/sprites/madsDown2.png"), pg.image.load("assets/sprites/madsDown3.png"), pg.image.load("assets/sprites/madsDown4.png")]
-madsWalkRight = [pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png"), pg.image.load("assets/sprites/madsRight1.png"), pg.image.load("assets/sprites/madsRight2.png"), pg.image.load("assets/sprites/madsRight3.png"), pg.image.load("assets/sprites/madsRight4.png")]
-madsWalkLeft = [pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png"), pg.image.load("assets/sprites/madsLeft1.png"), pg.image.load("assets/sprites/madsLeft2.png"), pg.image.load("assets/sprites/madsLeft3.png"), pg.image.load("assets/sprites/madsLeft4.png")]
-madsStandLeft = pg.image.load("assets/sprites/madsLeft1.png")
-madsStandRight = pg.image.load("assets/sprites/madsRight1.png")
-madsStandUp = pg.image.load("assets/sprites/madsUp1.png")
-madsStandDown = pg.image.load("assets/sprites/madsDown1.png")
+#Mads ANIME
+madsWalkUp = [pg.image.load("assets/sprites/mads/madsUp1.png"), pg.image.load("assets/sprites/mads/madsUp2.png"), pg.image.load("assets/sprites/mads/madsUp3.png"), pg.image.load("assets/sprites/mads/madsUp4.png"), pg.image.load("assets/sprites/mads/madsUp1.png"), pg.image.load("assets/sprites/mads/madsUp2.png"), pg.image.load("assets/sprites/mads/madsUp3.png"), pg.image.load("assets/sprites/mads/madsUp4.png"), pg.image.load("assets/sprites/mads/madsUp1.png"), pg.image.load("assets/sprites/mads/madsUp2.png"), pg.image.load("assets/sprites/mads/madsUp3.png"), pg.image.load("assets/sprites/mads/madsUp4.png")]
+madsWalkDown = [pg.image.load("assets/sprites/mads/madsDown1.png"), pg.image.load("assets/sprites/mads/madsDown2.png"), pg.image.load("assets/sprites/mads/madsDown3.png"), pg.image.load("assets/sprites/mads/madsDown4.png"), pg.image.load("assets/sprites/mads/madsDown1.png"), pg.image.load("assets/sprites/mads/madsDown2.png"), pg.image.load("assets/sprites/mads/madsDown3.png"), pg.image.load("assets/sprites/mads/madsDown4.png"), pg.image.load("assets/sprites/mads/madsDown1.png"), pg.image.load("assets/sprites/mads/madsDown2.png"), pg.image.load("assets/sprites/mads/madsDown3.png"), pg.image.load("assets/sprites/mads/madsDown4.png")]
+madsWalkRight = [pg.image.load("assets/sprites/mads/madsRight1.png"), pg.image.load("assets/sprites/mads/madsRight2.png"), pg.image.load("assets/sprites/mads/madsRight3.png"), pg.image.load("assets/sprites/mads/madsRight4.png"), pg.image.load("assets/sprites/mads/madsRight1.png"), pg.image.load("assets/sprites/mads/madsRight2.png"), pg.image.load("assets/sprites/mads/madsRight3.png"), pg.image.load("assets/sprites/mads/madsRight4.png"), pg.image.load("assets/sprites/mads/madsRight1.png"), pg.image.load("assets/sprites/mads/madsRight2.png"), pg.image.load("assets/sprites/mads/madsRight3.png"), pg.image.load("assets/sprites/mads/madsRight4.png")]
+madsWalkLeft = [pg.image.load("assets/sprites/mads/madsLeft1.png"), pg.image.load("assets/sprites/mads/madsLeft2.png"), pg.image.load("assets/sprites/mads/madsLeft3.png"), pg.image.load("assets/sprites/mads/madsLeft4.png"), pg.image.load("assets/sprites/mads/madsLeft1.png"), pg.image.load("assets/sprites/mads/madsLeft2.png"), pg.image.load("assets/sprites/mads/madsLeft3.png"), pg.image.load("assets/sprites/mads/madsLeft4.png"), pg.image.load("assets/sprites/mads/madsLeft1.png"), pg.image.load("assets/sprites/mads/madsLeft2.png"), pg.image.load("assets/sprites/mads/madsLeft3.png"), pg.image.load("assets/sprites/mads/madsLeft4.png"), pg.image.load("assets/sprites/mads/madsLeft1.png"), pg.image.load("assets/sprites/mads/madsLeft2.png"), pg.image.load("assets/sprites/mads/madsLeft3.png"), pg.image.load("assets/sprites/mads/madsLeft4.png")]
+madsStandLeft = pg.image.load("assets/sprites/mads/madsLeft1.png")
+madsStandRight = pg.image.load("assets/sprites/mads/madsRight1.png")
+madsStandUp = pg.image.load("assets/sprites/mads/madsUp1.png")
+madsStandDown = pg.image.load("assets/sprites/mads/madsDown1.png")
 class Mads(object):
     def __init__(self, x, y):
         self.x = x
@@ -143,6 +152,76 @@ class Mads(object):
                 win.blit(madsStandLeft, (self.x, self.y))
             else:
                 win.blit(madsStandDown, (self.x, self.y))
+
+#broBygger ANIME
+broByggerWalkUp = [pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png")]
+broByggerWalkDown = [pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png")]
+broByggerWalkLeft = [pg.image.load("assets/sprites/brobygger/bbLeft1.png"), pg.image.load("assets/sprites/brobygger/bbLeft2.png"), pg.image.load("assets/sprites/brobygger/bbLeft3.png"), pg.image.load("assets/sprites/brobygger/bbLeft4.png"), pg.image.load("assets/sprites/brobygger/bbLeft1.png"), pg.image.load("assets/sprites/brobygger/bbLeft2.png"), pg.image.load("assets/sprites/brobygger/bbLeft3.png"), pg.image.load("assets/sprites/brobygger/bbLeft4.png"), pg.image.load("assets/sprites/brobygger/bbLeft1.png"), pg.image.load("assets/sprites/brobygger/bbLeft2.png"), pg.image.load("assets/sprites/brobygger/bbLeft3.png"), pg.image.load("assets/sprites/brobygger/bbLeft4.png")]
+broByggerWalkRight = [pg.image.load("assets/sprites/brobygger/bbRight1.png"), pg.image.load("assets/sprites/brobygger/bbRight2.png"), pg.image.load("assets/sprites/brobygger/bbRight3.png"), pg.image.load("assets/sprites/brobygger/bbRight4.png"), pg.image.load("assets/sprites/brobygger/bbRight1.png"), pg.image.load("assets/sprites/brobygger/bbRight2.png"), pg.image.load("assets/sprites/brobygger/bbRight3.png"), pg.image.load("assets/sprites/brobygger/bbRight4.png"), pg.image.load("assets/sprites/brobygger/bbRight1.png"), pg.image.load("assets/sprites/brobygger/bbRight2.png"), pg.image.load("assets/sprites/brobygger/bbRight3.png"), pg.image.load("assets/sprites/brobygger/bbRight4.png")]
+broByggerStandUp = pg.image.load("assets/sprites/brobygger/bbUp1.png")
+broByggerStandDown = pg.image.load("assets/sprites/brobygger/bbDown1.png")
+broByggerStandLeft = pg.image.load("assets/sprites/brobygger/bbLeft1.png")
+broByggerStandRight = pg.image.load("assets/sprites/brobygger/bbRight1.png")
+
+class broBygger(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
+        self.walkCount = 1
+        self.stand = True
+
+    def draw(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+
+        if not(self.stand):
+            if self.up:
+                win.blit(broByggerWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(broByggerWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(broByggerWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(broByggerWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(broByggerStandDown, (self.x, self.y))
+        else:
+            if self.up:
+                win.blit(broByggerStandUp, (self.x, self.y))
+            elif self.down:
+                win.blit(broByggerStandDown, (self.x, self.y))
+            elif self.left:
+                win.blit(broByggerStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(broByggerStandRight, (self.x, self.y))
+            else:
+                win.blit(broByggerStandDown, (self.x, self.y))
+    
+    def movement(self):
+        if self.x >= 100 and self.x < 600:
+            self.x += self.vel
+            self.left = False
+            self.right = True
+            self.up = False
+            self.down = False
+            self.stand = False
+        elif self.x >= 600:
+            self.x -= self.vel
+            self.left = True
+            self.right = False
+            self.up = False
+            self.down = False
+            self.stand = False
+
 
 
 #MENU
