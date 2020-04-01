@@ -56,8 +56,11 @@ def start():
 
     def drawWorld():
         win.blit(bgScene, (0,0))
-        smark.draw(win)
         bb.draw(win)
+        if smark.hitbool:
+            smark.attack(win)
+        else:
+            smark.draw(win)
         #allPlayerText.tekst(win)
         pg.display.update()
 
@@ -160,6 +163,10 @@ def start():
             smark.stand = False
             walking = True
 
+        elif keys[pg.K_SPACE] and smark.allow:
+                smark.hitbool = True
+                smark.allow = False
+
         else:
             smark.stand = True
             smark.walkCount = 0
@@ -208,4 +215,6 @@ def start():
         print("SmarkY", smark.y)#main sprite y pos
         bb.movement()
         drawWorld() #"Tegner" verden
+        smark.hitbool = False
+        smark.allow = True
     pg.quit()

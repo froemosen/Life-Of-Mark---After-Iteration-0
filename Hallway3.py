@@ -37,7 +37,10 @@ def start():
     bgLocation = -3364
     def drawWorld():
         win.blit(bgScene3, (0,bgLocation))
-        smark.draw(win)
+        if smark.hitbool:
+            smark.attack(win)
+        else:
+            smark.draw(win)
         #allPlayerText.tekst(win)
         pg.display.update()
 
@@ -123,11 +126,14 @@ def start():
             smark.stand = False
             walking = True
 
+        elif keys[pg.K_SPACE] and smark.allow:
+                smark.hitbool = True
+                smark.allow = False
+
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
-
 
         if keys[pg.K_ESCAPE]:
             Menu.pygameMenuStart()
@@ -176,6 +182,7 @@ def start():
         print("SmarkY", smark.y) #main sprite y pos
 
         print("BaggrundY: ", bgLocation)
-
         drawWorld() #"Tegner" verden
+        smark.hitbool = False
+        smark.allow = True
     pg.quit()
