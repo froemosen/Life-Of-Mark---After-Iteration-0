@@ -189,6 +189,7 @@ class broBygger(object):
         self.right = False
         self.walkCount = 1
         self.stand = True
+        self.movementAllowed = 0
 
     def draw(self, win):
         if self.walkCount + 1 >= 27:
@@ -221,7 +222,9 @@ class broBygger(object):
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
     
+    
     def movement(self):
+        """
         if self.x >= 100 and self.x < 600:
             self.x += self.vel
             self.left = False
@@ -230,12 +233,48 @@ class broBygger(object):
             self.down = False
             self.stand = False
         elif self.x >= 600:
-            self.x -= self.vel
-            self.left = True
-            self.right = False
-            self.up = False
-            self.down = False
-            self.stand = False
+            
+            """
+        if self.movementAllowed < 29:
+            self.movementChoice = r.randint(1,5)
+        if self.movementAllowed > 30 and self.movementAllowed < 200:
+            if self.movementChoice == 1:
+                self.x += self.vel
+                self.left = False
+                self.right = True
+                self.up = False
+                self.down = False
+                self.stand = False
+            elif self.movementChoice == 2:
+                self.x -= self.vel
+                self.left = True
+                self.right = False
+                self.up = False
+                self.down = False
+                self.stand = False
+            elif self.movementChoice == 3:
+                self.y += self.vel
+                self.left = False
+                self.right = False
+                self.up = False
+                self.down = True
+                self.stand = False
+            elif self.movementChoice == 4:
+                self.y -= self.vel
+                self.left = False
+                self.right = False
+                self.up = True
+                self.down = False
+                self.stand = False
+            elif self.movementChoice == 5:
+                self.left = False
+                self.right = False
+                self.up = False
+                self.down = False
+                self.stand = True
+        elif self.movementAllowed > 200:
+            self.movementAllowed = 0
+        self.movementAllowed += r.randint(1,7)
 
 
 

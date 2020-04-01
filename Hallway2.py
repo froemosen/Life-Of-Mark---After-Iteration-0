@@ -23,7 +23,7 @@ pg.init()
 pg.font.init()
 
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
-bb = Classes.broBygger(100, 350)
+bb = Classes.broBygger(800, 500)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
 
@@ -203,9 +203,20 @@ def start():
 
         print(mx) #mouse x pos
         print(my) #mouse y pos
-
+        print(bb.movementAllowed)
         print("SmarkX", smark.x) #main sprite x pos
         print("SmarkY", smark.y)#main sprite y pos
-        bb.movement()
+        if bb.x > 100 and bb.x < 1700 and bb.y > 10 and bb.y < 800:
+            bb.movement()
+        else: 
+            if bb.x > 1690:
+                bb.x -= 6
+            elif bb.x < 110:
+                bb.x += 6
+            elif bb.y > 790:
+                bb.y -= 6
+            elif bb.y < 20:
+                bb.y += 6
+
         drawWorld() #"Tegner" verden
     pg.quit()
