@@ -37,7 +37,7 @@ class smark(object):
         self.walkLeft = False
         self.hitbool = False
         self.allow = True
-        self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
+        self.hitbox = (self.x, self.y, 170, 200)
     
 
     def draw(self, win):
@@ -48,32 +48,32 @@ class smark(object):
             if self.walkDown:
                 win.blit(markWalkDown[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 170, 200)
             elif self.walkUp:
                 win.blit(markWalkUp[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 170, 200)
             elif self.walkRight:
                 win.blit(markWalkRight[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 160, 200)
             elif self.walkLeft:
                 win.blit(markWalkLeft[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 160, 200)
         else:
             if self.walkDown:
                 win.blit(markStandDown, (self.x, self.y))
-                self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 170, 200)
             elif self.walkUp:
                 win.blit(markStandUp, (self.x, self.y))
-                self.hitbox = (self.x + 77, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 170, 200)
             elif self.walkRight:
                 win.blit(markStandRight, (self.x, self.y))
-                self.hitbox = (self.x + 88, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 160, 200)
             elif self.walkLeft:
                 win.blit(markStandLeft, (self.x, self.y))
-                self.hitbox = (self.x + 79, self.y + 65, self.height + 102, self.width + 87)
+                self.hitbox = (self.x, self.y, 160, 200)
             else:
                 win.blit(markStand, (self.x, self.y))
         pg.draw.rect(win, (0,255,0), self.hitbox, 2)
@@ -83,16 +83,19 @@ class smark(object):
             self.hitCount = 0
 
         if self.walkRight and self.hitbool:
-            win.blit(markAttackRight[self.hitCount // 3], (self.x , self.y))
+            win.blit(markAttackRight[self.hitCount // 3], (self.x - 70, self.y - 50))
             self.hitCount += 1
         elif self.walkLeft and self.hitbool:
-            win.blit(markAttackLeft[self.hitCount // 3], (self.x, self.y))
+            win.blit(markAttackLeft[self.hitCount // 3], (self.x - 70, self.y - 50))
             self.hitCount += 1
         elif self.walkUp and self.hitbool:
             win.blit(markAttackUp[self.hitCount // 3], (self.x, self.y))
             self.hitCount += 1
         elif self.walkDown and self.hitbool:
             win.blit(markAttackDown[self.hitCount // 3], (self.x, self.y))
+            self.hitCount += 1
+        else:
+            self.hitCount = 0
 
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -168,6 +171,9 @@ class Mads(object):
             else:
                 win.blit(madsStandDown, (self.x, self.y))
 
+#Lac
+
+
 #broBygger ANIME
 broByggerWalkUp = [pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png")]
 broByggerWalkDown = [pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png")]
@@ -190,6 +196,8 @@ class broBygger(object):
         self.walkCount = 1
         self.stand = True
         self.movementAllowed = 0
+        self.hitbox = (self.x + 20, self.y + 20 , 120, 175)
+
 
     def draw(self, win):
         if self.walkCount + 1 >= 27:
@@ -199,28 +207,39 @@ class broBygger(object):
             if self.up:
                 win.blit(broByggerWalkUp[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.down:
                 win.blit(broByggerWalkDown[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.left:
                 win.blit(broByggerWalkLeft[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.right:
                 win.blit(broByggerWalkRight[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
         else:
             if self.up:
                 win.blit(broByggerStandUp, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.down:
                 win.blit(broByggerStandDown, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.left:
                 win.blit(broByggerStandLeft, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.right:
                 win.blit(broByggerStandRight, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
+                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
+        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
     
     
     def movement(self):
