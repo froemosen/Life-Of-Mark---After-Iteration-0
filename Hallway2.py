@@ -23,7 +23,7 @@ pg.init()
 pg.font.init()
 
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
-bb = Classes.broBygger(800, 500)
+bb = Classes.broBygger(1500, 400)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
 
@@ -78,42 +78,42 @@ def start():
         
         #Kollision til mure - start
         
-        if smark.x < 320:
-            if smark.y > 489:
+        if smark.x < 385:
+            if smark.y > 530:
                 walkAllowed_A = False
             else:
                 walkAllowed_A = True    
-        elif smark.x < 1055 and smark.x > 515:
-            if smark.y < 195:
+        elif smark.x < 1125 and smark.x > 515:
+            if smark.y < 300:
                 walkAllowed_A = False
             else:
                 walkAllowed_A = True
         else:
             walkAllowed_A = True
         
-        if smark.x < 210:
-            if smark.y > 480:
+        if smark.x < 370:
+            if smark.y > 540:
                 walkAllowed_S = False
             else: 
                 walkAllowed_S = True  
         else: 
             walkAllowed_S = True
 
-        if smark.x < 1045 and smark.x > 360:
-            if smark.y < 200: 
+        if smark.x < 1120 and smark.x > 430:
+            if smark.y < 245: 
                 walkAllowed_W = False
             else:
                 walkAllowed_W = True
-        elif smark.x < 345:
-            if smark.y < 100:
+        elif smark.x < 430:
+            if smark.y < 120:
                 walkAllowed_W = False
             else:
                 walkAllowed_W = True
         else: 
             walkAllowed_W = True
 
-        if smark.x > 345 and smark.x < 900:
-            if smark.y < 180:
+        if smark.x > 415 and smark.x < 900:
+            if smark.y < 230:
                 walkAllowed_D = False
             else:
                 walkAllowed_D = True
@@ -127,7 +127,7 @@ def start():
                 else:
                     pass
         #if smark.y > 350 and smark.y < 250 and smark.x < 1210:
-        if keys[pg.K_a] and smark.x > 40 and walkAllowed_A:
+        if keys[pg.K_a] and smark.x > 150 and walkAllowed_A:
             smark.x -= smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -136,7 +136,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_d] and smark.x < 1570 and walkAllowed_D:
+        elif keys[pg.K_d] and smark.x < 1615 and walkAllowed_D:
             smark.x += smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -145,7 +145,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_s] and smark.y < 670 and walkAllowed_S:
+        elif keys[pg.K_s] and smark.y < 720 and walkAllowed_S:
             smark.y += smark.vel
             smark.walkDown = True
             smark.walkUp = False
@@ -154,7 +154,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w] and smark.y > -25 and walkAllowed_W:
+        elif keys[pg.K_w] and smark.y > 0 and walkAllowed_W:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
@@ -201,29 +201,40 @@ def start():
             else:
                 musicCooldown = musicCooldown +1
 
-        if smark.x > 575 and smark.x < 775 and smark.y > 670 and smark.y < 700:
+        if smark.x > 665 and smark.x < 865 and smark.y > 715 and smark.y < 780:
             Game.start()
 
-        if smark.x > 1350 and smark.x < 1560 and smark.y > -35 and smark.y <= -28:
+        if smark.x > 1425 and smark.x < 1635 and smark.y > -15 and smark.y <= 8:
             import Hallway3
             Hallway3.start()
+
+        #BOT MOVEMENT FOR SCENE
+        if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
+            bb.movement()
+        else: 
+            if bb.x > 1614:
+                bb.x -= 3
+                bb.y -= 1
+                bb.movementChoice = 2
+            elif bb.x < 1166:
+                bb.x += 3
+                bb.y += 1
+                bb.movementChoice = 1
+            elif bb.y > 779:
+                bb.y -= 3
+                bb.x -= 1
+                bb.movementChoice = 4
+            elif bb.y < 101:
+                bb.y += 3
+                bb.x += 1
+                bb.movementChoice = 3
 
         print(mx) #mouse x pos
         print(my) #mouse y pos
         print(bb.movementAllowed)
         print("SmarkX", smark.x) #main sprite x pos
         print("SmarkY", smark.y)#main sprite y pos
-        if bb.x > 100 and bb.x < 1700 and bb.y > 10 and bb.y < 800:
-            bb.movement()
-        else: 
-            if bb.x > 1690:
-                bb.x -= 6
-            elif bb.x < 110:
-                bb.x += 6
-            elif bb.y > 790:
-                bb.y -= 6
-            elif bb.y < 20:
-                bb.y += 6
+        
 
         drawWorld() #"Tegner" verden
         smark.hitbool = False

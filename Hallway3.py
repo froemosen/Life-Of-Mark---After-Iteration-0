@@ -11,7 +11,7 @@ fps = 60
 #Er der for settings
 
 if scene == 2:
-    smark = Classes.smark(1040, 636)
+    smark = Classes.smark(1140, 625)
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks x og y pos
 
@@ -59,26 +59,41 @@ def start():
 
          
         #Kollision til mure - start
-        if smark.x < 825:
-            if bgLocation > -3264 and bgLocation < -2134:
+        if smark.x < 890:
+            if bgLocation > -3290 and bgLocation < -2190: #mur1
+                walkAllowed_A = False
+            elif bgLocation > -1540 and bgLocation < -970: #mur2
+                walkAllowed_A = False
+            elif bgLocation > -685 and bgLocation < -90: #mur3
+                walkAllowed_A = False
+            elif smark.x < 790 and bgLocation > -84: #murSlut
                 walkAllowed_A = False
             else:
                 walkAllowed_A = True
+            
         else:
             walkAllowed_A = True
 
-        if smark.x < 695:
-            if bgLocation > -2255 and bgLocation < -2130:
+        if smark.x < 870:
+            if bgLocation > -2255 and bgLocation < -2184: #mur1
+                walkAllowed_S = False
+            elif bgLocation > -1100 and bgLocation < -964: #mur2
+                walkAllowed_S = False
+            elif bgLocation > -120 and bgLocation < -84: #mur3    
                 walkAllowed_S = False
             else:
                 walkAllowed_S = True
         else: 
             walkAllowed_S = True
 
-        if smark.x < 695:
-            if bgLocation > -3265 and bgLocation < -3200:
+        if smark.x < 870:
+            if bgLocation > -3295 and bgLocation < -3200: #mur1
                 walkAllowed_W = False
-            else:
+            elif bgLocation > -1545 and bgLocation < -1450: #mur2
+                walkAllowed_W = False
+            elif bgLocation > -725 and bgLocation < -680: #mur3
+                walkAllowed_W = False
+            else: 
                 walkAllowed_W = True
         else: 
             walkAllowed_W = True
@@ -89,8 +104,7 @@ def start():
                     pg.mixer.Channel(5).play(walkSound)
                 else:
                     pass
-        #if smark.y > 350 and smark.y < 250 and smark.x < 1210:
-        if keys[pg.K_a] and smark.x > 405 and walkAllowed_A == True:
+        if keys[pg.K_a] and smark.x > 510 and walkAllowed_A == True:
             smark.x -= smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -99,7 +113,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_d] and smark.x < 1195 and walkAllowed_D == True:
+        elif keys[pg.K_d] and smark.x < 1280 and walkAllowed_D == True:
             smark.x += smark.vel
             smark.walkDown = False
             smark.walkUp = False
@@ -108,7 +122,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_s] and smark.y < 650 and walkAllowed_S == True:
+        elif keys[pg.K_s] and smark.y < 695 and walkAllowed_S == True:
             smark.y += smark.vel
             smark.walkDown = True
             smark.walkUp = False
@@ -117,7 +131,7 @@ def start():
             smark.stand = False
             walking = True
 
-        elif keys[pg.K_w] and smark.y > -25 and walkAllowed_W == True:
+        elif keys[pg.K_w] and smark.y > 35 and walkAllowed_W == True:
             smark.y -= smark.vel
             smark.walkDown = False
             smark.walkUp = True
@@ -164,14 +178,14 @@ def start():
             else:
                 musicCooldown = musicCooldown +1
 
-        if smark.x > 955 and smark.x < 1155 and smark.y > 640 and smark.y < 670:
+        if smark.x > 1020 and smark.x < 1260 and smark.y > 690 and smark.y < 730: #Sceneskift
             Hallway2.start()
 
-        if smark.y < 295 and bgLocation < 0:
+        if smark.y < 295 and bgLocation < 0: #Stopper baggrund fra at rykke sig i enden
             bgLocation += smark.vel
             smark.y = 295
         
-        if smark.y > 300 and bgLocation > -3364:
+        if smark.y > 300 and bgLocation > -3364: #Stopper baggrund fra at rykke sig i enden
             bgLocation -= smark.vel
             smark.y = 295
 
