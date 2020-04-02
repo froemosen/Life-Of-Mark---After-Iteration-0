@@ -12,7 +12,8 @@ fps = 60
 pg.init()
 pg.font.init()
 smark = Classes.smark(1450, 6) #Marks placering se i classes under smarks klassen
-mads = Classes.Mads(600, 200) #Mads placering se i classes under Mads klassen
+mads = Classes.Mads(758, 300) #Mads placering se i classes under Mads klassen
+Lac = Classes.Lac(500, 300) #Lac placering se i classes under lac klassen
 allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -43,6 +44,7 @@ def start():
             Tekst.TextMark()
         smark.draw(win)
         mads.movementMads(win)
+        Lac.draw(win)
         pg.display.update()
     run = True
     walking = False
@@ -71,6 +73,7 @@ def start():
             smark.walkLeft = True
             smark.stand = False
 
+        if tick > 0 and tick < 3.3:
             #Mads movements
             mads.x -= mads.vel
             mads.down = False
@@ -79,12 +82,37 @@ def start():
             mads.left = True
             mads.stand = False
 
+            #Lac movement
+            Lac.x -= Lac.vel
+            Lac.down = False
+            Lac.up = False
+            Lac.right = False
+            Lac.left = True
+            Lac.stand = False
+
+        if tick > 3.5 and tick < 1000:
+            #Mads movements
+            mads.down = False
+            mads.up = True
+            mads.right = False
+            mads.left = False
+            mads.stand = True
+
+            #Lac movement
+            Lac.down = False
+            Lac.up = True
+            Lac.right = False
+            Lac.left = False
+            Lac.stand = True
+
         if tick > 6 and tick < 1000:
+            #mark movement
             smark.walkDown = False
             smark.walkUp = False
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = True
+
         drawWorld() #"tegner" hele spillet
     pg.quit()
 pygame.mouse.set_visible(False)

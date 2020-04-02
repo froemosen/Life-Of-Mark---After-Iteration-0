@@ -172,7 +172,56 @@ class Mads(object):
                 win.blit(madsStandDown, (self.x, self.y))
 
 #Lac
+#Lac ANIME
+lacWalkUp = [pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png"), pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png"), pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png")]
+lacWalkDown = [pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png"), pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png"), pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png")]
+lacWalkLeft = [pg.image.load("assets/sprites/lac/lacLeft1.png"), pg.image.load("assets/sprites/lac/lacLeft2.png"), pg.image.load("assets/sprites/lac/lacLeft3.png"), pg.image.load("assets/sprites/lac/lacLeft4.png"), pg.image.load("assets/sprites/lac/lacLeft1.png"), pg.image.load("assets/sprites/lac/lacLeft2.png"), pg.image.load("assets/sprites/lac/lacLeft3.png"), pg.image.load("assets/sprites/lac/lacLeft4.png"), pg.image.load("assets/sprites/lac/lacLeft1.png"), pg.image.load("assets/sprites/lac/lacLeft2.png"), pg.image.load("assets/sprites/lac/lacLeft3.png"), pg.image.load("assets/sprites/lac/lacLeft4.png")]
+lacWalkRight = [pg.image.load("assets/sprites/lac/lacRight1.png"), pg.image.load("assets/sprites/lac/lacRight2.png"), pg.image.load("assets/sprites/lac/lacRight3.png"), pg.image.load("assets/sprites/lac/lacRight4.png"), pg.image.load("assets/sprites/lac/lacRight1.png"), pg.image.load("assets/sprites/lac/lacRight2.png"), pg.image.load("assets/sprites/lac/lacRight3.png"), pg.image.load("assets/sprites/lac/lacRight4.png"), pg.image.load("assets/sprites/lac/lacRight1.png"), pg.image.load("assets/sprites/lac/lacRight2.png"), pg.image.load("assets/sprites/lac/lacRight3.png"), pg.image.load("assets/sprites/lac/lacRight4.png")]
+LacStandUp = pg.image.load("assets/sprites/lac/lacUp1.png")
+LacStandDown = pg.image.load("assets/sprites/lac/lacDown1.png")
+LacStandLeft = pg.image.load("assets/sprites/lac/lacLeft1.png")
+LacStandRight = pg.image.load("assets/sprites/lac/lacRight1.png")
 
+class Lac(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.right = False
+        self.left = False
+        self.walkCount = 1
+        self.stand = True
+    
+    def draw(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+
+        if not(self.stand):
+            if self.up:
+                win.blit(lacWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(lacWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(lacWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(lacWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(madsStandDown, (self.x, self.y))
+        else:
+            if self.up:
+                win.blit(LacStandUp, (self.x, self.y))
+            elif self.down:
+                win.blit(LacStandDown, (self.x, self.y))
+            elif self.left:
+                win.blit(LacStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(LacStandRight, (self.x, self.y))
 
 #broBygger ANIME
 broByggerWalkUp = [pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png")]
