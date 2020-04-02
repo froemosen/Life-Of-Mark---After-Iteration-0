@@ -78,12 +78,12 @@ def start():
         
         #Kollision til mure - start
         
-        if smark.x < 305:
+        if smark.x < 320:
             if smark.y > 489:
                 walkAllowed_A = False
             else:
                 walkAllowed_A = True    
-        elif smark.x < 1055 and smark.x > 500:
+        elif smark.x < 1055 and smark.x > 515:
             if smark.y < 195:
                 walkAllowed_A = False
             else:
@@ -91,7 +91,7 @@ def start():
         else:
             walkAllowed_A = True
         
-        if smark.x < 295:
+        if smark.x < 210:
             if smark.y > 480:
                 walkAllowed_S = False
             else: 
@@ -99,7 +99,7 @@ def start():
         else: 
             walkAllowed_S = True
 
-        if smark.x < 1045 and smark.x > 345:
+        if smark.x < 1045 and smark.x > 360:
             if smark.y < 200: 
                 walkAllowed_W = False
             else:

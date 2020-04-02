@@ -254,9 +254,9 @@ class broBygger(object):
         elif self.x >= 600:
             
             """
-        if self.movementAllowed < 29:
+        if self.movementAllowed < 39 or self.movementAllowed == 70:
             self.movementChoice = r.randint(1,5)
-        if self.movementAllowed > 30 and self.movementAllowed < 200:
+        if self.movementAllowed > 40 and self.movementAllowed < 100:
             if self.movementChoice == 1:
                 self.x += self.vel
                 self.left = False
@@ -291,7 +291,7 @@ class broBygger(object):
                 self.up = False
                 self.down = False
                 self.stand = True
-        elif self.movementAllowed > 200:
+        elif self.movementAllowed > 100:
             self.movementAllowed = 0
         self.movementAllowed += r.randint(1,7)
 
