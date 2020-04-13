@@ -10,8 +10,9 @@ y = 1080
 fps = 60
 #Er der for settings
 
-if scene == 2:
-    smark = Classes.smark(1140, 625)
+if scene == 2 or scene == 1:
+    smark = Classes.smark(1075, 725)
+    smark.walkUp = True
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks x og y pos
 

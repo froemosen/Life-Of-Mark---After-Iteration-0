@@ -10,7 +10,9 @@ y = 1080
 fps = 60
 #Er der for settings
 if scene == 1:
-    smark = Classes.smark(675, 699)
+    smark = Classes.smark(725, 699)
+    smark.walkUp = True
+    smark.walkDown = False
 elif scene == 3:
     smark = Classes.smark(1350, -28)
 else:
