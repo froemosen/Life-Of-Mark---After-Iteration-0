@@ -210,33 +210,41 @@ def start():
             import Hallway3
             Hallway3.start()
 
-        #BOT MOVEMENT FOR SCENE
-        if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
-            bb.movement()
-        else: 
-            if bb.x > 1614:
-                bb.x -= 3
-                bb.y -= 1
-                bb.movementChoice = 2
-            elif bb.x < 1166:
-                bb.x += 3
-                bb.y += 1
-                bb.movementChoice = 1
-            elif bb.y > 779:
-                bb.y -= 3
-                bb.x -= 1
-                bb.movementChoice = 4
-            elif bb.y < 101:
-                bb.y += 3
-                bb.x += 1
-                bb.movementChoice = 3
+        #BOT MOVEMENT OG ANGREB FOR SCENE
+        distanceX = abs(bb.x-smark.x)
+        distanceY = abs(bb.y-smark.y)
+        if distanceX < 200 and distanceY < 200:
+                bb.x = 100
+                bb.y = 100     
+        else:
+            if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
+                bb.movement()
+            else: 
+                if bb.x > 1614:
+                    bb.x -= 3
+                    bb.y -= 1
+                    bb.movementChoice = 2
+                elif bb.x < 416:
+                    bb.x += 3
+                    bb.y += 1
+                    bb.movementChoice = 1
+                elif bb.y > 779:
+                    bb.y -= 3
+                    bb.x -= 1
+                    bb.movementChoice = 4
+                elif bb.y < 101 or bb.y < 380 and bb.x < 1180:
+                    bb.y += 3
+                    bb.x += 1
+                    bb.movementChoice = 3
 
         print(mx) #mouse x pos
         print(my) #mouse y pos
         print(bb.movementAllowed)
         print("SmarkX", smark.x) #main sprite x pos
         print("SmarkY", smark.y)#main sprite y pos
-        
+        print("DistanceX:", distanceX)
+        print("DistanceY:", distanceY)
+
 
         drawWorld() #"Tegner" verden
         smark.hitbool = False

@@ -333,6 +333,9 @@ class broBygger(object):
             self.movementAllowed = 0
         self.movementAllowed += r.randint(1,7)
 
+        def attack(self):
+            pass
+
 
 
 #MENU
