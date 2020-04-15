@@ -74,8 +74,57 @@ def changeRes4():
     win.blit(textSetting, textRect)
 
 def TextMark():
-    MarkText1 = "Hey Guys"
-    textSetting = font.render(MarkText1, run, black1, textColor)
+    Text = "Mark: Hey Guys"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextMark1():
+    Text = "Mark: I'm gonna run protocol!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextMark2():
+    Text = "Mark: Where is my computer???"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextElev():
+    Text= "Emil: Haha you can't run protocol!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextElev1():
+    Text= "Emil: Hey everyone!!! We can just go!!!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextElev2():
+    Text= "Emil: Haha loser!!!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextElev3():
+    Text= "Everyone: HAHAHHAHAHA!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def TextMark3():
+    Text = "Mark: Ohhh..."
+    textSetting = font.render(Text, run, black1, textColor)
     textRect = textSetting.get_rect()
     textRect.center = (960, 960)
     win.blit(textSetting, textRect)
