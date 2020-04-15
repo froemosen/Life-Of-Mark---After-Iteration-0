@@ -12,8 +12,10 @@ fps = 60
 pg.init()
 pg.font.init()
 smark = Classes.smark(1450, 6) #Marks placering se i classes under smarks klassen
-mads = Classes.Mads(758, 300) #Mads placering se i classes under Mads klassen
-Lac = Classes.Lac(500, 300) #Lac placering se i classes under lac klassen
+mads = Classes.Mads(758, 320) #Mads placering se i classes under Mads klassen
+Lac = Classes.Lac(500, 320) #Lac placering se i classes under lac klassen
+hod = Classes.hodyah(1016, 320) #Hodyah placering se i classes under hodyah klassen
+kris = Classes.kristian(1274, 320) #kristian placering se i classes under kristian klassen
 allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -39,11 +41,34 @@ def start():
         win.blit(table1, (749,500))
         win.blit(table1, (980,500))
 
-        if tick > 6 and tick < 1000:
+        if tick > 6 and tick < 8:
             allPlayerText.tekst(win)
             Tekst.TextMark()
+        elif tick > 8 and tick < 12:
+            allPlayerText.tekst(win)
+            Tekst.TextMark1()
+        elif tick > 12 and tick < 16:
+            allPlayerText.tekst(win)
+            Tekst.TextMark2()
+        elif tick > 16 and tick < 20:
+            allPlayerText.tekst(win)
+            Tekst.TextElev()
+        elif tick > 20 and tick < 23:
+            allPlayerText.tekst(win)
+            Tekst.TextElev1()
+        elif tick > 23 and tick < 26:
+            allPlayerText.tekst(win)
+            Tekst.TextElev2()
+        elif tick > 26 and tick < 28:
+            allPlayerText.tekst(win)
+            Tekst.TextElev3()
+        elif tick > 42 and tick < 44:
+            allPlayerText.tekst(win)
+            Tekst.TextMark3()
         smark.draw(win)
         mads.movementMads(win)
+        kris.draw(win)
+        hod.draw(win)
         Lac.draw(win)
         pg.display.update()
     run = True
@@ -90,7 +115,38 @@ def start():
             Lac.left = True
             Lac.stand = False
 
-        if tick > 3.5 and tick < 1000:
+            #hod movement
+            hod.x -= hod.vel
+            hod.down = False
+            hod.up = False
+            hod.right = False
+            hod.left = True
+            hod.stand = False
+
+            #kris movement
+            kris.x -= kris.vel
+            kris.down = False
+            kris.up = False
+            kris.right = False
+            kris.left = True
+            kris.stand = False
+        
+        if tick > 3.5 and tick < 6:
+
+            #hod movement
+            hod.down = False
+            hod.up = True
+            hod.right = False
+            hod.left = False
+            hod.stand = True
+
+            #kris movement
+            kris.down = False
+            kris.up = True
+            kris.right = False
+            kris.left = False
+            kris.stand = True
+
             #Mads movements
             mads.down = False
             mads.up = True
@@ -105,13 +161,48 @@ def start():
             Lac.left = False
             Lac.stand = True
 
-        if tick > 6 and tick < 1000:
+
+        if tick > 6 and tick < 28:
             #mark movement
             smark.walkDown = False
             smark.walkUp = False
             smark.walkRight = False
             smark.walkLeft = False
             smark.stand = True
+        
+        if tick > 28 and tick < 50:
+            if tick > 28 and tick < 33:
+                #Mads movements
+                mads.x += mads.vel
+                mads.down = False
+                mads.up = False
+                mads.right = True
+                mads.left = False
+                mads.stand = False
+            elif tick > 33 and tick < 42:
+                #Mads movements
+                mads.y -= mads.vel
+                mads.down = False
+                mads.up = True
+                mads.right = False
+                mads.left = False
+                mads.stand = False
+            if tick > 28 and tick < 35:
+                #Lac movement
+                Lac.x += Lac.vel
+                Lac.down = False
+                Lac.up = False
+                Lac.right = True
+                Lac.left = False
+                Lac.stand = False
+            elif tick > 35 and tick < 42:
+                #Lac movement
+                Lac.y -= Lac.vel
+                Lac.down = False
+                Lac.up = True
+                Lac.right = False
+                Lac.left = False
+                Lac.stand = False
 
         drawWorld() #"tegner" hele spillet
     pg.quit()

@@ -171,7 +171,114 @@ class Mads(object):
             else:
                 win.blit(madsStandDown, (self.x, self.y))
 
-#Lac
+#hodyah ANIME
+hodWalkUp = [pg.image.load("assets/sprites/hodyah/hodUp1.png"), pg.image.load("assets/sprites/hodyah/hodUp2.png"), pg.image.load("assets/sprites/hodyah/hodUp3.png"), pg.image.load("assets/sprites/hodyah/hodUp4.png"), pg.image.load("assets/sprites/hodyah/hodUp1.png"), pg.image.load("assets/sprites/hodyah/hodUp2.png"), pg.image.load("assets/sprites/hodyah/hodUp3.png"), pg.image.load("assets/sprites/hodyah/hodUp4.png"), pg.image.load("assets/sprites/hodyah/hodUp1.png"), pg.image.load("assets/sprites/hodyah/hodUp2.png"), pg.image.load("assets/sprites/hodyah/hodUp3.png"), pg.image.load("assets/sprites/hodyah/hodUp4.png")]
+hodWalkDown = [pg.image.load("assets/sprites/hodyah/hodDown1.png"), pg.image.load("assets/sprites/hodyah/hodDown2.png"), pg.image.load("assets/sprites/hodyah/hodDown3.png"), pg.image.load("assets/sprites/hodyah/hodDown4.png"), pg.image.load("assets/sprites/hodyah/hodDown1.png"), pg.image.load("assets/sprites/hodyah/hodDown2.png"), pg.image.load("assets/sprites/hodyah/hodDown3.png"), pg.image.load("assets/sprites/hodyah/hodDown4.png"), pg.image.load("assets/sprites/hodyah/hodDown1.png"), pg.image.load("assets/sprites/hodyah/hodDown2.png"), pg.image.load("assets/sprites/hodyah/hodDown3.png"), pg.image.load("assets/sprites/hodyah/hodDown4.png")]
+hodWalkLeft = [pg.image.load("assets/sprites/hodyah/hodLeft1.png"), pg.image.load("assets/sprites/hodyah/hodLeft2.png"), pg.image.load("assets/sprites/hodyah/hodLeft3.png"), pg.image.load("assets/sprites/hodyah/hodLeft4.png"), pg.image.load("assets/sprites/hodyah/hodLeft1.png"), pg.image.load("assets/sprites/hodyah/hodLeft2.png"), pg.image.load("assets/sprites/hodyah/hodLeft3.png"), pg.image.load("assets/sprites/hodyah/hodLeft4.png"), pg.image.load("assets/sprites/hodyah/hodLeft1.png"), pg.image.load("assets/sprites/hodyah/hodLeft2.png"), pg.image.load("assets/sprites/hodyah/hodLeft3.png"), pg.image.load("assets/sprites/hodyah/hodLeft4.png")]
+hodWalkRight = [pg.image.load("assets/sprites/hodyah/hodRight1.png"), pg.image.load("assets/sprites/hodyah/hodRight2.png"), pg.image.load("assets/sprites/hodyah/hodRight3.png"), pg.image.load("assets/sprites/hodyah/hodRight4.png"), pg.image.load("assets/sprites/hodyah/hodRight1.png"), pg.image.load("assets/sprites/hodyah/hodRight2.png"), pg.image.load("assets/sprites/hodyah/hodRight3.png"), pg.image.load("assets/sprites/hodyah/hodRight4.png"), pg.image.load("assets/sprites/hodyah/hodRight1.png"), pg.image.load("assets/sprites/hodyah/hodRight2.png"), pg.image.load("assets/sprites/hodyah/hodRight3.png"), pg.image.load("assets/sprites/hodyah/hodRight4.png")]
+hodStandUp = pg.image.load("assets/sprites/hodyah/hodUp1.png")
+hodStandDown = pg.image.load("assets/sprites/hodyah/hodDown1.png")
+hodStandLeft = pg.image.load("assets/sprites/hodyah/hodLeft1.png")
+hodStandRight = pg.image.load("assets/sprites/hodyah/hodRight1.png")
+
+class hodyah(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
+        self.walkCount = 1
+        self.stand = True
+        self.movementAllowed = 0
+    
+    def draw(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+        
+        if not(self.stand):
+            if self.up:
+                win.blit(hodWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(hodWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(hodWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(hodWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(hodStandDown[self.walkCount // 3], (self.x, self.y))
+        else:
+            if self.down:
+                win.blit(hodStandDown, (self.x, self.y))
+            elif self.up:
+                win.blit(hodStandUp, (self.x, self.y))
+            elif self.left:
+                win.blit(hodStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(hodStandRight, (self.x, self.y))
+            else:
+                win.blit(hodStandDown, (self.x, self.y))
+
+#kristian ANIME
+krisWalkUp = [pg.image.load("assets/sprites/kristian/krisUp1.png"), pg.image.load("assets/sprites/kristian/krisUp2.png"), pg.image.load("assets/sprites/kristian/krisUp3.png"), pg.image.load("assets/sprites/kristian/krisUp4.png"), pg.image.load("assets/sprites/kristian/krisUp1.png"), pg.image.load("assets/sprites/kristian/krisUp2.png"), pg.image.load("assets/sprites/kristian/krisUp3.png"), pg.image.load("assets/sprites/kristian/krisUp4.png"), pg.image.load("assets/sprites/kristian/krisUp1.png"), pg.image.load("assets/sprites/kristian/krisUp2.png"), pg.image.load("assets/sprites/kristian/krisUp3.png"), pg.image.load("assets/sprites/kristian/krisUp4.png")]
+krisWalkDown = [pg.image.load("assets/sprites/kristian/krisDown1.png"), pg.image.load("assets/sprites/kristian/krisDown2.png"), pg.image.load("assets/sprites/kristian/krisDown3.png"), pg.image.load("assets/sprites/kristian/krisDown4.png"), pg.image.load("assets/sprites/kristian/krisDown1.png"), pg.image.load("assets/sprites/kristian/krisDown2.png"), pg.image.load("assets/sprites/kristian/krisDown3.png"), pg.image.load("assets/sprites/kristian/krisDown4.png"), pg.image.load("assets/sprites/kristian/krisDown1.png"), pg.image.load("assets/sprites/kristian/krisDown2.png"), pg.image.load("assets/sprites/kristian/krisDown3.png"), pg.image.load("assets/sprites/kristian/krisDown4.png")]
+krisWalkLeft = [pg.image.load("assets/sprites/kristian/krisLeft1.png"), pg.image.load("assets/sprites/kristian/krisLeft2.png"), pg.image.load("assets/sprites/kristian/krisLeft3.png"), pg.image.load("assets/sprites/kristian/krisLeft4.png"), pg.image.load("assets/sprites/kristian/krisLeft1.png"), pg.image.load("assets/sprites/kristian/krisLeft2.png"), pg.image.load("assets/sprites/kristian/krisLeft3.png"), pg.image.load("assets/sprites/kristian/krisLeft4.png"), pg.image.load("assets/sprites/kristian/krisLeft1.png"), pg.image.load("assets/sprites/kristian/krisLeft2.png"), pg.image.load("assets/sprites/kristian/krisLeft3.png"), pg.image.load("assets/sprites/kristian/krisLeft4.png")]
+krisWalkRight = [pg.image.load("assets/sprites/kristian/krisRight1.png"), pg.image.load("assets/sprites/kristian/krisRight2.png"), pg.image.load("assets/sprites/kristian/krisRight3.png"), pg.image.load("assets/sprites/kristian/krisRight4.png"), pg.image.load("assets/sprites/kristian/krisRight1.png"), pg.image.load("assets/sprites/kristian/krisRight2.png"), pg.image.load("assets/sprites/kristian/krisRight3.png"), pg.image.load("assets/sprites/kristian/krisRight4.png"), pg.image.load("assets/sprites/kristian/krisRight1.png"), pg.image.load("assets/sprites/kristian/krisRight2.png"), pg.image.load("assets/sprites/kristian/krisRight3.png"), pg.image.load("assets/sprites/kristian/krisRight4.png")]
+krisStandUp = pg.image.load("assets/sprites/kristian/krisUp1.png")
+krisStandDown = pg.image.load("assets/sprites/kristian/krisDown1.png")
+krisStandLeft = pg.image.load("assets/sprites/kristian/krisLeft1.png")
+krisStandRight = pg.image.load("assets/sprites/kristian/krisRight1.png")
+
+class kristian(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
+        self.walkCount = 1
+        self.stand = True
+        self.movementAllowed = 0
+
+    def draw(self, win):
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+        if not(self.stand):
+            if self.up:
+                win.blit(krisWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(krisWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(krisWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(krisWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(krisStandDown, (self.x, self.y))
+        else:
+            if self.up:
+                win.blit(krisStandUp, (self.x, self.y))
+            elif self.down:
+                win.blit(krisStandDown, (self.x, self.y))
+            elif self.left:
+                win.blit(krisStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(krisStandRight, (self.x, self.y))
+            else:
+                win.blit(krisStandDown, (self.x, self.y))
+        
+
 #Lac ANIME
 lacWalkUp = [pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png"), pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png"), pg.image.load("assets/sprites/lac/lacUp1.png"), pg.image.load("assets/sprites/lac/lacUp2.png"), pg.image.load("assets/sprites/lac/lacUp3.png"), pg.image.load("assets/sprites/lac/lacUp4.png")]
 lacWalkDown = [pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png"), pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png"), pg.image.load("assets/sprites/lac/lacDown1.png"), pg.image.load("assets/sprites/lac/lacDown2.png"), pg.image.load("assets/sprites/lac/lacDown3.png"), pg.image.load("assets/sprites/lac/lacDown4.png")]
@@ -333,8 +440,8 @@ class broBygger(object):
             self.movementAllowed = 0
         self.movementAllowed += r.randint(1,7)
 
-        def attack(self):
-            pass
+    def attack(self):
+        pass
 
 
 
