@@ -4,6 +4,7 @@ import time
 import random as r
 import Classes
 from saveFile1 import *
+import Health
 
 x = 1920
 y = 1080
@@ -177,6 +178,7 @@ def start():
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
+            f.write("import Health " + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
@@ -187,7 +189,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
-            f.write("smark.health = " + str(smark.health) + "\n")
+            f.write("Health.health = " + str(Health.health) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
@@ -282,7 +284,7 @@ def start():
         #print("SmarkY", smark.y)#main sprite y pos
         #print("DistanceX:", distanceX)
         #print("DistanceY:", distanceY)
-        print("Health:", smark.health)
+        print("Health:", Health.health)
 
 
         drawWorld() #"Tegner" verden

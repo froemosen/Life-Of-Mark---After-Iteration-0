@@ -1,5 +1,6 @@
 import pygame as pg
 import random as r
+import Health
 x = 1920
 y = 1080
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -30,7 +31,6 @@ class smark(object):
         self.walkCount = 1
         self.hitCount = 1
         self.playsound = 0
-        self.health = 1000
         self.stand = True
         self.walkDown = False
         self.walkUp = False
@@ -39,7 +39,7 @@ class smark(object):
         self.hitbool = False
         self.allow = True
         self.hitbox = (self.x, self.y, 170, 200)
-    
+
 
     def draw(self, win):
         if self.walkCount + 1 >= 27:
@@ -100,10 +100,10 @@ class smark(object):
             self.hitCount = 0
     
     def attacked(self):
-        self.health -= 1
+        Health.health -= 1
     def healthBar(self):
         healthBarBack = (50, 1000, 250, 40)
-        healthBarFront = (50, 1000, self.health/4, 40)
+        healthBarFront = (50, 1000, Health.health/4, 40)
         healthBarOutline = (50, 1000, 250, 40)
         pg.draw.rect(win, (255,0,0), healthBarBack, 0)
         pg.draw.rect(win, (0,255,0), healthBarFront, 0)

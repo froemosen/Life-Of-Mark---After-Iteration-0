@@ -1,11 +1,13 @@
 import Classes
-x = 850
-y = 393
+import Health 
+x = 1455
+y = 209
 smark = Classes.smark(x, y)
-smark.walkDown = True
+smark.walkDown = False
 smark.walkUp = False
 smark.walkRigth = False
-smark.walkLeft = False
-smark.stand = True
-walking = False
-scene = 1
+smark.walkLeft = True
+smark.stand = False
+walking = True
+scene = 2
+Health.health = 940

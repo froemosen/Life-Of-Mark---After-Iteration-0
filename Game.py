@@ -5,6 +5,7 @@ import time
 import random as r
 import Hallway2
 from saveFile1 import *
+import Health
 
 if scene >= 2:
     smark = Classes.smark(1400, -27)
@@ -149,6 +150,7 @@ def start():
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
+            f.write("import Health " + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
