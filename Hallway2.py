@@ -59,6 +59,7 @@ def start():
     def drawWorld():
         win.blit(bgScene, (0,0))
         bb.draw(win)
+        smark.healthBar()
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -210,12 +211,48 @@ def start():
             import Hallway3
             Hallway3.start()
 
-        #BOT MOVEMENT OG ANGREB FOR SCENE
+        #BOT MOVEMENT, COLLISION OG ANGREB FOR SCENE
         distanceX = abs(bb.x-smark.x)
         distanceY = abs(bb.y-smark.y)
-        if distanceX < 200 and distanceY < 200:
-                bb.x = 100
-                bb.y = 100     
+        if distanceX < 400 and distanceY < 400:
+                if distanceX > distanceY:
+                    if bb.x <= smark.x:
+                        bb.x += bb.vel
+                        bb.left = False
+                        bb.right = True
+                        bb.up = False
+                        bb.down = False
+                        bb.stand = False
+
+                    elif bb.x > smark.x:
+                        bb.x -= bb.vel
+                        bb.left = True
+                        bb.right = False
+                        bb.up = False
+                        bb.down = False
+                        bb.stand = False
+
+                elif distanceX < distanceY:
+                    if bb.y <= smark.y+50:
+                        bb.y += bb.vel
+                        bb.left = False
+                        bb.right = False
+                        bb.up = False
+                        bb.down = True
+                        bb.stand = False
+
+                    elif bb.y > smark.y+50:
+                        bb.y -= bb.vel
+                        bb.left = False
+                        bb.right = False
+                        bb.up = True
+                        bb.down = False
+                        bb.stand = False
+                else:
+                    bb.movement()
+                
+                if distanceX < 80 and distanceY < 80:
+                    smark.attacked()
         else:
             if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
                 bb.movement()
@@ -237,13 +274,15 @@ def start():
                     bb.x += 1
                     bb.movementChoice = 3
 
-        print(mx) #mouse x pos
-        print(my) #mouse y pos
-        print(bb.movementAllowed)
-        print("SmarkX", smark.x) #main sprite x pos
-        print("SmarkY", smark.y)#main sprite y pos
-        print("DistanceX:", distanceX)
-        print("DistanceY:", distanceY)
+
+        #print(mx) #mouse x pos
+        #print(my) #mouse y pos
+        #print(bb.movementAllowed)
+        #print("SmarkX", smark.x) #main sprite x pos
+        #print("SmarkY", smark.y)#main sprite y pos
+        #print("DistanceX:", distanceX)
+        #print("DistanceY:", distanceY)
+        print("Health:", smark.health)
 
 
         drawWorld() #"Tegner" verden

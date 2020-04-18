@@ -30,6 +30,7 @@ class smark(object):
         self.walkCount = 1
         self.hitCount = 1
         self.playsound = 0
+        self.health = 1000
         self.stand = True
         self.walkDown = False
         self.walkUp = False
@@ -96,6 +97,18 @@ class smark(object):
             self.hitCount += 1
         else:
             self.hitCount = 0
+    
+    def attacked(self):
+        self.health -= 1
+    def healthBar(self):
+        healthBarBack = (50, 1000, 250, 40)
+        healthBarFront = (50, 1000, self.health/4, 40)
+        healthBarOutline = (50, 1000, 250, 40)
+        pg.draw.rect(win, (255,0,0), healthBarBack, 0)
+        pg.draw.rect(win, (0,255,0), healthBarFront, 0)
+        pg.draw.rect(win, (0,255,0), healthBarFront, 2)
+        pg.draw.rect(win, (0,0,0), healthBarOutline, 3)
+
 
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -344,7 +357,7 @@ class broBygger(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.vel = 10
+        self.vel = 5
         self.up = False
         self.down = False
         self.left = False
