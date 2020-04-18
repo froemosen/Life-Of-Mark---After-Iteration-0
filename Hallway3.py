@@ -166,6 +166,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
+            f.write("smark.health = " + str(smark.health) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:

@@ -10,7 +10,6 @@ if scene >= 2:
     smark = Classes.smark(1400, -27)
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks placering se i classes under smarks klassen
-
 scene = 1 #var som bruges som en slags ID til forskellige scener i spillet
 x = 1920
 y = 1080
@@ -160,6 +159,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
+            f.write("smark.health = " + str(smark.health) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:

@@ -21,7 +21,7 @@ markAttackRight = [pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.
 
 #Player
 class smark(object):
-    def  __init__(self, x, y):
+    def  __init__(self, x, y,):
         self.x = x
         self.y = y
         self.height = 50
@@ -78,6 +78,7 @@ class smark(object):
             else:
                 win.blit(markStand, (self.x, self.y))
         pg.draw.rect(win, (0,255,0), self.hitbox, 2)
+        self.healthBar()
 
     def attack(self, win):
         if self.hitCount + 1 >= 27:

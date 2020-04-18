@@ -59,7 +59,6 @@ def start():
     def drawWorld():
         win.blit(bgScene, (0,0))
         bb.draw(win)
-        smark.healthBar()
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -188,6 +187,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
+            f.write("smark.health = " + str(smark.health) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
