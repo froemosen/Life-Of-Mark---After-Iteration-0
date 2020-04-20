@@ -1,6 +1,6 @@
 import pygame as pg
 import random as r
-import Health
+import Variabler
 x = 1920
 y = 1080
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -77,7 +77,6 @@ class smark(object):
                 self.hitbox = (self.x, self.y, 160, 200)
             else:
                 win.blit(markStand, (self.x, self.y))
-        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
         self.healthBar()
 
     def attack(self, win):
@@ -100,7 +99,7 @@ class smark(object):
             self.hitCount = 0
     
     def attacked(self):
-        Health.health -= 1
+        Variabler.health -= 1
     def healthBar(self):
         healthBarBack = (50, 1000, 250, 40)
         healthBarFront = (50, 1000, Health.health/4, 40)
@@ -118,9 +117,6 @@ class borde(object):
         self.height = height
         self.width = width
         self.hitbox = (self.x, self.y, self.height, self.width)
-
-    def drawBorde(self):
-        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
 
 #Player Text
 #allPlayerTextBox
@@ -366,7 +362,6 @@ class broBygger(object):
         self.walkCount = 1
         self.stand = True
         self.movementAllowed = 0
-        self.hitbox = (self.x + 20, self.y + 20 , 120, 175)
 
 
     def draw(self, win):
@@ -377,40 +372,29 @@ class broBygger(object):
             if self.up:
                 win.blit(broByggerWalkUp[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.down:
                 win.blit(broByggerWalkDown[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.left:
                 win.blit(broByggerWalkLeft[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.right:
                 win.blit(broByggerWalkRight[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
         else:
             if self.up:
                 win.blit(broByggerStandUp, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.down:
                 win.blit(broByggerStandDown, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.left:
                 win.blit(broByggerStandLeft, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             elif self.right:
                 win.blit(broByggerStandRight, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
-                self.hitbox = (self.x + 25, self.y + 20 , 95, 115)
-        pg.draw.rect(win, (0,255,0), self.hitbox, 2)
-    
+
     
     def movement(self):
         if self.movementAllowed < 9:
