@@ -1,5 +1,5 @@
 import Classes
-import Health 
+import Variabler
 x = 1455
 y = 209
 smark = Classes.smark(x, y)
@@ -10,4 +10,4 @@ smark.walkLeft = True
 smark.stand = False
 walking = True
 scene = 2
-Health.health = 940
+Variabler.health = 940

@@ -4,7 +4,7 @@ import time
 import random as r
 import Classes
 from saveFile1 import *
-import Health
+import Variabler
 
 x = 1920
 y = 1080
@@ -168,7 +168,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
-            f.write("Health.health = " + str(Health.health) + "\n")
+            f.write("Variabler.health = " + str(Variabler.health) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:

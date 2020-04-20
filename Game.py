@@ -5,7 +5,7 @@ import time
 import random as r
 import Hallway2
 from saveFile1 import *
-import Health
+import Variabler
 
 if scene >= 2:
     smark = Classes.smark(1400, -27)
@@ -42,7 +42,6 @@ def start():
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
-        borde.drawBorde()
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -161,7 +160,7 @@ def start():
             f.write("smark.stand = " + str(smark.stand) + "\n")
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
-            f.write("smark.health = " + str(smark.health) + "\n")
+            f.write("Variabler.health = " + str(Variabler.health) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:

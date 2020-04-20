@@ -15,7 +15,7 @@ markWalkUp = [pg.image.load("assets/sprites/mark/gåOp3.png"), pg.image.load("as
 markWalkLeft = [pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png"), pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png"), pg.image.load("assets/sprites/mark/gåVenstre1.png"), pg.image.load("assets/sprites/mark/gåVenstre2.png"), pg.image.load("assets/sprites/mark/gåVenstre3.png"), pg.image.load("assets/sprites/mark/gåVenstre4.png")]
 markWalkRight = [pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png"), pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png"), pg.image.load("assets/sprites/mark/gåHøjre1.png"), pg.image.load("assets/sprites/mark/gåHøjre2.png"), pg.image.load("assets/sprites/mark/gåHøjre3.png"), pg.image.load("assets/sprites/mark/gåHøjre4.png")]
 markWalkDown = [pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png"), pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png"), pg.image.load("assets/sprites/mark/gåNed1.png"), pg.image.load("assets/sprites/mark/gåNed2.png"), pg.image.load("assets/sprites/mark/gåNed3.png"), pg.image.load("assets/sprites/mark/gåNed4.png")]
-markAttackUp = [pg.image.load("assets/sprites/mark/hitUp1.png"), pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp3.png"), pg.image.load("assets/sprites/mark/hitUp4.png"), pg.image.load("assets/sprites/mark/hitUp1.png"), pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp3.png"), pg.image.load("assets/sprites/mark/hitUp4.png"), pg.image.load("assets/sprites/mark/hitUp1.png"), pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp3.png"), pg.image.load("assets/sprites/mark/hitUp4.png")]
+markAttackUp = [pg.image.load("assets/sprites/mark/hitUp1.png"),  pg.image.load("assets/sprites/mark/hitUp3.png"), pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp4.png"), pg.image.load("assets/sprites/mark/hitUp2.png"),pg.image.load("assets/sprites/mark/hitUp1.png"), pg.image.load("assets/sprites/mark/hitUp3.png"),  pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp4.png"), pg.image.load("assets/sprites/mark/hitUp1.png"), pg.image.load("assets/sprites/mark/hitUp2.png"), pg.image.load("assets/sprites/mark/hitUp3.png"), pg.image.load("assets/sprites/mark/hitUp4.png")]
 markAttackDown = [pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png"), pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png"), pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png")]
 markAttackLeft = [pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png"), pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png"), pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png")]
 markAttackRight = [pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png"), pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png"), pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png")]
@@ -80,29 +80,30 @@ class smark(object):
         self.healthBar()
 
     def attack(self, win):
-        if self.hitCount + 1 >= 27:
+        if self.hitCount + 1 >= 20:
             self.hitCount = 0
 
         if self.walkRight and self.hitbool:
-            win.blit(markAttackRight[self.hitCount // 3], (self.x - 70, self.y - 50))
+            win.blit(markAttackRight[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
         elif self.walkLeft and self.hitbool:
-            win.blit(markAttackLeft[self.hitCount // 3], (self.x - 70, self.y - 50))
+            win.blit(markAttackLeft[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
         elif self.walkUp and self.hitbool:
-            win.blit(markAttackUp[self.hitCount // 3], (self.x, self.y))
+            win.blit(markAttackUp[self.hitCount // 4], (self.x - 80, self.y - 70))
             self.hitCount += 1
         elif self.walkDown and self.hitbool:
-            win.blit(markAttackDown[self.hitCount // 3], (self.x, self.y))
+            win.blit(markAttackDown[self.hitCount // 4], (self.x, self.y))
             self.hitCount += 1
         else:
             self.hitCount = 0
+        self.healthBar()
     
     def attacked(self):
         Variabler.health -= 1
     def healthBar(self):
         healthBarBack = (50, 1000, 250, 40)
-        healthBarFront = (50, 1000, Health.health/4, 40)
+        healthBarFront = (50, 1000, Variabler.health/4, 40)
         healthBarOutline = (50, 1000, 250, 40)
         pg.draw.rect(win, (255,0,0), healthBarBack, 0)
         pg.draw.rect(win, (0,255,0), healthBarFront, 0)
