@@ -149,7 +149,6 @@ def start():
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
-            f.write("import Health " + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            

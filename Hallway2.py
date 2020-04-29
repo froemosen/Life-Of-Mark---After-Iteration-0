@@ -58,12 +58,11 @@ def start():
 
     def drawWorld():
         win.blit(bgScene, (0,0))
-
-        bb0.draw(win)
         if smark.hitbool:
             smark.attack(win)
         else:
             smark.draw(win)
+        bb0.draw(win)
         #allPlayerText.tekst(win)
         pg.display.update()
 
@@ -169,16 +168,15 @@ def start():
         elif keys[pg.K_SPACE] and smark.allow:
                 smark.hitbool = True
                 smark.allow = False
-
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            smark.hitCount = 0
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
-            f.write("import Health " + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
@@ -190,6 +188,9 @@ def start():
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
+            f.write("Variabler.bb0Health = " + str(Variabler.bb0Health))
+            f.write("Variabler.bb1Health = " + str(Variabler.bb1Health))
+            f.write("Variabler.bb2Health = " + str(Variabler.bb2Health))
             f.close()
 
         if keys[pg.K_ESCAPE]:
@@ -215,7 +216,7 @@ def start():
 
         #BOT MOVEMENT, COLLISION OG ANGREB FOR SCENE
         distanceX = abs(bb0.x-smark.x)
-        distanceY = abs(bb0.y-smark.y)
+        distanceY = abs(bb0.y-(smark.y+65))
         if distanceX < 400 and distanceY < 400:
                 if distanceX > distanceY:
                     if bb0.x <= smark.x:
@@ -277,15 +278,31 @@ def start():
                     bb0.movementChoice = 3
 
 
+        #Smark.attack:
+        if smark.attackingRight and bb0.x-smark.x > -10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+            bb0.health -= 80
+        
+        elif smark.attackingLeft and bb0.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+            bb0.health -= 80
+
+        elif smark.attackingDown and bb0.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+            bb0.health -= 80
+        
+        elif smark.attackingUp and bb0.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+            bb0.health -= 80
+
+        if bb0.health < 0:
+            bb0.x = -10000
+
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
         #print(bb.movementAllowed)
         #print("SmarkX", smark.x) #main sprite x pos
         #print("SmarkY", smark.y)#main sprite y pos
-        #print("DistanceX:", distanceX)
-        #print("DistanceY:", distanceY)
+        print("DistanceX:", distanceX)
+        print("DistanceY:", distanceY)
         print("Health:", Variabler.health)
-
+        print("BB.heatlh:", bb0.health)
 
         drawWorld() #"Tegner" verden
         smark.hitbool = False
