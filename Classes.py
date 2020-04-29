@@ -39,7 +39,11 @@ class smark(object):
         self.hitbool = False
         self.allow = True
         self.hitbox = (self.x, self.y, 170, 200)
-
+        self.attackingRight = False
+        self.attackingLeft = False
+        self.attackingUp = False
+        self.attackingDown = False
+        self.generalAttack = False
 
     def draw(self, win):
         if self.walkCount + 1 >= 27:
@@ -86,21 +90,48 @@ class smark(object):
         if self.walkRight and self.hitbool:
             win.blit(markAttackRight[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
+            self.attackingRight = True
+            self.attackingLeft = False
+            self.attackingUp = False
+            self.attackingDown = False
         elif self.walkLeft and self.hitbool:
             win.blit(markAttackLeft[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
+            self.attackingLeft = True
+            self.attackingRight = False
+            self.attackingUp = False
+            self.attackingDown = False
         elif self.walkUp and self.hitbool:
             win.blit(markAttackUp[self.hitCount // 4], (self.x - 80, self.y - 70))
             self.hitCount += 1
+            self.attackingUp = True
+            self.attackingRight = False
+            self.attackingLeft = False
+            self.attackingDown = False
         elif self.walkDown and self.hitbool:
             win.blit(markAttackDown[self.hitCount // 4], (self.x, self.y))
             self.hitCount += 1
+            self.attackingDown = True
+            self.attackingRight = False
+            self.attackingLeft = False
+            self.attackingUp = False
         else:
             self.hitCount = 0
+            self.attackingRight = False
+            self.attackingLeft = False
+            self.attackingUp = False
+            self.attackingDown = False
         self.healthBar()
+
+        if self.hitCount == 8:
+            self.generalAttack = True
+        else: 
+            self.generalAttack = False
+
     
     def attacked(self):
         Variabler.health -= 1
+
     def healthBar(self):
         healthBarBack = (50, 1000, 250, 40)
         healthBarFront = (50, 1000, Variabler.health/4, 40)
@@ -111,7 +142,7 @@ class smark(object):
         pg.draw.rect(win, (0,0,0), healthBarOutline, 3)
 
 
-class borde(object):
+class borde(object): #Skal den BRUGES?!?!!?
     def __init__(self, x, y, height, width):
         self.x = x
         self.y = y
@@ -363,7 +394,7 @@ class broBygger(object):
         self.walkCount = 1
         self.stand = True
         self.movementAllowed = 0
-
+        self.health = 200
 
     def draw(self, win):
         if self.walkCount + 1 >= 27:
@@ -395,6 +426,7 @@ class broBygger(object):
                 win.blit(broByggerStandRight, (self.x, self.y))
             else:
                 win.blit(broByggerStandDown, (self.x, self.y))
+        self.healthbar()
 
     
     def movement(self):
@@ -440,7 +472,16 @@ class broBygger(object):
         self.movementAllowed += r.randint(1,7)
 
     def attack(self):
+        #her kan eventuelt indsættes animationer til brobyggeren som er træls...
         pass
+
+    def healthbar(self):
+        healthBarBack = (self.x+40, self.y-5, 100, 5)
+        healthBarFront = (self.x+40, self.y-5, self.health/2, 5)
+        pg.draw.rect(win, (255,0,0), healthBarBack, 0)
+        pg.draw.rect(win, (0,255,0), healthBarFront, 0)
+        pg.draw.rect(win, (0,255,0), healthBarFront, 2)
+
 
 
 
