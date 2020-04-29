@@ -1,18 +1,13 @@
 Assets(Brobyggere, elever, kampanimation, Scene1, Scene2, Scene........)
 
-Scene-system som er overskueligt...
-Scener
 
 Cutscene til scene 1 (Manuskript)
 
-Settings-menu
 
-Sortere i Classes
 
 Kampsystem
 Inventory System + Items
 Health System(Mark og enemies)
-Save system
 
 
 

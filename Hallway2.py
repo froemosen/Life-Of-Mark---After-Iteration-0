@@ -25,7 +25,7 @@ pg.init()
 pg.font.init()
 
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
-bb = Classes.broBygger(1500, 400)
+bb0 = Classes.broBygger(1500, 400)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
 
@@ -58,7 +58,8 @@ def start():
 
     def drawWorld():
         win.blit(bgScene, (0,0))
-        bb.draw(win)
+
+        bb0.draw(win)
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -213,67 +214,67 @@ def start():
             Hallway3.start()
 
         #BOT MOVEMENT, COLLISION OG ANGREB FOR SCENE
-        distanceX = abs(bb.x-smark.x)
-        distanceY = abs(bb.y-smark.y)
+        distanceX = abs(bb0.x-smark.x)
+        distanceY = abs(bb0.y-smark.y)
         if distanceX < 400 and distanceY < 400:
                 if distanceX > distanceY:
-                    if bb.x <= smark.x:
-                        bb.x += bb.vel
-                        bb.left = False
-                        bb.right = True
-                        bb.up = False
-                        bb.down = False
-                        bb.stand = False
+                    if bb0.x <= smark.x:
+                        bb0.x += bb0.vel
+                        bb0.left = False
+                        bb0.right = True
+                        bb0.up = False
+                        bb0.down = False
+                        bb0.stand = False
 
-                    elif bb.x > smark.x:
-                        bb.x -= bb.vel
-                        bb.left = True
-                        bb.right = False
-                        bb.up = False
-                        bb.down = False
-                        bb.stand = False
+                    elif bb0.x > smark.x:
+                        bb0.x -= bb0.vel
+                        bb0.left = True
+                        bb0.right = False
+                        bb0.up = False
+                        bb0.down = False
+                        bb0.stand = False
 
                 elif distanceX < distanceY:
-                    if bb.y <= smark.y+50:
-                        bb.y += bb.vel
-                        bb.left = False
-                        bb.right = False
-                        bb.up = False
-                        bb.down = True
-                        bb.stand = False
+                    if bb0.y <= smark.y+50:
+                        bb0.y += bb0.vel
+                        bb0.left = False
+                        bb0.right = False
+                        bb0.up = False
+                        bb0.down = True
+                        bb0.stand = False
 
-                    elif bb.y > smark.y+50:
-                        bb.y -= bb.vel
-                        bb.left = False
-                        bb.right = False
-                        bb.up = True
-                        bb.down = False
-                        bb.stand = False
+                    elif bb0.y > smark.y+50:
+                        bb0.y -= bb0.vel
+                        bb0.left = False
+                        bb0.right = False
+                        bb0.up = True
+                        bb0.down = False
+                        bb0.stand = False
                 else:
-                    bb.movement()
+                    bb0.movement()
                 
                 if distanceX < 80 and distanceY < 80:
                     smark.attacked()
         else:
-            if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
-                bb.movement()
+            if bb0.x > 1165 and bb0.x < 1615 and bb0.y > 100 and bb0.y < 780 or bb0.x > 415 and bb0.x < 1166 and bb0.y > 360 and bb0.y <  780:
+                bb0.movement()
             else: 
-                if bb.x > 1614:
-                    bb.x -= 3
-                    bb.y -= 1
-                    bb.movementChoice = 2
-                elif bb.x < 416:
-                    bb.x += 3
-                    bb.y += 1
-                    bb.movementChoice = 1
-                elif bb.y > 779:
-                    bb.y -= 3
-                    bb.x -= 1
-                    bb.movementChoice = 4
-                elif bb.y < 101 or bb.y < 380 and bb.x < 1180:
-                    bb.y += 3
-                    bb.x += 1
-                    bb.movementChoice = 3
+                if bb0.x > 1614:
+                    bb0.x -= 3
+                    bb0.y -= 1
+                    bb0.movementChoice = 2
+                elif bb0.x < 416:
+                    bb0.x += 3
+                    bb0.y += 1
+                    bb0.movementChoice = 1
+                elif bb0.y > 779:
+                    bb0.y -= 3
+                    bb0.x -= 1
+                    bb0.movementChoice = 4
+                elif bb0.y < 101 or bb0.y < 380 and bb0.x < 1180:
+                    bb0.y += 3
+                    bb0.x += 1
+                    bb0.movementChoice = 3
 
 
         #print(mx) #mouse x pos

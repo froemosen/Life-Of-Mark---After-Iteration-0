@@ -86,21 +86,35 @@ class smark(object):
         if self.walkRight and self.hitbool:
             win.blit(markAttackRight[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
+            self.attackingRight = True
         elif self.walkLeft and self.hitbool:
             win.blit(markAttackLeft[self.hitCount // 4], (self.x - 70, self.y - 50))
             self.hitCount += 1
+            self.attackingLeft = True
         elif self.walkUp and self.hitbool:
             win.blit(markAttackUp[self.hitCount // 4], (self.x - 80, self.y - 70))
             self.hitCount += 1
+            self.attackingUp = True
         elif self.walkDown and self.hitbool:
             win.blit(markAttackDown[self.hitCount // 4], (self.x, self.y))
             self.hitCount += 1
+            self.attackingDown = True
         else:
             self.hitCount = 0
+            self.attackingRight = False
+            self.attackingLeft = False
+            self.attackingUp = False
+            self.attackingDown = False
         self.healthBar()
+        self.attackingRight = False
+        self.attackingLeft = False
+        self.attackingUp = False
+        self.attackingDown = False
+
     
     def attacked(self):
         Variabler.health -= 1
+
     def healthBar(self):
         healthBarBack = (50, 1000, 250, 40)
         healthBarFront = (50, 1000, Variabler.health/4, 40)
@@ -111,7 +125,7 @@ class smark(object):
         pg.draw.rect(win, (0,0,0), healthBarOutline, 3)
 
 
-class borde(object):
+class borde(object): #Skal den BRUGES?!?!!?
     def __init__(self, x, y, height, width):
         self.x = x
         self.y = y
@@ -440,6 +454,7 @@ class broBygger(object):
         self.movementAllowed += r.randint(1,7)
 
     def attack(self):
+        #her kan eventuelt indsættes animationer til brobyggeren som er træls...
         pass
 
 
