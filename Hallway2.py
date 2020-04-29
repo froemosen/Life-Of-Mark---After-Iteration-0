@@ -169,6 +169,15 @@ def start():
                 smark.hitbool = True
                 smark.allow = False
 
+        elif keys[pg.K_p]:
+            Variabler.pizza += 1
+
+        elif keys[pg.K_e] and Variabler.pizza >= 1:
+            Variabler.pizza -= 1
+            Variabler.health += 100
+            if Variabler.health > 1000:
+                Variabler.health = 1000
+
         else:
             smark.stand = True
             smark.walkCount = 0
@@ -177,7 +186,7 @@ def start():
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
-            f.write("import Health " + "\n")
+            f.write("import Variabler" + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
@@ -189,9 +198,13 @@ def start():
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
+            #inventory
+            f.write("pizza = " + str(Variabler.pizza) + "\n")
+            f.write("bruger = " + str(Variabler.burger) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
+            pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
 
         if pg.mixer.music.get_busy() == True:

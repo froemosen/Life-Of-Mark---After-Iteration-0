@@ -4,6 +4,7 @@ import time
 import random as r
 import Classes #Alle classes er inde i den fil
 import Tekst
+import Game
 
 x = 1920
 y = 1080
@@ -14,8 +15,8 @@ pg.font.init()
 smark = Classes.smark(1450, 6) #Marks placering se i classes under smarks klassen
 mads = Classes.Mads(758, 320) #Mads placering se i classes under Mads klassen
 Lac = Classes.Lac(500, 320) #Lac placering se i classes under lac klassen
-hod = Classes.hodyah(1016, 320) #Hodyah placering se i classes under hodyah klassen
-kris = Classes.kristian(1274, 320) #kristian placering se i classes under kristian klassen
+hod = Classes.hodyah(946, 315) #Hodyah placering se i classes under hodyah klassen
+kris = Classes.kristian(1214, 315) #kristian placering se i classes under kristian klassen
 allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -187,7 +188,7 @@ def start():
                 mads.right = False
                 mads.left = False
                 mads.stand = False
-            if tick > 28 and tick < 35:
+            if tick > 28 and tick < 34:
                 #Lac movement
                 Lac.x += Lac.vel
                 Lac.down = False
@@ -195,7 +196,7 @@ def start():
                 Lac.right = True
                 Lac.left = False
                 Lac.stand = False
-            elif tick > 35 and tick < 42:
+            elif tick > 35 and tick < 40:
                 #Lac movement
                 Lac.y -= Lac.vel
                 Lac.down = False
@@ -203,7 +204,36 @@ def start():
                 Lac.right = False
                 Lac.left = False
                 Lac.stand = False
-
+            if tick > 28 and tick < 32:
+                hod.x += hod.vel
+                hod.down = False
+                hod.up = False
+                hod.right = False
+                hod.left = True
+                hod.stand = False
+            elif tick > 32 and tick < 40:
+                hod.y -= hod.vel
+                hod.down = True
+                hod.up = False
+                hod.right = False
+                hod.left = False
+                hod.stand = False
+            if tick > 28 and tick < 31:
+                kris.x += kris.vel
+                kris.down = False
+                kris.up = False
+                kris.right = True
+                kris.left = False
+                kris.stand = False
+            elif tick > 31 and tick < 40:
+                kris.y -= kris.vel
+                kris.down = False
+                kris.up = True
+                kris.right = False
+                kris.left = False
+                kris.stand = False
+        if tick > 50:
+            Game.start()
         drawWorld() #"tegner" hele spillet
     pg.quit()
 pygame.mouse.set_visible(False)

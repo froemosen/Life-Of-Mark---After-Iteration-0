@@ -121,10 +121,13 @@ def pygameMenuStart():
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
                     pg.mixer.music.fadeout(1500)
                     if scene == 1:
+                        pg.mouse.set_visible(False)
                         Game.start()
                     elif scene == 2:
+                        pg.mouse.set_visible(False)
                         Hallway2.start()
                     elif scene == 3:
+                        pg.mouse.set_visible(False)
                         Hallway3.start()
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()
