@@ -8,6 +8,7 @@ import Variabler
 x = 1920
 y = 1080
 fps = 60
+
 #Er der for settings
 if scene == 1:
     smark = Classes.smark(725, 699)
@@ -28,7 +29,6 @@ allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
 bb0 = Classes.broBygger(1500, 400)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
-
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
 
@@ -55,6 +55,8 @@ def start():
     walkAllowed_S = True
     walkAllowed_D = True
     walkAllowed_W = True
+    tick = 0
+    broByggerCoolDown = 0
 
     def drawWorld():
         win.blit(bgScene, (0,0))
@@ -293,29 +295,44 @@ def start():
         #Smark.attack:
         if smark.attackingRight and bb0.x-smark.x > -10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
             bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand
+            broByggerCoolDown = tick
         
         elif smark.attackingLeft and bb0.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
             bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand
+            broByggerCoolDown = tick
 
         elif smark.attackingDown and bb0.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand
+            broByggerCoolDown = tick
         
         elif smark.attackingUp and bb0.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand
+            broByggerCoolDown = tick
 
         if bb0.health < 0:
             bb0.x = -10000
 
+        if tick-broByggerCoolDown > 50 and bb0.vel == 0:
+            bb0.vel = 5
+
+        tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
         #print(bb.movementAllowed)
         #print("SmarkX", smark.x) #main sprite x pos
         #print("SmarkY", smark.y)#main sprite y pos
-        print("DistanceX:", distanceX)
-        print("DistanceY:", distanceY)
-        print("Health:", Variabler.health)
-        print("BB.heatlh:", bb0.health)
-
+        #print("DistanceX:", distanceX)
+        #print("DistanceY:", distanceY)
+        #print("Health:", Variabler.health)
+        #print("BB.heatlh:", bb0.health)
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
