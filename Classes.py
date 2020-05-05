@@ -372,6 +372,58 @@ class Lac(object):
             elif self.right:
                 win.blit(LacStandRight, (self.x, self.y))
 
+#EmilANIME
+emilWalkUp = [pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4"), pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4"), pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4")]
+emilWalkDown = [pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4"), pg.image.load("assets/sprites/emil/emilDown1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4"), pg.image.load("assets/sprites/emil/emilDown1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4")]
+emilWalkRight = [pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4"), pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4"), pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4")]
+emilWalkLeft = [pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4"), pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4"), pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4")]
+emilStandUp = pg.image.load("assets/sprites/emil/emilUp1")
+emilStandDown = pg.image.load("assets/sprites/emil/emilUp1")
+emilStandRight = pg.image.load("assets/sprites/emil/emilRight1")
+emilStandLeft = pg.image.load("assets/sprites/emil/emilLeft1")
+
+class emil(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 10
+        self.up = False
+        self.down = False
+        self.left = False
+        self.right = False
+        self.walkCount = 1
+        self.stand = True
+        self.movementAllowed = 0
+   
+    def draw(self):  
+        if self.walkCount + 1 >= 27:
+            self.walkCount = 0
+        
+        if not(self.stand):
+            if self.up:
+                win.blit(emilWalkUp[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.down:
+                win.blit(emilWalkDown[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.right:
+                win.blit(emilWalkRight[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            elif self.left:
+                win.blit(emilWalkLeft[self.walkCount // 3], (self.x, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(emilStandDown, (self.x, self.y))
+        else:
+            if self.up:
+                win.blit(emilStandUp, (self.x, self.y))
+            elif self.down:
+                win.blit(emilStandDown, (self.x, self.y))
+            elif self.left:
+                win.blit(emilStandLeft, (self.x, self.y))
+            elif self.right:
+                win.blit(emilStandRight, (self.x, self.y))
+
 #broBygger ANIME
 broByggerWalkUp = [pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png"), pg.image.load("assets/sprites/brobygger/bbUp1.png"), pg.image.load("assets/sprites/brobygger/bbUp2.png"), pg.image.load("assets/sprites/brobygger/bbUp3.png"), pg.image.load("assets/sprites/brobygger/bbUp4.png")]
 broByggerWalkDown = [pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png"), pg.image.load("assets/sprites/brobygger/bbDown1.png"), pg.image.load("assets/sprites/brobygger/bbDown2.png"), pg.image.load("assets/sprites/brobygger/bbDown3.png"), pg.image.load("assets/sprites/brobygger/bbDown4.png")]

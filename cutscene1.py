@@ -99,7 +99,7 @@ def start():
             smark.walkLeft = True
             smark.stand = False
 
-        if tick > 0 and tick < 3.3:
+        if tick > 0 and tick < 3.5:
             #Mads movements
             mads.x -= mads.vel
             mads.down = False
@@ -188,7 +188,7 @@ def start():
                 mads.right = False
                 mads.left = False
                 mads.stand = False
-            if tick > 28 and tick < 34:
+            if tick > 28 and tick < 34.3:
                 #Lac movement
                 Lac.x += Lac.vel
                 Lac.down = False
