@@ -141,7 +141,7 @@ class smark(object):
         pg.draw.rect(win, (0,255,0), healthBarFront, 2)
         pg.draw.rect(win, (0,0,0), healthBarOutline, 3)
 
-
+"""
 class borde(object): #Skal den BRUGES?!?!!?
     def __init__(self, x, y, height, width):
         self.x = x
@@ -149,7 +149,7 @@ class borde(object): #Skal den BRUGES?!?!!?
         self.height = height
         self.width = width
         self.hitbox = (self.x, self.y, self.height, self.width)
-
+"""
 #Player Text
 #allPlayerTextBox
 allPlayerTextBox = pg.image.load("assets/Textbox.png")
@@ -373,14 +373,14 @@ class Lac(object):
                 win.blit(LacStandRight, (self.x, self.y))
 
 #EmilANIME
-emilWalkUp = [pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4"), pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4"), pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilUp2"), pg.image.load("assets/sprites/emil/emilUp3"), pg.image.load("assets/sprites/emil/emilUp4")]
-emilWalkDown = [pg.image.load("assets/sprites/emil/emilUp1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4"), pg.image.load("assets/sprites/emil/emilDown1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4"), pg.image.load("assets/sprites/emil/emilDown1"), pg.image.load("assets/sprites/emil/emilDown2"), pg.image.load("assets/sprites/emil/emilDown3"), pg.image.load("assets/sprites/emil/emilDown4")]
-emilWalkRight = [pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4"), pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4"), pg.image.load("assets/sprites/emil/emilRight1"), pg.image.load("assets/sprites/emil/emilRight2"), pg.image.load("assets/sprites/emil/emilRight3"), pg.image.load("assets/sprites/emil/emilRight4")]
-emilWalkLeft = [pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4"), pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4"), pg.image.load("assets/sprites/emil/emilLeft1"), pg.image.load("assets/sprites/emil/emilLeft2"), pg.image.load("assets/sprites/emil/emilLeft3"), pg.image.load("assets/sprites/emil/emilLeft4")]
-emilStandUp = pg.image.load("assets/sprites/emil/emilUp1")
-emilStandDown = pg.image.load("assets/sprites/emil/emilUp1")
-emilStandRight = pg.image.load("assets/sprites/emil/emilRight1")
-emilStandLeft = pg.image.load("assets/sprites/emil/emilLeft1")
+emilWalkUp = [pg.image.load("assets/sprites/emil/emilUp1.png"), pg.image.load("assets/sprites/emil/emilUp2.png"), pg.image.load("assets/sprites/emil/emilUp3.png"), pg.image.load("assets/sprites/emil/emilUp4.png"), pg.image.load("assets/sprites/emil/emilUp1.png"), pg.image.load("assets/sprites/emil/emilUp2.png"), pg.image.load("assets/sprites/emil/emilUp3.png"), pg.image.load("assets/sprites/emil/emilUp4.png"), pg.image.load("assets/sprites/emil/emilUp1.png"), pg.image.load("assets/sprites/emil/emilUp2.png"), pg.image.load("assets/sprites/emil/emilUp3.png"), pg.image.load("assets/sprites/emil/emilUp4.png")]
+emilWalkDown = [pg.image.load("assets/sprites/emil/emilUp1.png"), pg.image.load("assets/sprites/emil/emilDown2.png"), pg.image.load("assets/sprites/emil/emilDown3.png"), pg.image.load("assets/sprites/emil/emilDown4.png"), pg.image.load("assets/sprites/emil/emilDown1.png"), pg.image.load("assets/sprites/emil/emilDown2.png"), pg.image.load("assets/sprites/emil/emilDown3.png"), pg.image.load("assets/sprites/emil/emilDown4.png"), pg.image.load("assets/sprites/emil/emilDown1.png"), pg.image.load("assets/sprites/emil/emilDown2.png"), pg.image.load("assets/sprites/emil/emilDown3.png"), pg.image.load("assets/sprites/emil/emilDown4.png")]
+emilWalkRight = [pg.image.load("assets/sprites/emil/emilRight1.png"), pg.image.load("assets/sprites/emil/emilRight2.png"), pg.image.load("assets/sprites/emil/emilRight3.png"), pg.image.load("assets/sprites/emil/emilRight4.png"), pg.image.load("assets/sprites/emil/emilRight1.png"), pg.image.load("assets/sprites/emil/emilRight2.png"), pg.image.load("assets/sprites/emil/emilRight3.png"), pg.image.load("assets/sprites/emil/emilRight4.png"), pg.image.load("assets/sprites/emil/emilRight1.png"), pg.image.load("assets/sprites/emil/emilRight2.png"), pg.image.load("assets/sprites/emil/emilRight3.png"), pg.image.load("assets/sprites/emil/emilRight4.png")]
+emilWalkLeft = [pg.image.load("assets/sprites/emil/emilLeft1.png"), pg.image.load("assets/sprites/emil/emilLeft2.png"), pg.image.load("assets/sprites/emil/emilLeft3.png"), pg.image.load("assets/sprites/emil/emilLeft4.png"), pg.image.load("assets/sprites/emil/emilLeft1.png"), pg.image.load("assets/sprites/emil/emilLeft2.png"), pg.image.load("assets/sprites/emil/emilLeft3.png"), pg.image.load("assets/sprites/emil/emilLeft4.png"), pg.image.load("assets/sprites/emil/emilLeft1.png"), pg.image.load("assets/sprites/emil/emilLeft2.png"), pg.image.load("assets/sprites/emil/emilLeft3.png"), pg.image.load("assets/sprites/emil/emilLeft4.png")]
+emilStandUp = pg.image.load("assets/sprites/emil/emilUp1.png")
+emilStandDown = pg.image.load("assets/sprites/emil/emilUp1.png")
+emilStandRight = pg.image.load("assets/sprites/emil/emilRight1.png")
+emilStandLeft = pg.image.load("assets/sprites/emil/emilLeft1.png")
 
 class emil(object):
     def __init__(self, x, y):

@@ -104,12 +104,12 @@ def pygameMenuStart():
     pg.mixer.music.load("assets/lyd/MainMenuMusic.mp3") #loader mainMenuMusic
     pg.mixer.music.set_volume(0.3) #lydstyrken
     pg.mixer.music.play(-1) #hvor mange gange musikken skal spille (-1 = bliver ved)
-    baggrundValg = 21 #IDK
+    baggrundValg = 21 #Startvariabel for tilfældig baggrunds-valg
     run = True
     while run:
         mx, my = pg.mouse.get_pos()
         clock.tick(60)
-        baggrundValg = baggrundValg + 1
+        baggrundValg += 1
 
         if baggrundValg > 61:
             baggrundValg = r.randint(1, 40)
