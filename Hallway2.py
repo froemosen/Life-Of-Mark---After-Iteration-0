@@ -60,11 +60,15 @@ def start():
 
     def drawWorld():
         win.blit(bgScene, (0,0))
+        if bb0.health <= 0:
+            pizza1.movement()
+            pizza1.draw(win)
         if smark.hitbool:
             smark.attack(win)
         else:
             smark.draw(win)
         bb0.draw(win)
+        
         #allPlayerText.tekst(win)
         pg.display.update()
 
@@ -296,29 +300,47 @@ def start():
         if smark.attackingRight and bb0.x-smark.x > -10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
             bb0.health -= 80
             bb0.vel = 0
-            bb0.stand
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
             broByggerCoolDown = tick
         
         elif smark.attackingLeft and bb0.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
             bb0.health -= 80
             bb0.vel = 0
-            bb0.stand
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
             broByggerCoolDown = tick
 
         elif smark.attackingDown and bb0.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
             bb0.vel = 0
-            bb0.stand
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
             broByggerCoolDown = tick
         
         elif smark.attackingUp and bb0.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
             bb0.vel = 0
-            bb0.stand
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
             broByggerCoolDown = tick
 
         if bb0.health < 0:
+            pizza1 = Classes.droppedItems(bb0.x+10, bb0.y+30, Classes.pizzaSprite)
             bb0.x = -10000
+            bb0.health = 0
 
         if tick-broByggerCoolDown > 50 and bb0.vel == 0:
             bb0.vel = 5
