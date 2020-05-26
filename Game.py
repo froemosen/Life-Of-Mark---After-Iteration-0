@@ -51,7 +51,6 @@ def start():
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    #borde = Classes.borde(152, 255, 1156, 115)
     x1 = 0
     while run:
         mx, my = pg.mouse.get_pos()

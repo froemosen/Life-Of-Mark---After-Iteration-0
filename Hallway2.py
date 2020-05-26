@@ -34,7 +34,8 @@ clock = pg.time.Clock()
 
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
-
+bbDamagedSound = pg.mixer.Sound("assets/lyd/BroByggerDamaged.wav") #lyd som afspilles når bb tager skade
+pizzaPickup = pg.mixer.Sound("assets/lyd/PizzaPickup.wav") #lyd som afspilles når pizza tages op
 """
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -60,9 +61,10 @@ def start():
 
     def drawWorld():
         win.blit(bgScene, (0,0))
-        if bb0.health <= 0:
-            pizza1.movement()
+        try:
             pizza1.draw(win)
+        except:
+            pass
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -175,9 +177,11 @@ def start():
                 smark.hitbool = True
                 smark.allow = False
 
+        #Bruges til test af inventory
         elif keys[pg.K_p]:
             Variabler.pizza += 1
 
+        #Spisning af pizza - giver flere liv
         elif keys[pg.K_e] and Variabler.pizza >= 1:
             Variabler.pizza -= 1
             Variabler.health += 100
@@ -306,6 +310,7 @@ def start():
             bb0.up = False
             bb0.down = False
             broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
         elif smark.attackingLeft and bb0.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
             bb0.health -= 80
@@ -316,6 +321,7 @@ def start():
             bb0.up = False
             bb0.down = False
             broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
         elif smark.attackingDown and bb0.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
@@ -326,6 +332,7 @@ def start():
             bb0.up = False
             bb0.down = False
             broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
         elif smark.attackingUp and bb0.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
             bb0.health -= 80
@@ -336,15 +343,26 @@ def start():
             bb0.up = False
             bb0.down = False
             broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
         if bb0.health < 0:
-            pizza1 = Classes.droppedItems(bb0.x+10, bb0.y+30, Classes.pizzaSprite)
+            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+35, Classes.pizzaSprite)
             bb0.x = -10000
             bb0.health = 0
 
         if tick-broByggerCoolDown > 50 and bb0.vel == 0:
             bb0.vel = 5
 
+        #Tjek om Smark er tæt nok på pizza til at samle den op.
+        try:
+            if abs(smark.x+45-pizza1.x) < 80 and abs(smark.y+80-pizza1.y) < 80:
+                del(pizza1)
+                pg.mixer.Channel(3).play(pizzaPickup, loops=0)
+                Variabler.pizza += 1
+                print("Pizza:", pizza1)
+        except:
+            pass
+            
         tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos

@@ -638,17 +638,10 @@ class droppedItems(object):
         self.movementVar = 0
 
     def draw(self, win):
-        win.blit(pizzaSprite, (self.x, self.y))
+        win.blit(self.item, (self.x, self.y))
 
-    def movement(self):
-        if self.movementVar <= 5:
-            pass
-        elif self.movementVar < 10 and self.movementVar > 5:
-            pass
-        elif self.movementVar < 30 and self.movementVar > 20:
-            pass
-        elif self.movementVar > 30:
-            self.movementVar = 0
-        else:
-            pass
-
+class inventory(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
