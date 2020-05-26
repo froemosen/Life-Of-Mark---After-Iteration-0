@@ -627,8 +627,8 @@ class buttons(object):
 class sangeListe():
     sange = ["assets/lyd/Violin_Background.mp3", "assets/lyd/kindahipandoldsong.mp3", "assets/lyd/EmotionalJegGuess.mp3"]
 
-
-pizzaSprite = pg.image.load("assets/pizza.png")
+#items
+pizzaSprite = pg.image.load("assets/items/pizza.png")
 
 class droppedItems(object):
     def __init__(self, x, y, item):
