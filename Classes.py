@@ -656,3 +656,15 @@ class droppedItems(object):
 
 
 
+inventoryBackground = pg.image.load("assets/Inventory/Inventory.png")
+inventoryPizza = pg.image.load("assets/Inventory/minipizza.png")
+inventoryBurger = pg.image.load("assets/Inventory/miniburger.png")
+#inventoryKaffe = pg.image.load("assets/Inventory/")
+#inventoryEnergidrik = pg.image.load("assets/Inventory/")
+class inventory(object):
+    inventoryX = 800
+    inventoryY = 960
+    def draw(self, win):
+        win.blit(inventoryPizza, (self.inventoryX+10, self.inventoryY+10))
+        win.blit(inventoryBurger, (self.inventoryX+100, self.inventoryY))
+        win.blit(inventoryBackground, (self.inventoryX, self.inventoryY))

@@ -31,6 +31,7 @@ pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
+inventory = Classes.inventory()
 
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
@@ -70,7 +71,7 @@ def start():
         else:
             smark.draw(win)
         bb0.draw(win)
-        
+        inventory.draw(win)
         #allPlayerText.tekst(win)
         pg.display.update()
 
