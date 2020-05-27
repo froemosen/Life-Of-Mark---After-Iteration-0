@@ -662,7 +662,7 @@ inventoryBurger = pg.image.load("assets/Inventory/miniburger.png")
 inventoryKaffe = pg.image.load("assets/Inventory/kaffe.png")
 #inventoryEnergidrik = pg.image.load("assets/Inventory/")
 class inventory(object):
-    inventoryX = 800
+    inventoryX = 1470
     inventoryY = 960
 
     def pizzaInvCount(self):
@@ -704,7 +704,7 @@ class inventory(object):
     def draw(self, win):
         win.blit(inventoryPizza, (self.inventoryX-2, self.inventoryY))
         win.blit(inventoryBurger, (self.inventoryX+115, self.inventoryY+13))
-        win.blit(inventoryKaffe, (self.inventoryX+180, self.inventoryY-25))
+        win.blit(inventoryKaffe, (self.inventoryX+180, self.inventoryY-24))
         #win.blit(inventoryEnergidrik, (self.inventoryX, self.inventoryY))
         win.blit(inventoryBackground, (self.inventoryX, self.inventoryY))
 
