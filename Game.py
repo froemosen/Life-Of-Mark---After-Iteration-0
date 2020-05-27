@@ -87,7 +87,7 @@ def start():
             walkAllowed_W = True
         #Kollision til borde - slut
 
-        if walking == True:
+        if walking:
                 if pg.mixer.Channel(5).get_busy() == False:
                     pg.mixer.Channel(5).play(walkSound)
                 else:
