@@ -59,6 +59,7 @@ def start():
     walkAllowed_W = True
     tick = 0
     broByggerCoolDown = 0
+    pg.mixer.music.set_volume(0.07)
 
     def drawWorld():
         win.blit(bgScene, (0,0))
@@ -212,7 +213,7 @@ def start():
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
             f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("bruger = " + str(Variabler.burger) + "\n")
+            f.write("burger = " + str(Variabler.burger) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
@@ -347,7 +348,7 @@ def start():
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
         if bb0.health < 0:
-            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+35, Classes.pizzaSprite)
+            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+50, Classes.pizzaSprite)
             bb0.x = -10000
             bb0.health = 0
 
@@ -360,7 +361,6 @@ def start():
                 del(pizza1)
                 pg.mixer.Channel(3).play(pizzaPickup, loops=0)
                 Variabler.pizza += 1
-                print("Pizza:", pizza1)
         except:
             pass
             

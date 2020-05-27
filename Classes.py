@@ -524,7 +524,7 @@ class broBygger(object):
         self.movementAllowed += r.randint(1,7)
 
     def attack(self):
-        #her kan eventuelt indsættes animationer til brobyggeren som er træls...
+        #her kan eventuelt indsættes animationer til brobyggeren...
         pass
 
     def healthbar(self):
@@ -659,12 +659,61 @@ class droppedItems(object):
 inventoryBackground = pg.image.load("assets/Inventory/Inventory.png")
 inventoryPizza = pg.image.load("assets/Inventory/minipizza.png")
 inventoryBurger = pg.image.load("assets/Inventory/miniburger.png")
-#inventoryKaffe = pg.image.load("assets/Inventory/")
+inventoryKaffe = pg.image.load("assets/Inventory/kaffe.png")
 #inventoryEnergidrik = pg.image.load("assets/Inventory/")
 class inventory(object):
     inventoryX = 800
     inventoryY = 960
+
+    def pizzaInvCount(self):
+        import Tekst
+        fontInventory = pg.font.Font("assets/invFont.ttf", 36)
+        Text = str(Variabler.pizza)
+        textSetting = fontInventory.render(Text, Tekst.run, Tekst.black1)
+        textRect = textSetting.get_rect()
+        textRect.center = (self.inventoryX+91, self.inventoryY+100)
+        win.blit(textSetting, textRect)
+
+    def burgerInvCount(self):
+        import Tekst
+        fontInventory = pg.font.Font("assets/invFont.ttf", 36)
+        Text = str(Variabler.burger)
+        textSetting = fontInventory.render(Text, Tekst.run, Tekst.black1)
+        textRect = textSetting.get_rect()
+        textRect.center = (self.inventoryX+204, self.inventoryY+100)
+        win.blit(textSetting, textRect)
+
+    def kaffeInvCount(self):
+        import Tekst
+        fontInventory = pg.font.Font("assets/invFont.ttf", 36)
+        Text = str(Variabler.kaffe)
+        textSetting = fontInventory.render(Text, Tekst.run, Tekst.black1)
+        textRect = textSetting.get_rect()
+        textRect.center = (self.inventoryX+318, self.inventoryY+100)
+        win.blit(textSetting, textRect)
+
+    def energidrikInvCount(self):
+        import Tekst
+        fontInventory = pg.font.Font("assets/invFont.ttf", 36)
+        Text = str(Variabler.energidrik)
+        textSetting = fontInventory.render(Text, Tekst.run, Tekst.black1)
+        textRect = textSetting.get_rect()
+        textRect.center = (self.inventoryX+427, self.inventoryY+100)
+        win.blit(textSetting, textRect)
+
     def draw(self, win):
-        win.blit(inventoryPizza, (self.inventoryX+10, self.inventoryY+10))
-        win.blit(inventoryBurger, (self.inventoryX+100, self.inventoryY))
+        win.blit(inventoryPizza, (self.inventoryX-2, self.inventoryY))
+        win.blit(inventoryBurger, (self.inventoryX+115, self.inventoryY+13))
+        win.blit(inventoryKaffe, (self.inventoryX+180, self.inventoryY-25))
+        #win.blit(inventoryEnergidrik, (self.inventoryX, self.inventoryY))
         win.blit(inventoryBackground, (self.inventoryX, self.inventoryY))
+
+        self.pizzaInvCount()
+        self.burgerInvCount()
+        self.kaffeInvCount()
+        self.energidrikInvCount()
+
+
+       
+
+        

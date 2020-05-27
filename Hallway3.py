@@ -37,6 +37,8 @@ def start():
     import Menu
     import Hallway2
     bgLocation = -3364
+    inventory = Classes.inventory()
+    pg.mixer.music.set_volume(0.07)
     def drawWorld():
         win.blit(bgScene3, (0,bgLocation))
         if smark.hitbool:
@@ -44,6 +46,7 @@ def start():
         else:
             smark.draw(win)
         #allPlayerText.tekst(win)
+        inventory.draw(win)
         pg.display.update()
 
     run = True
@@ -181,7 +184,7 @@ def start():
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
             f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("bruger = " + str(Variabler.burger) + "\n")
+            f.write("burger = " + str(Variabler.burger) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:

@@ -33,7 +33,8 @@ walkAllowed_W = True
 
 def start():
     import Menu
-    pg.mixer.music.set_volume(0.03)
+    pg.mixer.music.set_volume(0.07)
+    inventory = Classes.inventory()
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
@@ -46,6 +47,7 @@ def start():
             smark.attack(win)
         else:
             smark.draw(win)
+        inventory.draw(win)
         pg.display.update()
 
     run = True
