@@ -88,7 +88,7 @@ def TextMark1():
     win.blit(textSetting, textRect)
 
 def TextMark2():
-    Text = "Mark: Where is my computer???"
+    Text = "Mark: Wait where is my computer???"
     textSetting = font.render(Text, run, black1, textColor)
     textRect = textSetting.get_rect()
     textRect.center = (960, 960)
