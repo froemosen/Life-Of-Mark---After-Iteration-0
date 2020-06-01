@@ -39,6 +39,7 @@ def start():
     bgLocation = -3364
     inventory = Classes.inventory()
     pg.mixer.music.set_volume(0.07)
+    eatingAllowed = False
     def drawWorld():
         win.blit(bgScene3, (0,bgLocation))
         if smark.hitbool:
@@ -158,14 +159,65 @@ def start():
             if Variabler.health > 1000:
                 Variabler.health = 1000
 
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: pass
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+            
+        elif keys[pg.K_3] and eatingAllowed:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 300
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+
+        elif keys[pg.K_4] and eatingAllowed:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            eatingAllowed = True
 
         if keys[pg.K_ESCAPE]:
             pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
+
+    
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")

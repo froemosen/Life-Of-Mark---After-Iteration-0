@@ -35,6 +35,7 @@ def start():
     import Menu
     pg.mixer.music.set_volume(0.07)
     inventory = Classes.inventory()
+    eatingAllowed = False
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
@@ -144,10 +145,60 @@ def start():
             if Variabler.health > 1000:
                 Variabler.health = 1000
 
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: pass
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+            
+        elif keys[pg.K_3] and eatingAllowed:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 300
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+
+        elif keys[pg.K_4] and eatingAllowed:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: pass
+            else: pass
+
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            eatingAllowed = True
+
 
         #Sceneskift
         if smark.x > 1400 and smark.x < 1620 and smark.y > -15 and smark.y <= 0:
