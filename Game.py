@@ -29,6 +29,10 @@ walkAllowed_S = True
 walkAllowed_D = True
 walkAllowed_W = True
 
+
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 #Alle backgorund og sprites skal sorteres
 
 def start():
@@ -151,10 +155,12 @@ def start():
                 if Variabler.pizza > 0:
                         Variabler.pizza -= 1
                         Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
                         if Variabler.health > 1000:
                             Variabler.health = 1000
                         else: pass
-                else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
             else: pass
 
         elif keys[pg.K_2]:
@@ -163,34 +169,40 @@ def start():
                 if Variabler.burger > 0:
                     Variabler.burger -= 1
                     Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
                     if Variabler.health > 1000:
                         Variabler.health = 1000
                     else: pass
-                else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
             else: pass
             
-        elif keys[pg.K_3] and eatingAllowed:
+        elif keys[pg.K_3]:
             if eatingAllowed:
                 eatingAllowed = False
                 if Variabler.kaffe > 0:
                     Variabler.kaffe -= 1
-                    Variabler.health += 300
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
                     if Variabler.health > 1000:
                         Variabler.health = 1000
                     else: pass
-                else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
             else: pass
 
-        elif keys[pg.K_4] and eatingAllowed:
+        elif keys[pg.K_4]:
             if eatingAllowed:
                 eatingAllowed = False
                 if Variabler.energidrik > 0:
                     Variabler.energidrik -= 1
                     Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
                     if Variabler.health > 1000:
                         Variabler.health = 1000
                     else: pass
-                else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
             else: pass
 
         else:
