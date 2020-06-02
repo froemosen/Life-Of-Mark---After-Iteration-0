@@ -712,8 +712,3 @@ class inventory(object):
         self.burgerInvCount()
         self.kaffeInvCount()
         self.energidrikInvCount()
-
-
-       
-
-        
