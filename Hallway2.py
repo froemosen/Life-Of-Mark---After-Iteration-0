@@ -37,6 +37,9 @@ walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark
 #Alle backgorund og sprites skal sorteres
 bbDamagedSound = pg.mixer.Sound("assets/lyd/BroByggerDamaged.wav") #lyd som afspilles når bb tager skade
 pizzaPickup = pg.mixer.Sound("assets/lyd/PizzaPickup.wav") #lyd som afspilles når pizza tages op
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 """
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -57,6 +60,7 @@ def start():
     walkAllowed_S = True
     walkAllowed_D = True
     walkAllowed_W = True
+    eatingAllowed = False
     tick = 0
     broByggerCoolDown = 0
     pg.mixer.music.set_volume(0.07)
@@ -181,20 +185,73 @@ def start():
 
         #Bruges til test af inventory
         elif keys[pg.K_p]:
-            Variabler.pizza += 1
+            Variabler.energidrik += 1
 
         #Spisning af pizza - giver flere liv
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
+
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+            
+        elif keys[pg.K_3]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_4]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
 
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
             smark.hitCount = 0
+            eatingAllowed = True
+
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
@@ -212,8 +269,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
