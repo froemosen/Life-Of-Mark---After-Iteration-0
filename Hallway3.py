@@ -157,11 +157,6 @@ def start():
         elif keys[pg.K_p]:
             Variabler.pizza += 1
 
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
 
         elif keys[pg.K_1]:
             if eatingAllowed:    
