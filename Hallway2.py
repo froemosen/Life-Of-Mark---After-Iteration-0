@@ -269,8 +269,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
