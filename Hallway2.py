@@ -187,8 +187,7 @@ def start():
         elif keys[pg.K_p]:
             Variabler.energidrik += 1
 
-        #Spisning af pizza - giver flere liv
-
+        #Spisning (1,2,3,4) - giver flere liv
         elif keys[pg.K_1]:
             if eatingAllowed:    
                 eatingAllowed = False

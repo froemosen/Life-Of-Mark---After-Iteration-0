@@ -19,7 +19,7 @@ markAttackUp = [pg.image.load("assets/sprites/mark/hitUp1.png"),  pg.image.load(
 markAttackDown = [pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png"), pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png"), pg.image.load("assets/sprites/mark/hitDown1.png"), pg.image.load("assets/sprites/mark/hitDown2.png"), pg.image.load("assets/sprites/mark/hitDown3.png"), pg.image.load("assets/sprites/mark/hitDown4.png")]
 markAttackLeft = [pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png"), pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png"), pg.image.load("assets/sprites/mark/hitLeft1.png"), pg.image.load("assets/sprites/mark/hitLeft2.png"), pg.image.load("assets/sprites/mark/hitLeft3.png"), pg.image.load("assets/sprites/mark/hitLeft4.png")]
 markAttackRight = [pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png"), pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png"), pg.image.load("assets/sprites/mark/hitRight1.png"), pg.image.load("assets/sprites/mark/hitRight2.png"), pg.image.load("assets/sprites/mark/hitRight3.png"), pg.image.load("assets/sprites/mark/hitRight4.png")]
-
+markAttackSound = pg.mixer.Sound("assets/lyd/smarkAttackSound.wav")
 #Player
 class smark(object):
     def  __init__(self, x, y,):
@@ -122,6 +122,9 @@ class smark(object):
             self.attackingUp = False
             self.attackingDown = False
         self.healthBar()
+        
+        if pg.mixer.Channel(1).get_busy() == False and self.hitCount == 2:
+            pg.mixer.Channel(1).play(markAttackSound)
 
         if self.hitCount == 8:
             self.generalAttack = True
