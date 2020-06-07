@@ -707,7 +707,24 @@ class inventory(object):
         self.kaffeInvCount()
         self.energidrikInvCount()
 
+jijiSprite1 = pg.image.load("assets/sprites/jiji/jiji1.png")
+jijiSprite2 = pg.image.load("assets/sprites/jiji/jiji2.png")
+questMark = pg.image.load("assets/quest.png")
+
 class jiji(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.passiveMovement = 0
+    def draw(self, win):
+        if self.passiveMovement < 10:
+            win.blit(jijiSprite1, (self.x, self.y))
+        else:
+            win.blit(jijiSprite2, (self.x, self.y))
+            win.blit(questMark, (self.x+5, self.y-30))
+        
+        if self.passiveMovement > 15:
+            self.passiveMovement = 0
+        self.passiveMovement += 1
+
+

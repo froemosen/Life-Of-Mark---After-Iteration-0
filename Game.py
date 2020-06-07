@@ -264,15 +264,7 @@ def start():
     
 #start() # "#" kan fjernes under tests
 
-"""
-        if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
-                smark.vel = 10
-            else:
-                smark.vel = 0
 
-        if smark.y< borde.y or smark.y > borde.y + borde.width:
-            if smark.x + 77 < borde.x or smark.x > borde.x + borde.height:
-                smark.vel = 10
-        else:
-            smark.vel = 0
-"""
+def respawn():
+    smark.y += 20
+    start()

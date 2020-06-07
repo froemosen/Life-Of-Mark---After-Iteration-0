@@ -12,7 +12,7 @@ fps = 60
 #Er der for settings
 
 if scene == 2 or scene == 1:
-    smark = Classes.smark(1075, 725)
+    smark = Classes.smark(1075, 715)
     smark.walkUp = True
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks x og y pos
@@ -50,6 +50,7 @@ def start():
     bb2 = Classes.broBygger(1100, bgLocation+2100)
     bb3 = Classes.broBygger(1100, bgLocation+3000)
     brobyggere = [bb1, bb2, bb3]
+    jiji = Classes.jiji(1200, bgLocation+200)
     pg.mixer.music.set_volume(0.07)
     eatingAllowed = False
     def drawWorld():
@@ -72,6 +73,7 @@ def start():
             pass
         for brobygger in brobyggere:
             brobygger.draw(win)
+        jiji.draw(win)
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -289,7 +291,7 @@ def start():
         if smark.x > 1020 and smark.x < 1260 and smark.y > 690 and smark.y < 730: #Sceneskift
             Hallway2.start()
 
-        if smark.y < 295 and bgLocation < 0: #Stopper baggrund fra at rykke sig i enden
+        if smark.y < 295 and bgLocation < 0: #Rykker baggrund, for at smark ikke går ud af skærmen
             bgLocation += smark.vel
             for brobygger in brobyggere:
                 brobygger.y += smark.vel
@@ -310,8 +312,9 @@ def start():
                 energidrik1.y += smark.vel
             except:
                 pass
+            jiji.y += smark.vel
         
-        if smark.y > 300 and bgLocation > -3364: #Stopper baggrund fra at rykke sig i enden
+        if smark.y > 300 and bgLocation > -3364: #Rykker baggrund, for at smark ikke går ud af skærmen
             bgLocation -= smark.vel
             for brobygger in brobyggere:
                 brobygger.y -= smark.vel
@@ -332,6 +335,7 @@ def start():
                 energidrik1.y -= smark.vel
             except:
                 pass
+            jiji.y -= smark.vel
 
 
         
@@ -497,6 +501,13 @@ def start():
             pass
         tick += 1
 
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 1075
+            smark.y = 715
+            Variabler.health = 1000
+            Hallway2.respawn()
+
         print(mx) #mouse x pos
         print(my) #mouse y pos
 
@@ -507,4 +518,10 @@ def start():
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
+
+
     pg.quit()
+
+def respawn():
+    smark.y += 20
+    start()

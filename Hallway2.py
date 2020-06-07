@@ -11,7 +11,7 @@ fps = 60
 
 #Er der for settings
 if scene == 1:
-    smark = Classes.smark(725, 699)
+    smark = Classes.smark(725, 650)
     smark.walkUp = True
     smark.walkDown = False
 elif scene == 3:
@@ -426,6 +426,13 @@ def start():
         except:
             pass
             
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 790
+            smark.y = 650
+            Variabler.health = 1000
+            Game.respawn()
+
         tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
@@ -440,3 +447,8 @@ def start():
         smark.hitbool = False
         smark.allow = True
     pg.quit()
+
+
+def respawn():
+    smark.y += 20
+    start()
