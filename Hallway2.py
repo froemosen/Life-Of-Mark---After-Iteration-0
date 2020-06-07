@@ -369,6 +369,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -380,6 +381,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
@@ -391,6 +393,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -402,6 +405,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 

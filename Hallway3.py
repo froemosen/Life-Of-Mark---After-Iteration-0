@@ -58,6 +58,18 @@ def start():
             pizza1.draw(win)
         except:
             pass
+        try:
+            burger1.draw(win)
+        except:
+            pass
+        try:
+            kaffe1.draw(win)
+        except:
+            pass
+        try:
+            energidrik1.draw(win)
+        except:
+            pass
         for brobygger in brobyggere:
             brobygger.draw(win)
         if smark.hitbool:
@@ -73,6 +85,7 @@ def start():
     walking = False
     musicCooldown = r.randint(1, 800)
     while run:
+        dropchoice = r.randint(1, 4)
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
         clock.tick(fps)
@@ -281,12 +294,45 @@ def start():
             for brobygger in brobyggere:
                 brobygger.y += smark.vel
             smark.y = 295
+            try:
+                pizza1.y += smark.vel
+            except:
+                pass
+            try:
+                burger1.y += smark.vel
+            except:
+                pass
+            try:
+                kaffe1.y += smark.vel
+            except:
+                pass
+            try:
+                energidrik1.y += smark.vel
+            except:
+                pass
         
         if smark.y > 300 and bgLocation > -3364: #Stopper baggrund fra at rykke sig i enden
             bgLocation -= smark.vel
             for brobygger in brobyggere:
                 brobygger.y -= smark.vel
             smark.y = 295
+            try:
+                pizza1.y -= smark.vel
+            except:
+                pass
+            try:
+                burger1.y -= smark.vel
+            except:
+                pass
+            try:
+                kaffe1.y -= smark.vel
+            except:
+                pass
+            try:
+                energidrik1.y -= smark.vel
+            except:
+                pass
+
 
         
         for brobygger in brobyggere:
@@ -334,7 +380,7 @@ def start():
                         smark.attacked()
             
             else:
-                if brobygger.x > 925 and brobygger.x < 1235 and brobygger.y-bgLocation < -2500 and brobygger.y-bgLocation > -3649 or brobygger.x > 505 and brobygger.x < 1225 and brobygger.y-bgLocation > -2539 and brobygger.y-bgLocation < -2000:
+                if brobygger.x > 925 and brobygger.x < 1235 and bgLocation-brobygger.y < -2500 and bgLocation-brobygger.y > -3649 or brobygger.x > 505 and brobygger.x < 1225 and bgLocation-brobygger.y > -2539 and bgLocation-brobygger.y < -2000:
                     brobygger.movement()
                 else: 
                     if brobygger.x > 1200:
@@ -345,11 +391,11 @@ def start():
                         brobygger.x += 3
                         brobygger.y += 1
                         brobygger.movementChoice = 1
-                    elif brobygger.y-bgLocation > -3649:
+                    elif bgLocation-brobygger.y > -3649:
                         brobygger.y -= 3
                         brobygger.x -= 1
                         brobygger.movementChoice = 4
-                    elif brobygger.y < -2000:
+                    elif bgLocation-brobygger.y < -2000:
                         brobygger.y += 3
                         brobygger.x += 1
                         brobygger.movementChoice = 3
@@ -364,6 +410,7 @@ def start():
                 brobygger.right = False
                 brobygger.up = False
                 brobygger.down = False
+                brobygger.movementChoice = 5
                 broByggerCoolDown = tick
                 pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
             
@@ -375,6 +422,7 @@ def start():
                 brobygger.right = False
                 brobygger.up = False
                 brobygger.down = False
+                brobygger.movementChoice = 5
                 broByggerCoolDown = tick
                 pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
 
@@ -386,6 +434,7 @@ def start():
                 brobygger.right = False
                 brobygger.up = False
                 brobygger.down = False
+                brobygger.movementChoice = 5
                 broByggerCoolDown = tick
                 pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
             
@@ -397,12 +446,19 @@ def start():
                 brobygger.right = False
                 brobygger.up = False
                 brobygger.down = False
+                brobygger.movementChoice = 5
                 broByggerCoolDown = tick
                 pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
 
             if brobygger.health < 0:
-                dropchoice = r.randint(1, 4)
-                pizza1 = Classes.droppedItems(brobygger.x+15, brobygger.y+50, Classes.pizzaSprite)
+                if dropchoice == 1:
+                    pizza1 = Classes.droppedItems(brobygger.x+15, brobygger.y+50, Classes.pizzaSprite)
+                elif dropchoice == 2:
+                    burger1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.burgerSprite)
+                elif dropchoice == 3:
+                    kaffe1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.kaffeSprite)
+                elif dropchoice == 4:
+                    energidrik1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.energidrikSprite)
                 brobygger.x = -10000
                 brobygger.health = 0
 
@@ -410,12 +466,33 @@ def start():
                 brobygger.vel = 5
             #collision og angreb slut
             
-            #Tjek om Smark er tæt nok på pizza til at samle den op.
+        #Tjek om Smark er tæt nok på mad til at samle det op.
         try:
             if abs(smark.x+45-pizza1.x) < 80 and abs(smark.y+80-pizza1.y) < 80:
                 del(pizza1)
                 pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
                 Variabler.pizza += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-burger1.x) < 80 and abs(smark.y+80-burger1.y) < 80:
+                del(burger1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.burger += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-kaffe1.x) < 80 and abs(smark.y+80-kaffe1.y) < 80:
+                del(kaffe1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.kaffe += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-energidrik1.x) < 80 and abs(smark.y+80-energidrik1.y) < 80:
+                del(energidrik1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.energidrik += 1
         except:
             pass
         tick += 1
