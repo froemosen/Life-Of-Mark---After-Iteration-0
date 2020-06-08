@@ -48,6 +48,11 @@ def start():
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
+        win.blit(table1, (56,500))
+        win.blit(table1, (287,500))
+        win.blit(table1, (518,500))
+        win.blit(table1, (749,500))
+        win.blit(table1, (980,500))
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -69,6 +74,30 @@ def start():
                 Menu.pygameMenuStart()
         
         #Kollision til borde - start
+        if smark.x < 1280:
+            if smark.y > 55 and smark.y < 240:
+                walkAllowed_A = False
+            else:
+                walkAllowed_A = True
+        else:
+            walkAllowed_A = True
+
+        if smark.x < 1260:
+            if smark.y > 45 and smark.y < 240:
+                walkAllowed_S = False
+            else:
+                walkAllowed_S = True
+        else: 
+            walkAllowed_S = True
+
+        if smark.x < 1260:
+            if smark.y > 55 and smark.y < 250:
+                walkAllowed_W = False
+            else:
+                walkAllowed_W = True
+        else: 
+            walkAllowed_W = True
+
         if smark.x < 1280:
             if smark.y > 55 and smark.y < 240:
                 walkAllowed_A = False
