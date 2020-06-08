@@ -643,7 +643,6 @@ class droppedItems(object):
         self.x = x
         self.y = y
         self.item = item
-        self.movementVar = 0
 
     def draw(self, win):
         win.blit(self.item, (self.x, self.y))
