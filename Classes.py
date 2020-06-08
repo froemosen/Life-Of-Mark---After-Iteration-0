@@ -361,7 +361,7 @@ class Lac(object):
                 win.blit(lacWalkRight[self.walkCount // 3], (self.x, self.y))
                 self.walkCount += 1
             else:
-                win.blit(madsStandDown, (self.x, self.y))
+                win.blit(LacStandDown, (self.x, self.y))
         else:
             if self.up:
                 win.blit(LacStandUp, (self.x, self.y))
@@ -395,7 +395,7 @@ class emil(object):
         self.stand = True
         self.movementAllowed = 0
    
-    def draw(self):  
+    def draw(self, win):  
         if self.walkCount + 1 >= 27:
             self.walkCount = 0
         
