@@ -5,6 +5,7 @@ import random as r
 import Classes
 from saveFile1 import *
 import Variabler
+import Tekst
 
 x = 1920
 y = 1080
@@ -31,14 +32,10 @@ walkAllowed_A = True
 walkAllowed_S = True
 walkAllowed_D = True
 walkAllowed_W = True
-
-
-
 eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
 drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
 failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 #Alle backgorund og sprites skal sorteres
-
 def start():
     tick = 0
     import Menu
@@ -78,15 +75,32 @@ def start():
             smark.attack(win)
         else:
             smark.draw(win)
-
+        if jijiTalk:
+            allPlayerText.tekst(win)
+            Tekst.jijitalk0()
+            walkAllowed_A = False
+            walkAllowed_D = False
+            walkAllowed_S = False
+            walkAllowed_W = False
+        elif jijiTalk1:
+            allPlayerText.tekst(win)
+            Tekst.jijitalk1()
         #allPlayerText.tekst(win)
         inventory.draw(win)
         pg.display.update()
-
     run = True
     walking = False
+    dialogStart = False #Bruge til at starte dialog()
     musicCooldown = r.randint(1, 800)
+    timeToTalk = 0
+    jijiTalk = False #Bruges så jiji kan snakke
+    jijiTalk1 = False #Til jiji's anden dialog
     while run:
+        timerToTalk = 0
+        walkAllowed_A = True
+        walkAllowed_S = True
+        walkAllowed_D = True
+        walkAllowed_W = True
         dropchoice = r.randint(1, 4)
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
@@ -187,7 +201,6 @@ def start():
         elif keys[pg.K_p]:
             Variabler.kaffe += 1
 
-
         elif keys[pg.K_1]:
             if eatingAllowed:    
                 eatingAllowed = False
@@ -254,6 +267,20 @@ def start():
             pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
 
+        if keys[pg.K_v] and smark.x > 1185 and smark.x < 1250 and (smark.y - bgLocation) > -300 and (smark.y - bgLocation) > -245:
+            allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox
+            timeToTalk = 0
+            if timeToTalk < 100:
+                jijiTalk = True
+            elif timeToTalk > 100 and timeToTalk < 200:
+                jijiTalk = False
+                jijiTalk1 = True
+            else:
+                walkAllowed_A = True
+                walkAllowed_D = True
+                walkAllowed_S = True
+                walkAllowed_W = True
+        timeToTalk += 1
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
@@ -469,7 +496,7 @@ def start():
             if tick-broByggerCoolDown > 50 and brobygger.vel == 0:
                 brobygger.vel = 5
             #collision og angreb slut
-            
+
         #Tjek om Smark er tæt nok på mad til at samle det op.
         try:
             if abs(smark.x+45-pizza1.x) < 80 and abs(smark.y+80-pizza1.y) < 80:
@@ -508,13 +535,14 @@ def start():
             Variabler.health = 1000
             Hallway2.respawn()
 
-        print(mx) #mouse x pos
-        print(my) #mouse y pos
+        #print(mx) #mouse x pos
+        #print(my) #mouse y pos
 
-        print("SmarkX - bgLocation", smark.x) #main sprite x pos
-        print("SmarkY - bgLocation", bgLocation-smark.y) #main sprite y pos
+        #print("SmarkX", smark.x) #main sprite x pos
+        #print("SmarkY - bgLocation", bgLocation-smark.y) #main sprite y pos
 
-        print("BaggrundY: ", bgLocation)
+        #print("BaggrundY: ", bgLocation)
+        print(timeToTalk)
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
