@@ -12,7 +12,7 @@ fps = 60
 #Er der for settings
 
 if scene == 2 or scene == 1:
-    smark = Classes.smark(1075, 725)
+    smark = Classes.smark(1075, 715)
     smark.walkUp = True
 else:
     smark = Classes.smark(smark.x, smark.y) #Marks x og y pos
@@ -31,25 +31,63 @@ walkAllowed_A = True
 walkAllowed_S = True
 walkAllowed_D = True
 walkAllowed_W = True
+
+
+
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 #Alle backgorund og sprites skal sorteres
 
 def start():
+    tick = 0
     import Menu
     import Hallway2
     bgLocation = -3364
+    inventory = Classes.inventory()
+    broByggerCoolDown = 0
+    bb1 = Classes.broBygger(650, bgLocation+2100)
+    bb2 = Classes.broBygger(1100, bgLocation+2100)
+    bb3 = Classes.broBygger(1100, bgLocation+3000)
+    brobyggere = [bb1, bb2, bb3]
+    jiji = Classes.jiji(1200, bgLocation+200)
+    pg.mixer.music.set_volume(0.07)
+    eatingAllowed = False
     def drawWorld():
-        win.blit(bgScene3, (0,bgLocation))
+        win.blit(bgScene3, (0, bgLocation))
+        try:
+            pizza1.draw(win)
+        except:
+            pass
+        try:
+            burger1.draw(win)
+        except:
+            pass
+        try:
+            kaffe1.draw(win)
+        except:
+            pass
+        try:
+            energidrik1.draw(win)
+        except:
+            pass
+        for brobygger in brobyggere:
+            brobygger.draw(win)
+        jiji.draw(win)
         if smark.hitbool:
             smark.attack(win)
         else:
             smark.draw(win)
+
         #allPlayerText.tekst(win)
+        inventory.draw(win)
         pg.display.update()
 
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
     while run:
+        dropchoice = r.randint(1, 4)
         mx, my = pg.mouse.get_pos()
         keys = pg.key.get_pressed()
         clock.tick(fps)
@@ -147,18 +185,70 @@ def start():
                 smark.allow = False
 
         elif keys[pg.K_p]:
-            Variabler.pizza += 1
+            Variabler.kaffe += 1
 
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
+
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+            
+        elif keys[pg.K_3]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_4]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
 
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            eatingAllowed = True
 
         if keys[pg.K_ESCAPE]:
             pg.mouse.set_visible(True)
@@ -170,6 +260,7 @@ def start():
             f.write("import Variabler" + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
+            f.write("bgLocation = " + str(bgLocation) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
             f.write("smark.walkDown = " + str(smark.walkDown) + "\n")
             f.write("smark.walkUp = " + str(smark.walkUp) + "\n")
@@ -180,8 +271,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("bruger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:
@@ -198,22 +291,237 @@ def start():
         if smark.x > 1020 and smark.x < 1260 and smark.y > 690 and smark.y < 730: #Sceneskift
             Hallway2.start()
 
-        if smark.y < 295 and bgLocation < 0: #Stopper baggrund fra at rykke sig i enden
+        if smark.y < 295 and bgLocation < 0: #Rykker baggrund, for at smark ikke går ud af skærmen
             bgLocation += smark.vel
+            for brobygger in brobyggere:
+                brobygger.y += smark.vel
             smark.y = 295
+            try:
+                pizza1.y += smark.vel
+            except:
+                pass
+            try:
+                burger1.y += smark.vel
+            except:
+                pass
+            try:
+                kaffe1.y += smark.vel
+            except:
+                pass
+            try:
+                energidrik1.y += smark.vel
+            except:
+                pass
+            jiji.y += smark.vel
         
-        if smark.y > 300 and bgLocation > -3364: #Stopper baggrund fra at rykke sig i enden
+        if smark.y > 300 and bgLocation > -3364: #Rykker baggrund, for at smark ikke går ud af skærmen
             bgLocation -= smark.vel
+            for brobygger in brobyggere:
+                brobygger.y -= smark.vel
             smark.y = 295
+            try:
+                pizza1.y -= smark.vel
+            except:
+                pass
+            try:
+                burger1.y -= smark.vel
+            except:
+                pass
+            try:
+                kaffe1.y -= smark.vel
+            except:
+                pass
+            try:
+                energidrik1.y -= smark.vel
+            except:
+                pass
+            jiji.y -= smark.vel
+
+
+        
+        for brobygger in brobyggere:
+            #BOT MOVEMENT, COLLISION OG ANGREB FOR SCENE
+            distanceX = abs(brobygger.x-smark.x)
+            distanceY = abs(brobygger.y-(smark.y+65))
+            if distanceX < 400 and distanceY < 400:
+                    if distanceX > distanceY:
+                        if brobygger.x <= smark.x:
+                            brobygger.x += brobygger.vel
+                            brobygger.left = False
+                            brobygger.right = True
+                            brobygger.up = False
+                            brobygger.down = False
+                            brobygger.stand = False
+
+                        elif brobygger.x > smark.x:
+                            brobygger.x -= brobygger.vel
+                            brobygger.left = True
+                            brobygger.right = False
+                            brobygger.up = False
+                            brobygger.down = False
+                            brobygger.stand = False
+
+                    elif distanceX < distanceY:
+                        if brobygger.y <= smark.y+50:
+                            brobygger.y += brobygger.vel
+                            brobygger.left = False
+                            brobygger.right = False
+                            brobygger.up = False
+                            brobygger.down = True
+                            brobygger.stand = False
+
+                        elif brobygger.y > smark.y+50:
+                            brobygger.y -= brobygger.vel
+                            brobygger.left = False
+                            brobygger.right = False
+                            brobygger.up = True
+                            brobygger.down = False
+                            brobygger.stand = False
+                    else:
+                        brobygger.movement()
+                    
+                    if distanceX < 80 and distanceY < 80:
+                        smark.attacked()
+            
+            else:
+                if brobygger.x > 925 and brobygger.x < 1235 and bgLocation-brobygger.y < -2500 and bgLocation-brobygger.y > -3649 or brobygger.x > 505 and brobygger.x < 1225 and bgLocation-brobygger.y > -2539 and bgLocation-brobygger.y < -2000:
+                    brobygger.movement()
+                else: 
+                    if brobygger.x > 1200:
+                        brobygger.x -= 3
+                        brobygger.y -= 1
+                        brobygger.movementChoice = 2
+                    elif brobygger.x < 1000:
+                        brobygger.x += 3
+                        brobygger.y += 1
+                        brobygger.movementChoice = 1
+                    elif bgLocation-brobygger.y > -3649:
+                        brobygger.y -= 3
+                        brobygger.x -= 1
+                        brobygger.movementChoice = 4
+                    elif bgLocation-brobygger.y < -2000:
+                        brobygger.y += 3
+                        brobygger.x += 1
+                        brobygger.movementChoice = 3
+            
+
+            #Smark.attack:
+            if smark.attackingRight and brobygger.x-smark.x > -10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+                brobygger.health -= 80
+                brobygger.vel = 0
+                brobygger.stand = True
+                brobygger.left = False
+                brobygger.right = False
+                brobygger.up = False
+                brobygger.down = False
+                brobygger.movementChoice = 5
+                broByggerCoolDown = tick
+                pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
+            
+            elif smark.attackingLeft and brobygger.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+                brobygger.health -= 80
+                brobygger.vel = 0
+                brobygger.stand = True
+                brobygger.left = False
+                brobygger.right = False
+                brobygger.up = False
+                brobygger.down = False
+                brobygger.movementChoice = 5
+                broByggerCoolDown = tick
+                pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
+
+            elif smark.attackingDown and brobygger.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+                brobygger.health -= 80
+                brobygger.vel = 0
+                brobygger.stand = True
+                brobygger.left = False
+                brobygger.right = False
+                brobygger.up = False
+                brobygger.down = False
+                brobygger.movementChoice = 5
+                broByggerCoolDown = tick
+                pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
+            
+            elif smark.attackingUp and brobygger.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+                brobygger.health -= 80
+                brobygger.vel = 0
+                brobygger.stand = True
+                brobygger.left = False
+                brobygger.right = False
+                brobygger.up = False
+                brobygger.down = False
+                brobygger.movementChoice = 5
+                broByggerCoolDown = tick
+                pg.mixer.Channel(4).play(Hallway2.bbDamagedSound) #afspilning af lyd
+
+            if brobygger.health < 0:
+                if dropchoice == 1:
+                    pizza1 = Classes.droppedItems(brobygger.x+15, brobygger.y+50, Classes.pizzaSprite)
+                elif dropchoice == 2:
+                    burger1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.burgerSprite)
+                elif dropchoice == 3:
+                    kaffe1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.kaffeSprite)
+                elif dropchoice == 4:
+                    energidrik1 = Classes.droppedItems(brobygger.x, brobygger.y, Classes.energidrikSprite)
+                brobygger.x = -10000
+                brobygger.health = 0
+
+            if tick-broByggerCoolDown > 50 and brobygger.vel == 0:
+                brobygger.vel = 5
+            #collision og angreb slut
+            
+        #Tjek om Smark er tæt nok på mad til at samle det op.
+        try:
+            if abs(smark.x+45-pizza1.x) < 80 and abs(smark.y+80-pizza1.y) < 80:
+                del(pizza1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.pizza += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-burger1.x) < 80 and abs(smark.y+80-burger1.y) < 80:
+                del(burger1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.burger += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-kaffe1.x) < 80 and abs(smark.y+80-kaffe1.y) < 80:
+                del(kaffe1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.kaffe += 1
+        except:
+            pass
+        try:
+            if abs(smark.x+45-energidrik1.x) < 80 and abs(smark.y+80-energidrik1.y) < 80:
+                del(energidrik1)
+                pg.mixer.Channel(3).play(Hallway2.pizzaPickup, loops=0)
+                Variabler.energidrik += 1
+        except:
+            pass
+        tick += 1
+
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 1075
+            smark.y = 715
+            Variabler.health = 1000
+            Hallway2.respawn()
 
         print(mx) #mouse x pos
         print(my) #mouse y pos
 
-        print("SmarkX", smark.x) #main sprite x pos
-        print("SmarkY", smark.y) #main sprite y pos
+        print("SmarkX - bgLocation", smark.x) #main sprite x pos
+        print("SmarkY - bgLocation", bgLocation-smark.y) #main sprite y pos
 
         print("BaggrundY: ", bgLocation)
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
+
+
     pg.quit()
+
+def respawn():
+    smark.y += 20
+    start()

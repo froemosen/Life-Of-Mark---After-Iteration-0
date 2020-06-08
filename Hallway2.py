@@ -11,7 +11,7 @@ fps = 60
 
 #Er der for settings
 if scene == 1:
-    smark = Classes.smark(725, 699)
+    smark = Classes.smark(725, 650)
     smark.walkUp = True
     smark.walkDown = False
 elif scene == 3:
@@ -37,6 +37,9 @@ walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark
 #Alle backgorund og sprites skal sorteres
 bbDamagedSound = pg.mixer.Sound("assets/lyd/BroByggerDamaged.wav") #lyd som afspilles når bb tager skade
 pizzaPickup = pg.mixer.Sound("assets/lyd/PizzaPickup.wav") #lyd som afspilles når pizza tages op
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 """
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -57,8 +60,10 @@ def start():
     walkAllowed_S = True
     walkAllowed_D = True
     walkAllowed_W = True
+    eatingAllowed = False
     tick = 0
     broByggerCoolDown = 0
+    pg.mixer.music.set_volume(0.07)
 
     def drawWorld():
         win.blit(bgScene, (0,0))
@@ -180,20 +185,72 @@ def start():
 
         #Bruges til test af inventory
         elif keys[pg.K_p]:
-            Variabler.pizza += 1
+            Variabler.energidrik += 1
 
-        #Spisning af pizza - giver flere liv
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
+        #Spisning (1,2,3,4) - giver flere liv
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+            
+        elif keys[pg.K_3]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_4]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
 
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
             smark.hitCount = 0
+            eatingAllowed = True
+
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
@@ -211,8 +268,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("bruger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
@@ -310,6 +369,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -321,6 +381,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
@@ -332,6 +393,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -343,11 +405,12 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
         if bb0.health < 0:
-            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+35, Classes.pizzaSprite)
+            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+50, Classes.pizzaSprite)
             bb0.x = -10000
             bb0.health = 0
 
@@ -360,10 +423,16 @@ def start():
                 del(pizza1)
                 pg.mixer.Channel(3).play(pizzaPickup, loops=0)
                 Variabler.pizza += 1
-                print("Pizza:", pizza1)
         except:
             pass
             
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 790
+            smark.y = 650
+            Variabler.health = 1000
+            Game.respawn()
+
         tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
@@ -378,3 +447,8 @@ def start():
         smark.hitbool = False
         smark.allow = True
     pg.quit()
+
+
+def respawn():
+    smark.y += 20
+    start()
