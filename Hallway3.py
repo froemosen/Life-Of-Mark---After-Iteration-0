@@ -81,15 +81,18 @@ def start():
         elif jijiTalk1:
             allPlayerText.tekst(win)
             Tekst.jijitalk1()
+            Tekst.jijitalk11()
         elif jijiTalk2:
             allPlayerText.tekst(win)
             Tekst.jijitalk2()
+            Tekst.jijitalk21()
         elif jijiTalk3:
             allPlayerText.tekst(win)
             Tekst.jijitalk3()
         elif jijiTalk4:
             allPlayerText.tekst(win)
-            Tekst.jijitalk4()            
+            Tekst.jijitalk4()    
+            Tekst.jijitalk41()        
         #allPlayerText.tekst(win)
         inventory.draw(win)
         pg.display.update()
