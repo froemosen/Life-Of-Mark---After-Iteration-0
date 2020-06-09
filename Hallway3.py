@@ -16,7 +16,7 @@ if scene == 2 or scene == 1:
     smark = Classes.smark(1075, 715)
     smark.walkUp = True
 else:
-    smark = Classes.smark(smark.x, smark.y) #Marks x og y pos
+    smark = Classes.smark(1075, 715) #Marks x og y pos
 
 scene = 3 #var som bruges som en slags ID til forskellige scener i spillet
 
@@ -286,13 +286,13 @@ def start():
             elif timeToTalk > 100 and timeToTalk < 200:
                 jijiTalk = False
                 jijiTalk1 = True
-            elif timerToTalk > 200 and timeToTalk < 300:
+            elif timeToTalk > 200 and timeToTalk < 300:
                 jijiTalk1 = False
                 jijiTalk2 = True
-            elif timerToTalk > 300 and timeToTalk < 400:
+            elif timeToTalk > 300 and timeToTalk < 400:
                 jijiTalk2 = False
                 jijiTalk3 = True
-            elif timerToTalk > 400 and timeToTalk < 500:
+            elif timeToTalk > 400 and timeToTalk < 500:
                 jijiTalk3 = False
                 jijiTalk4 = True
             else:

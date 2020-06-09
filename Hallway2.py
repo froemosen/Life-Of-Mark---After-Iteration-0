@@ -17,7 +17,7 @@ if scene == 1:
 elif scene == 3:
     smark = Classes.smark(1350, -28)
 else:
-    smark = Classes.smark(smark.x, smark.y) #Mark x og y pos
+    smark = Classes.smark(725, 650) #Mark x og y pos
 
 scene = 2 #var som bruges som en slags ID til forskellige scener i spillet
 
