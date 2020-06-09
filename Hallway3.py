@@ -78,13 +78,18 @@ def start():
         if jijiTalk:
             allPlayerText.tekst(win)
             Tekst.jijitalk0()
-            walkAllowed_A = False
-            walkAllowed_D = False
-            walkAllowed_S = False
-            walkAllowed_W = False
         elif jijiTalk1:
             allPlayerText.tekst(win)
             Tekst.jijitalk1()
+        elif jijiTalk2:
+            allPlayerText.tekst(win)
+            Tekst.jijitalk2()
+        elif jijiTalk3:
+            allPlayerText.tekst(win)
+            Tekst.jijitalk3()
+        elif jijiTalk4:
+            allPlayerText.tekst(win)
+            Tekst.jijitalk4()            
         #allPlayerText.tekst(win)
         inventory.draw(win)
         pg.display.update()
@@ -95,6 +100,10 @@ def start():
     timeToTalk = 0
     jijiTalk = False #Bruges så jiji kan snakke
     jijiTalk1 = False #Til jiji's anden dialog
+    jijiTalk2 = False
+    jijiTalk3 = False
+    jijiTalk4 = False
+    timerToTalk = 0
     while run:
         timerToTalk = 0
         walkAllowed_A = True
@@ -267,20 +276,28 @@ def start():
             pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
 
-        if keys[pg.K_v] and smark.x > 1185 and smark.x < 1250 and (smark.y - bgLocation) > -300 and (smark.y - bgLocation) > -245:
+        if smark.x > 1150 and smark.x < 1255 and (bgLocation - smark.y) > -500:
             allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox
-            timeToTalk = 0
             if timeToTalk < 100:
                 jijiTalk = True
             elif timeToTalk > 100 and timeToTalk < 200:
                 jijiTalk = False
                 jijiTalk1 = True
+            elif timerToTalk > 200 and timeToTalk < 300:
+                jijiTalk1 = False
+                jijiTalk2 = True
+            elif timerToTalk > 300 and timeToTalk < 400:
+                jijiTalk2 = False
+                jijiTalk3 = True
+            elif timerToTalk > 400 and timeToTalk < 500:
+                jijiTalk3 = False
+                jijiTalk4 = True
             else:
                 walkAllowed_A = True
                 walkAllowed_D = True
                 walkAllowed_S = True
                 walkAllowed_W = True
-        timeToTalk += 1
+            timeToTalk += 1
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
@@ -538,11 +555,10 @@ def start():
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
 
-        #print("SmarkX", smark.x) #main sprite x pos
-        #print("SmarkY - bgLocation", bgLocation-smark.y) #main sprite y pos
-
-        #print("BaggrundY: ", bgLocation)
+        print("SmarkX", smark.x) #main sprite x pos
+        print("SmarkY - bgLocation", bgLocation-smark.y) #main sprite y pos
         print(timeToTalk)
+        #print("BaggrundY: ", bgLocation)
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
