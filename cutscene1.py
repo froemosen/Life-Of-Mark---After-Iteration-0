@@ -264,4 +264,3 @@ def start():
         drawWorld() #"tegner" hele spillet
     pg.quit()
 pygame.mouse.set_visible(False)
-start()
