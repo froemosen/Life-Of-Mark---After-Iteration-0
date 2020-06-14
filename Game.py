@@ -29,11 +29,17 @@ walkAllowed_S = True
 walkAllowed_D = True
 walkAllowed_W = True
 
+
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 #Alle backgorund og sprites skal sorteres
 
 def start():
     import Menu
-    pg.mixer.music.set_volume(0.03)
+    pg.mixer.music.set_volume(0.07)
+    inventory = Classes.inventory()
+    eatingAllowed = False
     def drawWorld():
         win.blit(bg, (0,0))
         #Bord er 231 pixels langt
@@ -42,16 +48,21 @@ def start():
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
+        win.blit(table1, (56,500))
+        win.blit(table1, (287,500))
+        win.blit(table1, (518,500))
+        win.blit(table1, (749,500))
+        win.blit(table1, (980,500))
         if smark.hitbool:
             smark.attack(win)
         else:
             smark.draw(win)
+        inventory.draw(win)
         pg.display.update()
 
     run = True
     walking = False
     musicCooldown = r.randint(1, 800)
-    borde = Classes.borde(152, 255, 1156, 115)
     x1 = 0
     while run:
         mx, my = pg.mouse.get_pos()
@@ -86,9 +97,33 @@ def start():
                 walkAllowed_W = True
         else: 
             walkAllowed_W = True
+
+        if smark.x < 1280:
+            if smark.y > 55 and smark.y < 240:
+                walkAllowed_A = False
+            else:
+                walkAllowed_A = True
+        else:
+            walkAllowed_A = True
+
+        if smark.x < 1260:
+            if smark.y > 45 and smark.y < 240:
+                walkAllowed_S = False
+            else:
+                walkAllowed_S = True
+        else: 
+            walkAllowed_S = True
+
+        if smark.x < 1260:
+            if smark.y > 55 and smark.y < 250:
+                walkAllowed_W = False
+            else:
+                walkAllowed_W = True
+        else: 
+            walkAllowed_W = True
         #Kollision til borde - slut
 
-        if walking == True:
+        if walking:
                 if pg.mixer.Channel(5).get_busy() == False:
                     pg.mixer.Channel(5).play(walkSound)
                 else:
@@ -131,25 +166,88 @@ def start():
             walking = True
         
         elif keys[pg.K_SPACE] and smark.allow:
-                smark.hitbool = True
-                smark.allow = False
+            smark.hitbool = True
+            smark.allow = False
+        
+        elif keys[pg.K_p]:
+            Variabler.pizza += 1
+
+
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+            
+        elif keys[pg.K_3]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_4]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
 
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            eatingAllowed = True
+
 
         #Sceneskift
         if smark.x > 1400 and smark.x < 1620 and smark.y > -15 and smark.y <= 0:
             Hallway2.start()
 
         if keys[pg.K_ESCAPE]:
+            pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
-            f.write("import Health " + "\n")
+            f.write("import Variabler" + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
@@ -161,6 +259,11 @@ def start():
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
+            #inventory
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:
@@ -190,15 +293,7 @@ def start():
     
 #start() # "#" kan fjernes under tests
 
-"""
-        if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
-                smark.vel = 10
-            else:
-                smark.vel = 0
 
-        if smark.y< borde.y or smark.y > borde.y + borde.width:
-            if smark.x + 77 < borde.x or smark.x > borde.x + borde.height:
-                smark.vel = 10
-        else:
-            smark.vel = 0
-"""
+def respawn():
+    smark.y += 20
+    start()

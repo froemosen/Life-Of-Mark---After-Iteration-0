@@ -6,6 +6,7 @@ import Classes
 import Game
 from saveFile1 import *
 import Hallway2, Hallway3
+import cutscene1
 
 x = 1920
 y = 1080
@@ -104,12 +105,12 @@ def pygameMenuStart():
     pg.mixer.music.load("assets/lyd/MainMenuMusic.mp3") #loader mainMenuMusic
     pg.mixer.music.set_volume(0.3) #lydstyrken
     pg.mixer.music.play(-1) #hvor mange gange musikken skal spille (-1 = bliver ved)
-    baggrundValg = 21 #IDK
+    baggrundValg = 21 #Startvariabel for tilfældig baggrunds-valg
     run = True
     while run:
         mx, my = pg.mouse.get_pos()
         clock.tick(60)
-        baggrundValg = baggrundValg + 1
+        baggrundValg += 1
 
         if baggrundValg > 61:
             baggrundValg = r.randint(1, 40)
@@ -120,11 +121,16 @@ def pygameMenuStart():
             if event.type == pg.MOUSEBUTTONDOWN:
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
                     pg.mixer.music.fadeout(1500)
-                    if scene == 1:
+                    if scene == 0:
+                        cutscene1.start()
+                    elif scene == 1:
+                        pg.mouse.set_visible(False)
                         Game.start()
                     elif scene == 2:
+                        pg.mouse.set_visible(False)
                         Hallway2.start()
                     elif scene == 3:
+                        pg.mouse.set_visible(False)
                         Hallway3.start()
                 if mx > 785 and mx < 1150 and my > 720 and my < 765:
                     startSettings()

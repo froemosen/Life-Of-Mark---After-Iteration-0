@@ -8,15 +8,16 @@ import Variabler
 x = 1920
 y = 1080
 fps = 60
+
 #Er der for settings
 if scene == 1:
-    smark = Classes.smark(725, 699)
+    smark = Classes.smark(725, 650)
     smark.walkUp = True
     smark.walkDown = False
 elif scene == 3:
     smark = Classes.smark(1350, -28)
 else:
-    smark = Classes.smark(smark.x, smark.y) #Mark x og y pos
+    smark = Classes.smark(725, 650) #Mark x og y pos
 
 scene = 2 #var som bruges som en slags ID til forskellige scener i spillet
 
@@ -25,16 +26,20 @@ pg.init()
 pg.font.init()
 
 allPlayerText = Classes.allPlayerText(100, 920) #allPlayerText x og y pos
-bb = Classes.broBygger(1500, 400)
+bb0 = Classes.broBygger(1500, 400)
 pg.mixer.music.set_volume(0.03) #lydstyrke
 bgScene = pg.image.load("assets/maps/Hallway2.png") #loader grafikken til Hallway2
-
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
 clock = pg.time.Clock()
+inventory = Classes.inventory()
 
 walkSound = pg.mixer.Sound("assets/lyd/walksound.wav") #loader lyd til når mark går
 #Alle backgorund og sprites skal sorteres
-
+bbDamagedSound = pg.mixer.Sound("assets/lyd/BroByggerDamaged.wav") #lyd som afspilles når bb tager skade
+pizzaPickup = pg.mixer.Sound("assets/lyd/PizzaPickup.wav") #lyd som afspilles når pizza tages op
+eatSound = pg.mixer.Sound("assets/lyd/eatSound.wav") #lyd når burger eller pizza spises
+drinkSound = pg.mixer.Sound("assets/lyd/drinkSound.wav") #lyd når kaffe eller energidrik drikkes
+failureToConsume = pg.mixer.Sound("assets/lyd/failureToEat.wav") #Lyd når der ikke er mere mad af den type man vil spise
 """
 class borde(object):
     def __init__(self, x, y, height, width):
@@ -55,14 +60,23 @@ def start():
     walkAllowed_S = True
     walkAllowed_D = True
     walkAllowed_W = True
+    eatingAllowed = False
+    tick = 0
+    broByggerCoolDown = 0
+    pg.mixer.music.set_volume(0.07)
 
     def drawWorld():
         win.blit(bgScene, (0,0))
-        bb.draw(win)
+        try:
+            pizza1.draw(win)
+        except:
+            pass
         if smark.hitbool:
             smark.attack(win)
         else:
             smark.draw(win)
+        bb0.draw(win)
+        inventory.draw(win)
         #allPlayerText.tekst(win)
         pg.display.update()
 
@@ -169,15 +183,79 @@ def start():
                 smark.hitbool = True
                 smark.allow = False
 
+        #Bruges til test af inventory
+        elif keys[pg.K_p]:
+            Variabler.energidrik += 1
+
+        #Spisning (1,2,3,4) - giver flere liv
+        elif keys[pg.K_1]:
+            if eatingAllowed:    
+                eatingAllowed = False
+                if Variabler.pizza > 0:
+                        Variabler.pizza -= 1
+                        Variabler.health += 100
+                        pg.mixer.Channel(2).play(eatSound)
+                        if Variabler.health > 1000:
+                            Variabler.health = 1000
+                        else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_2]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.burger > 0:
+                    Variabler.burger -= 1
+                    Variabler.health += 300
+                    pg.mixer.Channel(2).play(eatSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+            
+        elif keys[pg.K_3]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.kaffe > 0:
+                    Variabler.kaffe -= 1
+                    Variabler.health += 200
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
+        elif keys[pg.K_4]:
+            if eatingAllowed:
+                eatingAllowed = False
+                if Variabler.energidrik > 0:
+                    Variabler.energidrik -= 1
+                    Variabler.health += 1000
+                    pg.mixer.Channel(2).play(drinkSound)
+                    if Variabler.health > 1000:
+                        Variabler.health = 1000
+                    else: pass
+                else: 
+                    pg.mixer.Channel(2).play(failureToConsume)
+            else: pass
+
         else:
             smark.stand = True
             smark.walkCount = 0
             walking = False
+            smark.hitCount = 0
+            eatingAllowed = True
+
 
         if keys[pg.K_l]:
             f = open("saveFile1.py", "w")
             f.write("import Classes" + "\n")
-            f.write("import Health " + "\n")
+            f.write("import Variabler" + "\n")
             f.write("x = " + str(smark.x) + "\n")
             f.write("y = " + str(smark.y) + "\n")
             f.write("smark = Classes.smark(x, y)" + "\n")            
@@ -189,9 +267,15 @@ def start():
             f.write("walking = " + str(walking) + "\n")
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
+            #inventory
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
+            pg.mouse.set_visible(True)
             Menu.pygameMenuStart()
 
         if pg.mixer.music.get_busy() == True:
@@ -213,69 +297,143 @@ def start():
             Hallway3.start()
 
         #BOT MOVEMENT, COLLISION OG ANGREB FOR SCENE
-        distanceX = abs(bb.x-smark.x)
-        distanceY = abs(bb.y-smark.y)
+        distanceX = abs(bb0.x-smark.x)
+        distanceY = abs(bb0.y-(smark.y+65))
         if distanceX < 400 and distanceY < 400:
                 if distanceX > distanceY:
-                    if bb.x <= smark.x:
-                        bb.x += bb.vel
-                        bb.left = False
-                        bb.right = True
-                        bb.up = False
-                        bb.down = False
-                        bb.stand = False
+                    if bb0.x <= smark.x:
+                        bb0.x += bb0.vel
+                        bb0.left = False
+                        bb0.right = True
+                        bb0.up = False
+                        bb0.down = False
+                        bb0.stand = False
 
-                    elif bb.x > smark.x:
-                        bb.x -= bb.vel
-                        bb.left = True
-                        bb.right = False
-                        bb.up = False
-                        bb.down = False
-                        bb.stand = False
+                    elif bb0.x > smark.x:
+                        bb0.x -= bb0.vel
+                        bb0.left = True
+                        bb0.right = False
+                        bb0.up = False
+                        bb0.down = False
+                        bb0.stand = False
 
                 elif distanceX < distanceY:
-                    if bb.y <= smark.y+50:
-                        bb.y += bb.vel
-                        bb.left = False
-                        bb.right = False
-                        bb.up = False
-                        bb.down = True
-                        bb.stand = False
+                    if bb0.y <= smark.y+50:
+                        bb0.y += bb0.vel
+                        bb0.left = False
+                        bb0.right = False
+                        bb0.up = False
+                        bb0.down = True
+                        bb0.stand = False
 
-                    elif bb.y > smark.y+50:
-                        bb.y -= bb.vel
-                        bb.left = False
-                        bb.right = False
-                        bb.up = True
-                        bb.down = False
-                        bb.stand = False
+                    elif bb0.y > smark.y+50:
+                        bb0.y -= bb0.vel
+                        bb0.left = False
+                        bb0.right = False
+                        bb0.up = True
+                        bb0.down = False
+                        bb0.stand = False
                 else:
-                    bb.movement()
+                    bb0.movement()
                 
                 if distanceX < 80 and distanceY < 80:
                     smark.attacked()
         else:
-            if bb.x > 1165 and bb.x < 1615 and bb.y > 100 and bb.y < 780 or bb.x > 415 and bb.x < 1166 and bb.y > 360 and bb.y <  780:
-                bb.movement()
+            if bb0.x > 1165 and bb0.x < 1615 and bb0.y > 100 and bb0.y < 780 or bb0.x > 415 and bb0.x < 1166 and bb0.y > 360 and bb0.y <  780:
+                bb0.movement()
             else: 
-                if bb.x > 1614:
-                    bb.x -= 3
-                    bb.y -= 1
-                    bb.movementChoice = 2
-                elif bb.x < 416:
-                    bb.x += 3
-                    bb.y += 1
-                    bb.movementChoice = 1
-                elif bb.y > 779:
-                    bb.y -= 3
-                    bb.x -= 1
-                    bb.movementChoice = 4
-                elif bb.y < 101 or bb.y < 380 and bb.x < 1180:
-                    bb.y += 3
-                    bb.x += 1
-                    bb.movementChoice = 3
+                if bb0.x > 1614:
+                    bb0.x -= 3
+                    bb0.y -= 1
+                    bb0.movementChoice = 2
+                elif bb0.x < 416:
+                    bb0.x += 3
+                    bb0.y += 1
+                    bb0.movementChoice = 1
+                elif bb0.y > 779:
+                    bb0.y -= 3
+                    bb0.x -= 1
+                    bb0.movementChoice = 4
+                elif bb0.y < 101 or bb0.y < 380 and bb0.x < 1180:
+                    bb0.y += 3
+                    bb0.x += 1
+                    bb0.movementChoice = 3
 
 
+        #Smark.attack:
+        if smark.attackingRight and bb0.x-smark.x > -10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+            bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
+            bb0.movementChoice = 5
+            broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
+        
+        elif smark.attackingLeft and bb0.x-smark.x < 10 and distanceX < 200 and distanceY < 80 and smark.generalAttack:
+            bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
+            bb0.movementChoice = 5
+            broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
+
+        elif smark.attackingDown and bb0.y-smark.y > -10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+            bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
+            bb0.movementChoice = 5
+            broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
+        
+        elif smark.attackingUp and bb0.y-smark.y < 10 and distanceY < 200 and distanceX < 80 and smark.generalAttack:
+            bb0.health -= 80
+            bb0.vel = 0
+            bb0.stand = True
+            bb0.left = False
+            bb0.right = False
+            bb0.up = False
+            bb0.down = False
+            bb0.movementChoice = 5
+            broByggerCoolDown = tick
+            pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
+
+        if bb0.health < 0:
+            pizza1 = Classes.droppedItems(bb0.x+15, bb0.y+50, Classes.pizzaSprite)
+            bb0.x = -10000
+            bb0.health = 0
+
+        if tick-broByggerCoolDown > 50 and bb0.vel == 0:
+            bb0.vel = 5
+
+        #Tjek om Smark er tæt nok på pizza til at samle den op.
+        try:
+            if abs(smark.x+45-pizza1.x) < 80 and abs(smark.y+80-pizza1.y) < 80:
+                del(pizza1)
+                pg.mixer.Channel(3).play(pizzaPickup, loops=0)
+                Variabler.pizza += 1
+        except:
+            pass
+            
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 790
+            smark.y = 650
+            Variabler.health = 1000
+            Game.respawn()
+
+        tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
         #print(bb.movementAllowed)
@@ -283,10 +441,14 @@ def start():
         #print("SmarkY", smark.y)#main sprite y pos
         #print("DistanceX:", distanceX)
         #print("DistanceY:", distanceY)
-        print("Health:", Variabler.health)
-
-
+        #print("Health:", Variabler.health)
+        #print("BB.heatlh:", bb0.health)
         drawWorld() #"Tegner" verden
         smark.hitbool = False
         smark.allow = True
     pg.quit()
+
+
+def respawn():
+    smark.y += 20
+    start()
