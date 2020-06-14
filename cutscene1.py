@@ -17,6 +17,7 @@ mads = Classes.Mads(758, 320) #Mads placering se i classes under Mads klassen
 Lac = Classes.Lac(500, 320) #Lac placering se i classes under lac klassen
 hod = Classes.hodyah(946, 315) #Hodyah placering se i classes under hodyah klassen
 kris = Classes.kristian(1214, 315) #kristian placering se i classes under kristian klassen
+emil = Classes.emil(1214, 600)
 allPlayerText = Classes.allPlayerText(200, 740) #Grafikken kommer det placering for "textbox"
 bg = pg.image.load("assets/maps/Classroom(1.0).png") #Loader baggrunden
 win = pg.display.set_mode((x,y), pg.FULLSCREEN)
@@ -71,6 +72,7 @@ def start():
         kris.draw(win)
         hod.draw(win)
         Lac.draw(win)
+        emil.draw(win)
         pg.display.update()
     run = True
     walking = False
@@ -130,7 +132,15 @@ def start():
             kris.right = False
             kris.left = True
             kris.stand = False
-        
+
+            #emil movement
+            emil.x -= emil.vel
+            emil.down = False
+            emil.up = False
+            emil.right = False
+            emil.left = True
+            emil.stand = False
+
         if tick > 3.5 and tick < 6:
 
             #hod movement
@@ -161,6 +171,12 @@ def start():
             Lac.left = False
             Lac.stand = True
 
+            #emil movement
+            emil.down = False
+            emil.up = False
+            emil.right = False
+            emil.left = True
+            emil.stand = False
 
         if tick > 6 and tick < 28:
             #mark movement
@@ -195,7 +211,7 @@ def start():
                 Lac.right = True
                 Lac.left = False
                 Lac.stand = False
-            elif tick > 35 and tick < 40:
+            elif tick > 35 and tick < 36:
                 #Lac movement
                 Lac.y -= Lac.vel
                 Lac.down = False
@@ -224,16 +240,27 @@ def start():
                 kris.right = True
                 kris.left = False
                 kris.stand = False
-            elif tick > 31 and tick < 40:
+            elif tick > 31 and tick < 32:
                 kris.y -= kris.vel
                 kris.down = False
                 kris.up = True
                 kris.right = False
                 kris.left = False
                 kris.stand = False
+            elif tick > 32 and tick < 33:
+                kris.y -= 600
+                kris.vel = 0
+            elif tick > 33 and tick < 34:
+                hod.y -= 600
+                hod.vel = 0
+            elif tick > 34 and tick < 35:
+                mads.y -= 600
+                mads.vel = 0
+            elif tick > 36 and tick < 37:
+                Lac.y -= 600
+                Lac.vel = 0
         if tick > 50:
             Game.start()
         drawWorld() #"tegner" hele spillet
     pg.quit()
 pygame.mouse.set_visible(False)
-start()

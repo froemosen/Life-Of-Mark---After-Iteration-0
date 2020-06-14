@@ -6,6 +6,7 @@ import Classes
 import Game
 from saveFile1 import *
 import Hallway2, Hallway3
+import cutscene1
 
 x = 1920
 y = 1080
@@ -120,7 +121,9 @@ def pygameMenuStart():
             if event.type == pg.MOUSEBUTTONDOWN:
                 if mx > 850 and mx < 1070 and my > 520 and my < 560:
                     pg.mixer.music.fadeout(1500)
-                    if scene == 1:
+                    if scene == 0:
+                        cutscene1.start()
+                    elif scene == 1:
                         pg.mouse.set_visible(False)
                         Game.start()
                     elif scene == 2:

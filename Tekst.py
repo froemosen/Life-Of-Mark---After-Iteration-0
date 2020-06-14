@@ -128,3 +128,59 @@ def TextMark3():
     textRect = textSetting.get_rect()
     textRect.center = (960, 960)
     win.blit(textSetting, textRect)
+
+def jijitalk0():
+    Text = "Jiji: Ohh hi Mark!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def jijitalk1():
+    Text = "Jiji: Normally this would be the"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 920)
+    win.blit(textSetting, textRect)
+
+def jijitalk11():
+    Text = "the beginning of an amazing adventure"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 1000)
+    win.blit(textSetting, textRect)
+
+def jijitalk2():
+    Text = "Jiji: I would give you a quest that"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 920)
+    win.blit(textSetting, textRect)
+
+def jijitalk21():
+    Text = "would lead to hours of amazing gameplay"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 1000)
+    win.blit(textSetting, textRect)
+
+def jijitalk3():
+    Text = "Jiji: But this is the end of the demo"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 960)
+    win.blit(textSetting, textRect)
+
+def jijitalk4():
+    Text = "Jiji: Well done! "
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 920)
+    win.blit(textSetting, textRect)
+
+def jijitalk41():
+    Text = "See you in the full release!"
+    textSetting = font.render(Text, run, black1, textColor)
+    textRect = textSetting.get_rect()
+    textRect.center = (960, 1000)
+    win.blit(textSetting, textRect)
