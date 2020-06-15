@@ -11,13 +11,13 @@ fps = 60
 
 #Er der for settings
 if scene == 1:
-    smark = Classes.smark(725, 699)
+    smark = Classes.smark(725, 650)
     smark.walkUp = True
     smark.walkDown = False
 elif scene == 3:
     smark = Classes.smark(1350, -28)
 else:
-    smark = Classes.smark(smark.x, smark.y) #Mark x og y pos
+    smark = Classes.smark(725, 650) #Mark x og y pos
 
 scene = 2 #var som bruges som en slags ID til forskellige scener i spillet
 
@@ -187,13 +187,7 @@ def start():
         elif keys[pg.K_p]:
             Variabler.energidrik += 1
 
-        #Spisning af pizza - giver flere liv
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
-
+        #Spisning (1,2,3,4) - giver flere liv
         elif keys[pg.K_1]:
             if eatingAllowed:    
                 eatingAllowed = False
@@ -274,8 +268,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if keys[pg.K_ESCAPE]:
@@ -373,6 +369,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -384,6 +381,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
@@ -395,6 +393,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
         
@@ -406,6 +405,7 @@ def start():
             bb0.right = False
             bb0.up = False
             bb0.down = False
+            bb0.movementChoice = 5
             broByggerCoolDown = tick
             pg.mixer.Channel(4).play(bbDamagedSound) #afspilning af lyd
 
@@ -426,6 +426,13 @@ def start():
         except:
             pass
             
+        #Tjek om mark er død
+        if Variabler.health < 1:
+            smark.x = 790
+            smark.y = 650
+            Variabler.health = 1000
+            Game.respawn()
+
         tick += 1
         #print(mx) #mouse x pos
         #print(my) #mouse y pos
@@ -440,3 +447,8 @@ def start():
         smark.hitbool = False
         smark.allow = True
     pg.quit()
+
+
+def respawn():
+    smark.y += 20
+    start()

@@ -1,2 +1,2 @@
 import Menu
-Menu.pygameMenuStart() #start så menu ikke fucker up
+Menu.pygameMenuStart() #start.py findes så menu importerer korrekt

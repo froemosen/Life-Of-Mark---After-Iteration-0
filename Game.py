@@ -48,6 +48,11 @@ def start():
         win.blit(table1, (518,250))
         win.blit(table1, (749,250))
         win.blit(table1, (980,250))
+        win.blit(table1, (56,500))
+        win.blit(table1, (287,500))
+        win.blit(table1, (518,500))
+        win.blit(table1, (749,500))
+        win.blit(table1, (980,500))
         if smark.hitbool:
             smark.attack(win)
         else:
@@ -69,6 +74,30 @@ def start():
                 Menu.pygameMenuStart()
         
         #Kollision til borde - start
+        if smark.x < 1280:
+            if smark.y > 55 and smark.y < 240:
+                walkAllowed_A = False
+            else:
+                walkAllowed_A = True
+        else:
+            walkAllowed_A = True
+
+        if smark.x < 1260:
+            if smark.y > 45 and smark.y < 240:
+                walkAllowed_S = False
+            else:
+                walkAllowed_S = True
+        else: 
+            walkAllowed_S = True
+
+        if smark.x < 1260:
+            if smark.y > 55 and smark.y < 250:
+                walkAllowed_W = False
+            else:
+                walkAllowed_W = True
+        else: 
+            walkAllowed_W = True
+
         if smark.x < 1280:
             if smark.y > 55 and smark.y < 240:
                 walkAllowed_A = False
@@ -143,11 +172,6 @@ def start():
         elif keys[pg.K_p]:
             Variabler.pizza += 1
 
-        elif keys[pg.K_e] and Variabler.pizza >= 1:
-            Variabler.pizza -= 1
-            Variabler.health += 100
-            if Variabler.health > 1000:
-                Variabler.health = 1000
 
         elif keys[pg.K_1]:
             if eatingAllowed:    
@@ -236,8 +260,10 @@ def start():
             f.write("scene = " + str(scene) + "\n")
             f.write("Variabler.health = " + str(Variabler.health) + "\n")
             #inventory
-            f.write("pizza = " + str(Variabler.pizza) + "\n")
-            f.write("bruger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.pizza = " + str(Variabler.pizza) + "\n")
+            f.write("Variabler.burger = " + str(Variabler.burger) + "\n")
+            f.write("Variabler.kaffe = " + str(Variabler.kaffe) + "\n")
+            f.write("Variabler.energidrik = " + str(Variabler.energidrik) + "\n")
             f.close()
 
         if pg.mixer.music.get_busy() == True:
@@ -267,15 +293,7 @@ def start():
     
 #start() # "#" kan fjernes under tests
 
-"""
-        if smark.hitbox[0] + 77 < borde.hitbox[0] or smark.hitbox[0] > borde.hitbox[1] + borde.hitbox[2]:
-                smark.vel = 10
-            else:
-                smark.vel = 0
 
-        if smark.y< borde.y or smark.y > borde.y + borde.width:
-            if smark.x + 77 < borde.x or smark.x > borde.x + borde.height:
-                smark.vel = 10
-        else:
-            smark.vel = 0
-"""
+def respawn():
+    smark.y += 20
+    start()
